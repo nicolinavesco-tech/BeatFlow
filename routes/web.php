@@ -11,6 +11,8 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [HomeController::class, 'homepage'])->name('homepage');
 Route::get('/download', [HomeController::class, 'download'])->name('download');
 Route::get('/support', [HomeController::class, 'support'])->name('support');
+Route::get('/premium', [HomeController::class, 'premium'])->name('premium');
+
 
 
 

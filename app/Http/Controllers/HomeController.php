@@ -33,5 +33,10 @@ class HomeController extends Controller
     {
         return view('support');
     }
+
+    public function premium()
+    {
+        return view('premium');
+    }
 }
 

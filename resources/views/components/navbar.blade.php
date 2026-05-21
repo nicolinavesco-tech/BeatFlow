@@ -1,7 +1,7 @@
 <div class="navbar fixed top-0 left-0 right-0 h-20 z-50 flex justify-between bg-black shadow-sm">
   <div class="w-100 ms-3">
     <a href="{{ route('homepage') }}">
-      <img src="logo/logo.png" class="w-15" alt="Logo di BeatFlow" />
+      <img src="/logo/logo.png" class="w-15" alt="Logo di BeatFlow" />
     </a>
   </div>
   <div class="navbar-center gap-2 hidden lg:flex justify-center flex-1 ">
@@ -97,7 +97,9 @@
     </div>
     @else
 
-    <span>Premium</span>
+    <a href="{{ route('premium') }}" class="">
+      <span>Premium</span>
+    </a>
     <a href="{{ route('support') }}" class="">
       <span>Assistenza</span>
     </a>

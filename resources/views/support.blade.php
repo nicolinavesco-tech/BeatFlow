@@ -184,6 +184,7 @@
                 </details>
             </div>
     </section>
+    <!-- Seconda sezione -->
     <section class="w-full mx-auto p-5">
         <div class="flex flex-col items-center">
             <div class="w-full max-w-lg p-5 ">
@@ -202,6 +203,7 @@
         </div>
 
     </section>
+    <!-- Terza sezione -->
     <section class="w-full bg-zinc-900 mx-auto p-5">
         <div class="flex flex-col items-center gap-10 p-5">
             <h2 class="text-5xl text-white font-bold">Visita la nostra community</h2>
