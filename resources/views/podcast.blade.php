@@ -1,6 +1,7 @@
 <x-layout>
-    <main class="container-fluid">
-        <section class="min-h-screen flex bg-black justify-content-center align-items-center pt-20 gap-2">
+
+    <main class="flex gap-2 bg-black">
+        <section class="min-h-screen flex justify-content-center align-items-center pt-20 gap-2 ">
             <div class="border rounded-xl border-base-100 bg-base-100 w-100 space-y-5">
                 <div class="flex justify-between">
                     <p class="text-xl font-bold mb-4 p-5">La tua libreria</p>
@@ -84,109 +85,94 @@
                     <a href="{{ route('podcast') }}" class="btn bg-white text-black rounded-3xl">Sfoglia i podcast</a>
                 </div>
             </div>
+        </section>
+        <section class="pt-20 w-362">
+            <div class="flex border border-base-100 rounded-xl h-100 flex-col gap-6 p-8 bg-base-100 bg-[linear-gradient(to_top,transparent_10%,#15803d_50%,#4ade80)]">
+                <a href="{{ route('homepage') }}" class="flex items-center gap-2 text-white px-4 py-2 bg-black/40 backdrop-blur-md rounded-full hover:bg-black/60 transition w-fit">
+                    <i class="fa-solid fa-chevron-left"></i>
+                    <span>Torna indietro</span>
+                </a>
 
-            <div class="flex rounded-xl border border-base-100 bg-base-100 w-375 bg flex-col gap-2 p-5">
-                <a href="" class="text-2xl font-bold">Brani di tendenza</a>
+                <div class="flex ">
+                    <h1 class="text-9xl font-bold">Podcast</h1>
+
+                </div>
+            </div>
+
+            <div class="flex border border-base-100 bg-base-100 w-362 bg flex-col gap-2 p-5">
+                <a href="" class="text-2xl font-bold">Radar Creators Italia</a>
 
                 <div class="relative w-full">
-
-                    <button
-                        type="button"
-                        onclick="scrollTrending(-350)"
-                        class="btn btn-circle absolute left-0 top-20 bg-black/20 border-none text-white">
-                        ❮
-                    </button>
 
                     <div
                         id="trendingCarousel"
                         class="flex gap-4 overflow-x-auto scroll-smooth pt-2 pb-4 px-10"
                         style="scrollbar-width: none;">
 
-                        @foreach ($songs as $song)
+                        <!-- foreach  -->
                         <div class="group shrink-0 w-52 flex flex-col relative hover:bg-slate-700/55 rounded-lg p-2 transition">
-                            <a href="{{ route('songs.show', $song) }}" class="block">
+                            <a href="" class="block">
                                 <img
-                                    src="{{ asset('media/' . $song->artistModel->image) }}"
-                                    alt="{{ $song->title }}"
+                                    src="https://imgs.search.brave.com/TiFnlXYcbZLp9DAoxIDiw38YP6Y6d8wY27_dBuj54P4/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9pbWcu/bWFnbmlmaWMuY29t/L3ByZW1pdW0tcHNk/L3BvZGNhc3QtdGFs/ay1zaG93LXByb21v/dGlvbmFsLXNvY2lh/bC1tZWRpYS1wb3N0/XzU4NDE5Ny0yNzI3/LmpwZz9zZW10PWFp/c19oeWJyaWQmdz03/NDAmcT04MA"
+                                    alt=""
                                     class="w-48 h-48 rounded-lg object-cover">
 
                                 <h3 class="font-bold pt-2 truncate">
-                                    {{ $song->title }}
+                                    
                                 </h3>
 
                                 <p class="text-sm text-gray-400 truncate">
-                                    {{ $song->artist }}
+                                    
                                 </p>
                             </a>
 
                             <button
                                 type="button"
-                                onclick="event.stopPropagation(); playSong('audio-{{ $song->id }}')"
+                                onclick="event.stopPropagation(); playSong('')"
                                 class="absolute bottom-16 right-4 z-10 opacity-0 translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 transition duration-300">
                                 <i class="fa-solid fa-circle-play fa-3x" style="color: rgb(0, 182, 27);"></i>
                             </button>
 
-                            <audio id="audio-{{ $song->id }}">
-                                <source src="{{ asset($song->file_path) }}" type="audio/mpeg">
+                            <audio id="">
+                                <source src="" type="audio/mpeg">
                             </audio>
                         </div>
-                        @endforeach
+                        <!-- endforeach -->
 
                     </div>
-
-                    <button
-                        type="button"
-                        onclick="scrollTrending(350)"
-                        class="btn btn-circle absolute right-0 top-20 z-20 bg-black/20 border-none text-white">
-                        ❯
-                    </button>
-
                 </div>
 
-                <a href="" class="text-2xl font-bold pt-15">Artisti più popolari</a>
+                <a href="" class="text-2xl font-bold pt-15">Gli episodi del giorno</a>
 
                 <div class="flex w-full gap-4 pt-2">
-                    @foreach ($artists as $artist)
+                    <!-- foreach  -->
                     <div class="group flex flex-col hover:bg-slate-700/55 rounded-lg p-2 relative">
-                        <a href="{{ route('artists.show', $artist) }}" class="block">
+                        <a href="" class="block">
                             <img
-                                src="media/{{ $artist->image }}"
-                                alt="{{ $artist->name }}"
-                                class="cover w-48 h-45 rounded-full {{ in_array($artist->name, ['Skai IsYourGod', 'Blackpink', 'Twenty One Pilots']) ? 'object-cover' : '' }}">
-                            <h3 class="font-bold pt-2">{{ $artist->name }}</h3>
+                                src="https://imgs.search.brave.com/TiFnlXYcbZLp9DAoxIDiw38YP6Y6d8wY27_dBuj54P4/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9pbWcu/bWFnbmlmaWMuY29t/L3ByZW1pdW0tcHNk/L3BvZGNhc3QtdGFs/ay1zaG93LXByb21v/dGlvbmFsLXNvY2lh/bC1tZWRpYS1wb3N0/XzU4NDE5Ny0yNzI3/LmpwZz9zZW10PWFp/c19oeWJyaWQmdz03/NDAmcT04MA"
+                                alt=""
+                                class="cover w-48 h-45 ">
+                            <h3 class="font-bold pt-2"></h3>
                             <p class="text-sm text-gray-400">Artista</p>
                         </a>
-
-                        <button
-                            type="button"
-                            onclick="event.stopPropagation(); playSong('')"
-                            class="absolute bottom-20 right-4 z-10 opacity-0 translate-y-5 group-hover:opacity-100 transition duration-300">
-                            <i class="fa-solid fa-circle-play fa-3x" style="color: rgb(0, 182, 27);"></i>
-                        </button>
-
                     </div>
-                    @endforeach
+                    <!-- endforeach -->
                 </div>
 
-                <a href="" class="text-2xl font-bold pt-15">Album e singoli popolari</a>
+                <a href="" class="text-2xl font-bold pt-15">Categorie</a>
 
                 <div class="flex w-full gap-3 pt-2">
-                    @foreach ($albums as $album)
+                    <!-- foreach  -->
                     <div class="group flex flex-col hover:bg-slate-700/55 rounded-lg p-2 relative">
-                        <a href="{{ route('albums.show', $album) }}" class="block">
-                            <img src="{{ asset($album->cover_image) }}" alt="{{ $album->title }}" class="cover w-48 h-48 rounded-lg">
-                            <h3 class="font-bold pt-2">{{ $album->title }}</h3>
-                            <p class="text-sm text-gray-400">{{ $album->artist->name }}</p>
+                        <a href="" class="block">
+                            <img src="https://imgs.search.brave.com/TiFnlXYcbZLp9DAoxIDiw38YP6Y6d8wY27_dBuj54P4/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9pbWcu/bWFnbmlmaWMuY29t/L3ByZW1pdW0tcHNk/L3BvZGNhc3QtdGFs/ay1zaG93LXByb21v/dGlvbmFsLXNvY2lh/bC1tZWRpYS1wb3N0/XzU4NDE5Ny0yNzI3/LmpwZz9zZW10PWFp/c19oeWJyaWQmdz03/NDAmcT04MA" alt="" class="cover w-48 h-48 rounded-lg">
+                            <h3 class="font-bold pt-2"></h3>
+                            <p class="text-sm text-gray-400"></p>
                         </a>
-                        <button
-                            type="button"
-                            onclick="event.stopPropagation(); playSong('')"
-                            class="absolute bottom-16 right-4 z-10 opacity-0 translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 transition duration-300">
-                            <i class="fa-solid fa-circle-play fa-3x" style="color: rgb(0, 182, 27);"></i>
-                        </button>
+                       
                     </div>
 
-                    @endforeach
+                    <!-- endforeach -->
                 </div>
             </div>
         </section>

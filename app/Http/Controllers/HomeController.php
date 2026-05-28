@@ -38,5 +38,9 @@ class HomeController extends Controller
     {
         return view('premium');
     }
+    public function podcast()
+    {
+        return view('podcast');
+    }
 }
 
