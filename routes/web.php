@@ -13,6 +13,7 @@ Route::get('/download', [HomeController::class, 'download'])->name('download');
 Route::get('/support', [HomeController::class, 'support'])->name('support');
 Route::get('/premium', [HomeController::class, 'premium'])->name('premium');
 Route::get('/podcast', [HomeController::class, 'podcast'])->name('podcast');
+Route::get('/accountOverview', [HomeController::class, 'accountOverview'])->name('accountOverview');
 
 
 

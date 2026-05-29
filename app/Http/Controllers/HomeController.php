@@ -42,5 +42,9 @@ class HomeController extends Controller
     {
         return view('podcast');
     }
+    public function accountOverview()
+    {
+        return view('profiles.accountOverview');
+    }
 }
 
