@@ -26,12 +26,12 @@
                                 <div class="dropdown dropdown-right flex">
                                     <div class="flex items-center justify-center w-14 h-14 border border-gray-600 bg-gray-300/40 rounded-full shrink-0">
                                         <button tabindex="0"><i class="fa-brands fa-itunes-note fa-2x hover:text-[#1DB954] hover:scale-110 hover:rotate-12 transition-transform duration-300"></i></button>
-                                        <div tabindex="0" class="dropdown-content bg-blue-600 text-white rounded-xl p-4 w-84 shadow-xl translate-x-[-62%] translate-y-[20%]">
+                                        <div tabindex="0" class="dropdown-content bg-blue-600 text-white rounded-xl p-4 w-84 shadow-xl translate-x-[5%] translate-y-[-30%]">
                                             <i class="absolute fa-solid fa-caret-left fa-2x text-blue-600 left-0 top-1/2 -translate-x-[50%] -translate-y-1/2"></i>
                                             <h3 class="font-bold text-lg ">Crea una playlist</h3>
                                             <p class="py-4 text-sm">Accedi per creare e condividere playlist.</p>
                                             <div class="flex gap-4 justify-end">
-                                                <button class=" text-white font-bold">Non ora</button>
+                                                <button onclick="this.closest('.dropdown-content').classList.add('hidden')" class=" text-white font-bold">Non ora</button>
                                                 <a href="{{ route('login') }}" class="btn bg-white border-none text-black rounded-3xl font-bold">Accedi</a>
                                             </div>
                                         </div>
