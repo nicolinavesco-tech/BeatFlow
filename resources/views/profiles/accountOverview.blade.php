@@ -53,22 +53,22 @@
 
                 <h2 class="text-white font-bold text-2xl ">Account</h2>
                 <div class="pt-10 w-full flex flex-col">
-                    <a href="" class="text-white hover:bg-slate-800 flex items-center gap-4 p-3 rounded-lg">
+                    <a href="#" class="text-white hover:bg-slate-800 flex items-center gap-4 p-3 rounded-lg">
                         <i class="fa-solid fa-pen text-gray-400 w-5"></i>
                         <span class="flex-1">Gestisci il tuo abbonamento</span>
                         <i class="fa-solid fa-angle-right text-gray-400"></i>
                     </a>
-                    <a href="" class="text-white hover:bg-slate-800 flex items-center gap-4 p-3 rounded-lg">
+                    <a href="#" class="text-white hover:bg-slate-800 flex items-center gap-4 p-3 rounded-lg">
                         <i class="fa-solid fa-user text-gray-400 w-5"></i>
                         <span class="flex-1">Modifica informazioni personali</span>
                         <i class="fa-solid fa-angle-right text-gray-400"></i>
                     </a>
-                    <a href="" class="text-white hover:bg-slate-800 flex items-center gap-4 p-3 rounded-lg">
+                    <a href="#" class="text-white hover:bg-slate-800 flex items-center gap-4 p-3 rounded-lg">
                         <i class="fa-solid fa-shield text-gray-400 w-5"></i>
                         <span class="flex-1">Controllo genitori</span>
                         <i class="fa-solid fa-angle-right text-gray-400"></i>
                     </a>
-                    <a href="" class="text-white hover:bg-slate-800 flex items-center gap-4 p-3 rounded-lg">
+                    <a href="#" class="text-white hover:bg-slate-800 flex items-center gap-4 p-3 rounded-lg">
                         <i class="fa-solid fa-rotate-left text-gray-400 w-5"></i>
                         <span class="flex-1">Ripristina playlist</span>
                         <i class="fa-solid fa-angle-right text-gray-400"></i>
@@ -83,25 +83,22 @@
 
                 <h2 class="text-white font-bold text-2xl ">Pagamento</h2>
                 <div class="pt-10 w-full flex flex-col">
-                    <a href="" class="text-white hover:bg-slate-800 flex items-center gap-4 p-3 rounded-lg">
+                    <a href="#" class="text-white hover:bg-slate-800 flex items-center gap-4 p-3 rounded-lg">
                         <i class="fa-solid fa-receipt text-gray-400 w-5"></i>
                         <span class="flex-1">Cronologia degli ordini</span>
                         <i class="fa-solid fa-angle-right text-gray-400"></i>
                     </a>
-                    <a href="" class="text-white hover:bg-slate-800 flex items-center gap-4 p-3 rounded-lg">
+                    <a href="#" class="text-white hover:bg-slate-800 flex items-center gap-4 p-3 rounded-lg">
                         <i class="fa-regular fa-credit-card text-gray-400 w-5"></i>
                         <span class="flex-1">Carte di pagamento salvate</span>
                         <i class="fa-solid fa-angle-right text-gray-400"></i>
                     </a>
-                    <a href="" class="text-white hover:bg-slate-800 flex items-center gap-4 p-3 rounded-lg">
+                    <a href="#" class="text-white hover:bg-slate-800 flex items-center gap-4 p-3 rounded-lg">
                         <i class="fa-solid fa-tag text-gray-400 w-5"></i>
                         <span class="flex-1">Riscatta</span>
                         <i class="fa-solid fa-angle-right text-gray-400"></i>
                     </a>
-                  
                 </div>
-
-
             </div>
         </section>
         <section class="flex justify-center pt-5">
@@ -109,37 +106,37 @@
 
                 <h2 class="text-white font-bold text-2xl ">Sicurezza privacy</h2>
                 <div class="pt-10 w-full flex flex-col">
-                    <a href="" class="text-white hover:bg-slate-800 flex items-center gap-4 p-3 rounded-lg">
+                    <a href="#" class="text-white hover:bg-slate-800 flex items-center gap-4 p-3 rounded-lg">
                         <i class="fa-solid fa-table-cells text-gray-400 w-5"></i>
                         <span class="flex-1">Gestisci app</span>
                         <i class="fa-solid fa-angle-right text-gray-400"></i>
                     </a>
-                    <a href="" class="text-white hover:bg-slate-800 flex items-center gap-4 p-3 rounded-lg">
+                    <a href="#" class="text-white hover:bg-slate-800 flex items-center gap-4 p-3 rounded-lg">
                         <i class="fa-regular fa-bell text-gray-400 w-5"></i>
                         <span class="flex-1">Impostazioni notifiche</span>
                         <i class="fa-solid fa-angle-right text-gray-400"></i>
                     </a>
-                    <a href="" class="text-white hover:bg-slate-800 flex items-center gap-4 p-3 rounded-lg">
+                    <a href="#" class="text-white hover:bg-slate-800 flex items-center gap-4 p-3 rounded-lg">
                         <i class="fa-regular fa-eye text-gray-400 w-5"></i>
                         <span class="flex-1">Privacy dell'account</span>
                         <i class="fa-solid fa-angle-right text-gray-400"></i>
                     </a>
-                    <a href="" class="text-white hover:bg-slate-800 flex items-center gap-4 p-3 rounded-lg">
+                    <a href="#" class="text-white hover:bg-slate-800 flex items-center gap-4 p-3 rounded-lg">
                         <i class="fa-solid fa-key text-gray-400 w-5"></i>
                         <span class="flex-1">Modifica metodi di accesso</span>
                         <i class="fa-solid fa-angle-right text-gray-400"></i>
                     </a>
-                      <a href="" class="text-white hover:bg-slate-800 flex items-center gap-4 p-3 rounded-lg">
+                      <a href="#" class="text-white hover:bg-slate-800 flex items-center gap-4 p-3 rounded-lg">
                         <i class="fa-regular fa-mobile text-gray-400 w-5"></i>
                         <span class="flex-1">Imposta la password del dispositivo</span>
                         <i class="fa-solid fa-angle-right text-gray-400"></i>
                     </a>
-                      <a href="" class="text-white hover:bg-slate-800 flex items-center gap-4 p-3 rounded-lg">
+                      <a href="#" class="text-white hover:bg-slate-800 flex items-center gap-4 p-3 rounded-lg">
                         <i class="fa-regular fa-trash-can text-gray-400 w-5"></i>
                         <span class="flex-1">Chiudi l'account</span>
                         <i class="fa-solid fa-angle-right text-gray-400"></i>
                     </a>
-                      <a href="" class="text-white hover:bg-slate-800 flex items-center gap-4 p-3 rounded-lg">
+                      <a href="#" class="text-white hover:bg-slate-800 flex items-center gap-4 p-3 rounded-lg">
                         <i class="fa-solid fa-arrow-right-from-bracket text-gray-400 w-5"></i>
                         <span class="flex-1">Scollega ovunque</span>
                         <i class="fa-solid fa-angle-right text-gray-400"></i>
@@ -154,7 +151,7 @@
 
                 <h2 class="text-white font-bold text-2xl ">Advertising</h2>
                 <div class="pt-5 w-full flex flex-col">
-                    <a href="" class="text-white hover:bg-slate-800 flex items-center gap-4 p-3 rounded-lg">
+                    <a href="#" class="text-white hover:bg-slate-800 flex items-center gap-4 p-3 rounded-lg">
                         <i class="fa-regular fa-pen-to-square text-gray-400 w-5"></i>
                         <span class="flex-1">Aggiungi preferiti</span>
                         <i class="fa-solid fa-angle-right text-gray-400"></i>
