@@ -1,7 +1,7 @@
 <x-layout>
     <main class="container-fluid">
-        <section class="min-h-screen flex bg-black justify-content-center align-items-center pt-20 gap-2">
-            <div class="border rounded-xl border-base-100 bg-base-100 w-100 space-y-5">
+        <section class="min-h-screen flex bg-black justify-content-center align-items-center pt-20 gap-2 homepage-section">
+            <div class="border rounded-xl border-base-100 bg-base-100 w-100 space-y-5 aside-bar">
                 <div class="flex justify-between">
                     <p class="text-xl font-bold mb-4 p-5">La tua libreria</p>
                     <div class="dropdown dropdown-start p-4">
@@ -95,7 +95,7 @@
                 </div>
             </div>
 
-            <div class="flex rounded-xl border border-base-100 bg-base-100 w-375 bg flex-col gap-2 p-5">
+            <div class="flex rounded-xl border border-base-100 bg-base-100 w-375 bg flex-col gap-2 p-5 content-bar">
                 <a href="" class="text-2xl font-bold">Brani di tendenza</a>
 
                 <div class="relative w-full">
@@ -115,71 +115,48 @@
                         @foreach ($songs as $song)
                         <div class="group shrink-0 w-52 flex flex-col relative hover:bg-slate-700/55 rounded-lg p-2 transition">
                             <a href="{{ route('songs.show', $song) }}" class="block">
-                                <img
-                                    src="{{ asset('media/' . $song->artistModel->image) }}"
-                                    alt="{{ $song->title }}"
-                                    class="w-48 h-48 rounded-lg object-cover">
-
-                                <h3 class="font-bold pt-2 truncate">
-                                    {{ $song->title }}
-                                </h3>
-
-                                <p class="text-sm text-gray-400 truncate">
-                                    {{ $song->artist }}
-                                </p>
+                                <img src="{{ asset('media/' . $song->artistModel->image) }}" alt="{{ $song->title }}" class="w-48 h-48 rounded-lg object-cover">
+                                <h3 class="font-bold pt-2 truncate">{{ $song->title }}</h3>
+                                <p class="text-sm text-gray-400 truncate">{{ $song->artist }}</p>
                             </a>
-
                             <button
                                 type="button"
                                 onclick="event.stopPropagation(); playSong('audio-{{ $song->id }}')"
                                 class="absolute bottom-16 right-4 z-10 opacity-0 translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 transition duration-300">
                                 <i class="fa-solid fa-circle-play fa-3x" style="color: rgb(0, 182, 27);"></i>
                             </button>
-
                             <audio id="audio-{{ $song->id }}">
                                 <source src="{{ asset($song->file_path) }}" type="audio/mpeg">
                             </audio>
                         </div>
                         @endforeach
-
                     </div>
-
                     <button
                         type="button"
                         onclick="scrollTrending(350)"
                         class="btn btn-circle absolute right-0 top-20 z-20 bg-black/20 border-none text-white">
                         ❯
                     </button>
-
                 </div>
-
                 <a href="" class="text-2xl font-bold pt-15">Artisti più popolari</a>
-
-                <div class="flex w-full gap-4 pt-2">
+                <div class="flex w-full gap-4 pt-2 ">
                     @foreach ($artists as $artist)
                     <div class="group flex flex-col hover:bg-slate-700/55 rounded-lg p-2 relative">
                         <a href="{{ route('artists.show', $artist) }}" class="block">
-                            <img
-                                src="media/{{ $artist->image }}"
-                                alt="{{ $artist->name }}"
-                                class="cover w-48 h-45 rounded-full {{ in_array($artist->name, ['Skai IsYourGod', 'Blackpink', 'Twenty One Pilots']) ? 'object-cover' : '' }}">
+                            <img src="media/{{ $artist->image }}"alt="{{ $artist->name }}" class="cover w-48 h-45 rounded-full {{ in_array($artist->name, ['Skai IsYourGod', 'Blackpink', 'Twenty One Pilots']) ? 'object-cover' : '' }}">
                             <h3 class="font-bold pt-2">{{ $artist->name }}</h3>
                             <p class="text-sm text-gray-400">Artista</p>
                         </a>
-
                         <button
                             type="button"
                             onclick="event.stopPropagation(); playSong('')"
                             class="absolute bottom-20 right-4 z-10 opacity-0 translate-y-5 group-hover:opacity-100 transition duration-300">
                             <i class="fa-solid fa-circle-play fa-3x" style="color: rgb(0, 182, 27);"></i>
                         </button>
-
                     </div>
                     @endforeach
                 </div>
-
                 <a href="" class="text-2xl font-bold pt-15">Album e singoli popolari</a>
-
                 <div class="flex w-full gap-3 pt-2">
                     @foreach ($albums as $album)
                     <div class="group flex flex-col hover:bg-slate-700/55 rounded-lg p-2 relative">
@@ -195,7 +172,6 @@
                             <i class="fa-solid fa-circle-play fa-3x" style="color: rgb(0, 182, 27);"></i>
                         </button>
                     </div>
-
                     @endforeach
                 </div>
             </div>

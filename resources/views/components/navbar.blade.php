@@ -56,7 +56,7 @@
         <div class="flex flex-col items-center gap-3">
           <button class="cursor-pointer">
             <div class="flex max-w-36 h-12 px-3 gap-2 rounded-xl items-center justify-center bg-black text-white dark:text-black dark:bg-white sm:h-14">
-              	<i class="fa-brands fa-microsoft text-blue-700 fa-2x"></i>
+              <i class="fa-brands fa-microsoft text-blue-700 fa-2x"></i>
               <div>
                 <div class="text-[.5rem] sm:text-xs text-left">Scarica da</div>
                 <div class="text-sm font-semibold font-sans -mt-1 sm:text-xl">
@@ -120,6 +120,44 @@
     </div>
     @else
 
+    <div class="navbar-end blocl md:hidden">
+      <div class="dropdown">
+        <div tabindex="0" role="button" class="btn btn-ghost btn-circle">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h7" />
+          </svg>
+        </div>
+        <ul
+          tabindex="-1"
+          class="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow">
+          <li>
+            <a href="{{ route('premium') }}" class="">
+              <span>Premium</span>
+            </a>
+          </li>
+          <li>
+            <a href="{{ route('support') }}" class="">
+              <span>Assistenza</span>
+            </a>
+          </li>
+          <li>
+            <a href="{{ route('download') }}" class="">
+              <span>Scarica </span>
+            </a>
+          </li>
+          <li>
+            <a href="{{ route('download') }}" class="text-gray-400">Installa app</a>
+          </li>
+          <li>
+            <a href="{{route('register')}}" class="">Iscriviti</a>
+          </li>
+          <li>
+            <a href="{{route('login')}}" class="btn rounded-2xl w-25 bg-amber-50 text-black">Accedi</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+
     <a href="{{ route('premium') }}" class="">
       <span>Premium</span>
     </a>
@@ -133,6 +171,7 @@
     <a href="{{route('register')}}" class="">Iscriviti</a>
     <a href="{{route('login')}}" class="btn rounded-2xl w-25 bg-amber-50 text-black">Accedi</a>
     @endauth
+
 
   </div>
 </div>
