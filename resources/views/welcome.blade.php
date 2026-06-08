@@ -1,7 +1,7 @@
 <x-layout>
     <main class="container-fluid">
         <section class="min-h-screen flex bg-black justify-content-center align-items-center pt-20 gap-2 homepage-section">
-            <div class="border rounded-xl border-base-100 bg-base-100 w-100 space-y-5 aside-bar">
+            <div class="border hidden md:block rounded-xl border-base-100 bg-base-100 w-100 space-y-5 aside-bar">
                 <div class="flex justify-between">
                     <p class="text-xl font-bold mb-4 p-5">La tua libreria</p>
                     <div class="dropdown dropdown-start p-4">
@@ -94,24 +94,33 @@
                     <a href="{{ route('podcast') }}" class="btn bg-white text-black rounded-3xl">Sfoglia i podcast</a>
                 </div>
             </div>
+            <!-- Mobile-->
+            <div class="min-h-full flex flex-col md:hidden bg-[linear-gradient(to_left,#121212_0%,#1DB954_100%)] mt-16 p-5 rounded-xl">
+                <div class="flex justify-center">
+                    <img src="/media/overviewAccount.jpg" alt="" class="w-40 m-5">
+                </div>
+                <div class="flex flex-col justify-center w-full gap-3">
+                    <h1 class="text-2xl font-bold text-white">0 € per 3 mesi di Premium Individual</h1>
+                    <p class="text-gray-300 text-sm">Goditi musica senza pubblicità, riproduzione in modalità offline e molto altro ancora. Annulla quando vuoi.</p>
+                    <p class="text-gray-300 text-xs">Solo per Premium Individual. 0 € per 3 mesi, poi 11,99 € al mese. Offerta disponibile solo se non hai ancora provato Premium.
+                        <a href="#" class="underline">Si applicano termini e condizioni.</a>
+                    </p>
+                    <p class="text-gray-300 text-xs">L'offerta termina il giorno 22 giugno 2026.</p>
+
+                    <button class="btn bg-green-600 border-none text-white rounded-3xl font-bold w-40">Prova 3 mesi a 0 €</button>
+                </div>
+            </div>
 
             <div class="flex rounded-xl border border-base-100 bg-base-100 w-375 bg flex-col gap-2 p-5 content-bar">
                 <a href="" class="text-2xl font-bold">Brani di tendenza</a>
-
-                <div class="relative w-full">
-
+                <div class="relative w-full group/carousel">
                     <button
                         type="button"
-                        onclick="scrollTrending(-350)"
-                        class="btn btn-circle absolute left-0 top-20 bg-black/20 border-none text-white">
+                        onclick="scrollCarousel('trendingCarousel', -350)"
+                        class="btn btn-circle absolute left-0 top-20 z-20 bg-black/20 border-none text-white opacity-0 group-hover/carousel:opacity-100 transition-opacity duration-300">
                         ❮
                     </button>
-
-                    <div
-                        id="trendingCarousel"
-                        class="flex gap-4 overflow-x-auto scroll-smooth pt-2 pb-4 px-10"
-                        style="scrollbar-width: none;">
-
+                    <div id="trendingCarousel" class="flex gap-4 overflow-x-auto scroll-smooth pt-2 pb-4" style="scrollbar-width: none;">
                         @foreach ($songs as $song)
                         <div class="group shrink-0 w-52 flex flex-col relative hover:bg-slate-700/55 rounded-lg p-2 transition">
                             <a href="{{ route('songs.show', $song) }}" class="block">
@@ -133,47 +142,76 @@
                     </div>
                     <button
                         type="button"
-                        onclick="scrollTrending(350)"
-                        class="btn btn-circle absolute right-0 top-20 z-20 bg-black/20 border-none text-white">
+                        onclick="scrollCarousel('trendingCarousel', 350)"
+                        class="btn btn-circle absolute right-0 top-20 z-20 bg-black/20 border-none text-white opacity-0 group-hover/carousel:opacity-100 transition-opacity duration-300">
                         ❯
                     </button>
                 </div>
                 <a href="" class="text-2xl font-bold pt-15">Artisti più popolari</a>
-                <div class="flex w-full gap-4 pt-2 ">
-                    @foreach ($artists as $artist)
-                    <div class="group flex flex-col hover:bg-slate-700/55 rounded-lg p-2 relative">
-                        <a href="{{ route('artists.show', $artist) }}" class="block">
-                            <img src="media/{{ $artist->image }}"alt="{{ $artist->name }}" class="cover w-48 h-45 rounded-full {{ in_array($artist->name, ['Skai IsYourGod', 'Blackpink', 'Twenty One Pilots']) ? 'object-cover' : '' }}">
-                            <h3 class="font-bold pt-2">{{ $artist->name }}</h3>
-                            <p class="text-sm text-gray-400">Artista</p>
-                        </a>
-                        <button
-                            type="button"
-                            onclick="event.stopPropagation(); playSong('')"
-                            class="absolute bottom-20 right-4 z-10 opacity-0 translate-y-5 group-hover:opacity-100 transition duration-300">
-                            <i class="fa-solid fa-circle-play fa-3x" style="color: rgb(0, 182, 27);"></i>
-                        </button>
+                <div class="relative w-full group/carousel">
+                    <button
+                        type="button"
+                        onclick="scrollCarousel('artistsCarousel', -350)"
+                        class="btn btn-circle absolute left-0 top-16 z-20 bg-black/20 border-none text-white opacity-0 group-hover/carousel:opacity-100 transition-opacity duration-300">
+                        ❮
+                    </button>
+                    <div id="artistsCarousel" class="flex gap-4 overflow-x-auto scroll-smooth pt-2 pb-4" style="scrollbar-width: none;">
+                        @foreach ($artists as $artist)
+                        <div class="group shrink-0 w-44 flex flex-col hover:bg-slate-700/55 rounded-lg p-2 relative">
+                            <a href="{{ route('artists.show', $artist) }}" class="block">
+                                <img src="media/{{ $artist->image }}" alt="{{ $artist->name }}" class="cover w-40 h-40 rounded-full {{ in_array($artist->name, ['Skai IsYourGod', 'Blackpink', 'Twenty One Pilots']) ? 'object-cover' : '' }}">
+                                <h3 class="font-bold pt-2 truncate">{{ $artist->name }}</h3>
+                                <p class="text-sm text-gray-400">Artista</p>
+                            </a>
+                            <button
+                                type="button"
+                                onclick="event.stopPropagation(); playSong('')"
+                                class="absolute bottom-16 right-4 z-10 opacity-0 translate-y-5 group-hover:opacity-100 transition duration-300">
+                                <i class="fa-solid fa-circle-play fa-3x" style="color: rgb(0, 182, 27);"></i>
+                            </button>
+                        </div>
+                        @endforeach
                     </div>
-                    @endforeach
+                    <button
+                        type="button"
+                        onclick="scrollCarousel('artistsCarousel', 350)"
+                        class="btn btn-circle absolute right-0 top-16 z-20 bg-black/20 border-none text-white opacity-0 group-hover/carousel:opacity-100 transition-opacity duration-300">
+                        ❯
+                    </button>
                 </div>
                 <a href="" class="text-2xl font-bold pt-15">Album e singoli popolari</a>
-                <div class="flex w-full gap-3 pt-2">
-                    @foreach ($albums as $album)
-                    <div class="group flex flex-col hover:bg-slate-700/55 rounded-lg p-2 relative">
-                        <a href="{{ route('albums.show', $album) }}" class="block">
-                            <img src="{{ asset($album->cover_image) }}" alt="{{ $album->title }}" class="cover w-48 h-48 rounded-lg">
-                            <h3 class="font-bold pt-2">{{ $album->title }}</h3>
-                            <p class="text-sm text-gray-400">{{ $album->artist->name }}</p>
-                        </a>
-                        <button
-                            type="button"
-                            onclick="event.stopPropagation(); playSong('')"
-                            class="absolute bottom-16 right-4 z-10 opacity-0 translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 transition duration-300">
-                            <i class="fa-solid fa-circle-play fa-3x" style="color: rgb(0, 182, 27);"></i>
-                        </button>
+                <div class="relative w-full group/carousel">
+                    <button
+                        type="button"
+                        onclick="scrollCarousel('albumsCarousel', -350)"
+                        class="btn btn-circle absolute left-0 top-20 z-20 bg-black/20 border-none text-white opacity-0 group-hover/carousel:opacity-100 transition-opacity duration-300">
+                        ❮
+                    </button>
+                    <div id="albumsCarousel" class="flex gap-4 overflow-x-auto scroll-smooth pt-2 pb-4" style="scrollbar-width: none;">
+                        @foreach ($albums as $album)
+                        <div class="group shrink-0 w-44 flex flex-col hover:bg-slate-700/55 rounded-lg p-2 relative">
+                            <a href="{{ route('albums.show', $album) }}" class="block">
+                                <img src="{{ asset($album->cover_image) }}" alt="{{ $album->title }}" class="cover w-40 h-40 rounded-lg">
+                                <h3 class="font-bold pt-2 truncate">{{ $album->title }}</h3>
+                                <p class="text-sm text-gray-400 truncate">{{ $album->artist->name }}</p>
+                            </a>
+                            <button
+                                type="button"
+                                onclick="event.stopPropagation(); playSong('')"
+                                class="absolute bottom-16 right-4 z-10 opacity-0 translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 transition duration-300">
+                                <i class="fa-solid fa-circle-play fa-3x" style="color: rgb(0, 182, 27);"></i>
+                            </button>
+                        </div>
+                        @endforeach
                     </div>
-                    @endforeach
+                    <button
+                        type="button"
+                        onclick="scrollCarousel('albumsCarousel', 350)"
+                        class="btn btn-circle absolute right-0 top-20 z-20 bg-black/20 border-none text-white opacity-0 group-hover/carousel:opacity-100 transition-opacity duration-300">
+                        ❯
+                    </button>
                 </div>
+
             </div>
         </section>
     </main>

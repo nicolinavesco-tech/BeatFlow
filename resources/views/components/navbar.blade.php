@@ -4,8 +4,9 @@
       <img src="/logo/logo.png" class="w-15" alt="Logo di BeatFlow" />
     </a>
   </div>
+
   <div class="navbar-center gap-2 hidden lg:flex justify-center flex-1 ">
-    <a href="{{ route('homepage') }}" class="btn rounded-full"><i class="fa-regular fa-house " style="color: rgb(255, 255, 255);"></i></a>
+    <a href="{{ route('homepage') }}" class="btn rounded-full"><i class="fa-regular fa-house text-white"></i></a>
     <form action="{{ route('global.search') }}" method="GET">
       <label class="input w-100 flex items-center gap-2">
 
@@ -21,14 +22,7 @@
           </g>
         </svg>
 
-        <input
-          type="search"
-          name="q"
-          value="{{ request('q') }}"
-          required
-          placeholder="Cosa vuoi ascoltare?"
-          class="flex-1" />
-
+        <input type="search" name="q" value="{{ request('q') }}" required placeholder="Cosa vuoi ascoltare?" class="flex-1" />
         <select name="source" class="bg-slate-800/70 text-white text-sm outline-none ">
           <option value="local" @selected(request('source')==='local' )>
             Libreria
@@ -40,7 +34,8 @@
       </label>
     </form>
   </div>
-  <div class="flex items-center justify-evenly w-150">
+
+  <div class="flex items-center justify-evenly w-25 md:w-150">
     @auth
     <button class="btn bg-white text-black rounded-3xl">Esplora Premium</button>
 
@@ -80,9 +75,7 @@
             src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp" />
         </div>
       </div>
-      <ul
-        tabindex="-1"
-        class="menu menu-sm dropdown-content  bg-slate-700/80 rounded-box z-1 mt-3 w-90 p-2 space-y-3 shadow translate-x-[-50%]">
+      <ul tabindex="-1" class="menu menu-sm dropdown-content bg-slate-700/80 rounded-box z-1 mt-3 w-90 p-2 space-y-3 shadow translate-x-[-50%]">
         <li>
           <a href="{{ route('accountOverview') }}" class="flex justify-between items-center text-white text-base">
             <span>Account</span>
@@ -120,36 +113,34 @@
     </div>
     @else
 
-    <div class="navbar-end blocl md:hidden">
+    <div class="navbar-end md:hidden">
       <div class="dropdown">
         <div tabindex="0" role="button" class="btn btn-ghost btn-circle">
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h7" />
           </svg>
         </div>
-        <ul
-          tabindex="-1"
-          class="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow">
+        <ul tabindex="-1" class="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 space-y-3 shadow translate-x-[-70%]">
           <li>
-            <a href="{{ route('premium') }}" class="">
+            <a href="{{ route('premium') }}" class="text-base font-bold">
               <span>Premium</span>
             </a>
           </li>
           <li>
-            <a href="{{ route('support') }}" class="">
+            <a href="{{ route('support') }}" class="text-base font-bold">
               <span>Assistenza</span>
             </a>
           </li>
           <li>
-            <a href="{{ route('download') }}" class="">
+            <a href="{{ route('download') }}" class="text-base font-bold">
               <span>Scarica </span>
             </a>
           </li>
           <li>
-            <a href="{{ route('download') }}" class="text-gray-400">Installa app</a>
+            <a href="{{ route('download') }}" class="text-base text-gray-400">Installa app</a>
           </li>
           <li>
-            <a href="{{route('register')}}" class="">Iscriviti</a>
+            <a href="{{route('register')}}" class="text-base font-bold">Iscriviti</a>
           </li>
           <li>
             <a href="{{route('login')}}" class="btn rounded-2xl w-25 bg-amber-50 text-black">Accedi</a>
@@ -158,18 +149,26 @@
       </div>
     </div>
 
-    <a href="{{ route('premium') }}" class="">
-      <span>Premium</span>
-    </a>
-    <a href="{{ route('support') }}" class="">
-      <span>Assistenza</span>
-    </a>
-    <a href="{{ route('download') }}" class="">
-      <span>Scarica </span>
-    </a>
-    <a href="{{ route('download') }}" class="text-gray-400"><i class="fa-solid fa-circle-down text-gray-400"></i> Installa app</a>
-    <a href="{{route('register')}}" class="">Iscriviti</a>
-    <a href="{{route('login')}}" class="btn rounded-2xl w-25 bg-amber-50 text-black">Accedi</a>
+    <div class="hidden md:flex items-center gap-6">
+      <a href="{{ route('premium') }}">
+        <span>Premium</span>
+      </a>
+      <a href="{{ route('support') }}">
+        <span>Assistenza</span>
+      </a>
+      <a href="{{ route('download') }}">
+        <span>Scarica</span>
+      </a>
+      <a href="{{ route('download') }}" class=" text-gray-400 flex items-center gap-1">
+        <i class="fa-solid fa-circle-down"></i>
+        <span>Installa app</span>
+      </a>
+
+      <div class="w-px h-5 bg-gray-500"></div>
+
+      <a href="{{ route('register') }}" class="text-lg font-bold">Iscriviti</a>
+      <a href="{{ route('login') }}" class="btn rounded-2xl w-25 bg-amber-50 text-black">Accedi</a>
+    </div>
     @endauth
 
 

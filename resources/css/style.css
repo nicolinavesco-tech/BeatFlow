@@ -177,4 +177,10 @@
     width: 100%;
     flex-direction: column;
   }
+
+  /* Songs Detail */
+  .details-section {
+    flex-direction: column;
+    padding: 20px;
+  }
 }
