@@ -183,4 +183,9 @@
     flex-direction: column;
     padding: 20px;
   }
+  /* Search Page */
+  .search-page {
+    flex-direction: column;
+    padding: 20px;
+  }
 }

@@ -1,6 +1,6 @@
 <div class="navbar fixed top-0 left-0 right-0 h-20 z-50 flex justify-between bg-black shadow-sm">
   <div class="w-100 ms-3">
-    <a href="{{ route('homepage') }}">
+    <a href="{{ route('homepage') }}" class="">
       <img src="/logo/logo.png" class="w-15" alt="Logo di BeatFlow" />
     </a>
   </div>
@@ -35,13 +35,13 @@
     </form>
   </div>
 
-  <div class="flex items-center justify-evenly w-25 md:w-150">
+  <div class="flex items-center gap-1 md:gap-4">
     @auth
-    <button class="btn bg-white text-black rounded-3xl">Esplora Premium</button>
+    <button class="hidden md:block btn bg-white text-black rounded-3xl">Esplora Premium</button>
 
-    <a href=""><span class="text-gray-400"><i class="fa-solid fa-circle-down text-gray-400"></i> Installa app</span></a>
-    <i class="fa-solid fa-bell" style="color: rgb(255, 255, 255);"></i>
-    <div class="dropdown">
+    <a href="" class="hidden md:block"><span class="text-gray-400"><i class="fa-solid fa-circle-down text-gray-400"></i> Installa app</span></a>
+    <i class="fa-solid fa-bell text-white"></i>
+    <div class="dropdown hidden md:block">
       <button tabindex="0"><i class="fa-solid fa-people-line text-white"></i></button>
       <div tabindex="-1" class="menu menu-sm dropdown-content  bg-slate-700/80 rounded-box z-1 w-55 p-2 space-y-5 mt-3 shadow translate-x-[-50%]">
         <div class="flex flex-col items-center">
@@ -70,9 +70,7 @@
       <div tabindex="0" role="button" class="btn btn-ghost avatar h-15 rounded-full gap-3">
         <span class="text-white">{{ auth()->user()->name }}</span>
         <div class="w-15 rounded-full">
-          <img
-            alt="Tailwind CSS Navbar component"
-            src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp" />
+          <img alt="Tailwind CSS Navbar component" src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp" />
         </div>
       </div>
       <ul tabindex="-1" class="menu menu-sm dropdown-content bg-slate-700/80 rounded-box z-1 mt-3 w-90 p-2 space-y-3 shadow translate-x-[-50%]">
