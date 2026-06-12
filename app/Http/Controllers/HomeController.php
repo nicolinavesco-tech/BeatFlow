@@ -18,8 +18,11 @@ class HomeController extends Controller
             ->unique('artist_id')
             ->take(20)
             ->values();
-        $artists = Artist::take(7)->get();
-        $albums = Album::with('artist')->latest()->take(7)->get();
+        $artists = Artist::take(15)->get();
+        $albums = Album::with('artist')
+            ->get()
+            ->unique('artist_id')
+            ->take(15);
 
         return view('welcome', compact('songs', 'artists', 'albums'));
     }
@@ -47,4 +50,3 @@ class HomeController extends Controller
         return view('profiles.accountOverview');
     }
 }
-
