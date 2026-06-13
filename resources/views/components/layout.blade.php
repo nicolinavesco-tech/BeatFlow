@@ -6,7 +6,7 @@
     <title>BeatFlow</title>
        @vite(['resources/css/app.css', 'resources/js/app.js'])
   </head>
-  <body>
+  <body x-data="{ tab: 'home' }">
     <x-navbar />
   
     {{$slot}}

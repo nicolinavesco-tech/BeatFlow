@@ -65,9 +65,20 @@ class AlbumSeeder extends Seeder
             ['artist_id' => $linkinpark->id, 'title' => 'One More Light ', 'cover_image' => 'media/linkinpark/onemorelight.webp', 'release_year' => 2017],
             ['artist_id' => $linkinpark->id, 'title' => 'Meteora', 'cover_image' => 'media/linkinpark/meteora.webp', 'release_year' => 2017],
             ['artist_id' => $linkinpark->id, 'title' => 'From Zero', 'cover_image' => 'media/linkinpark/fromzero.webp', 'release_year' => 2024],
+
+            ['artist_id' => $mumford->id, 'title' => 'Prizefighter', 'cover_image' => 'media/mumford/prizefighter.jpg', 'release_year' => 2026],
+            ['artist_id' => $mumford->id, 'title' => 'Rushmere', 'cover_image' => 'media/mumford/rushmere.jpg', 'release_year' => 2025],
+            ['artist_id' => $mumford->id, 'title' => 'Delta', 'cover_image' => 'media/mumford/delta.jpg', 'release_year' => 2018],
+            ['artist_id' => $mumford->id, 'title' => 'Wilder Mind', 'cover_image' => 'media/mumford/wildermind.jpg', 'release_year' => 2015],
+            ['artist_id' => $mumford->id, 'title' => 'Sigh No More ', 'cover_image' => 'media/mumford/sighnomore.jpg', 'release_year' => 2009],
+            ['artist_id' => $mumford->id, 'title' => 'Love Your Ground', 'cover_image' => 'media/mumford/loveyourground.jpg', 'release_year' => 2008],
+            ['artist_id' => $mumford->id, 'title' => 'Gentelman Of The Road', 'cover_image' => 'media/mumford/gentelmen.jpg', 'release_year' => 2024],
+
+            ['artist_id' => $max->id, 'title' => 'По фрейду', 'cover_image' => 'media/max/misto.png', 'release_year' => 2015],
+            ['artist_id' => $max->id, 'title' => 'Зорепад', 'cover_image' => 'media/max/pofreidu.jpg', 'release_year' => 2023],
+            ['artist_id' => $max->id, 'title' => 'Синглы', 'cover_image' => 'media/max/single.png', 'release_year' => 2017],
+            ['artist_id' => $max->id, 'title' => 'Місто дощів', 'cover_image' => 'media/max/zorepad.png', 'release_year' => 2025],
             
-            
-        
             ['artist_id' => $tashsultana->id, 'title' => 'Terra Firma', 'cover_image' => 'media/tashsultana.png', 'release_year' => 2021],
             ['artist_id' => $linkinpark->id, 'title' => 'Hybrid Theory', 'cover_image' => 'media/linkinpark.jpg', 'release_year' => 2000],
             ['artist_id' => $tarkan->id, 'title' => "Metamorfoz", 'cover_image' => "media/album-tarkan.jpg", 'release_year' => 2007],

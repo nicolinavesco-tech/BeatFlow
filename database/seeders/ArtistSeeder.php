@@ -20,8 +20,8 @@ class ArtistSeeder extends Seeder
             ['name' => 'Twenty One Pilots', 'image' => 'twentyonepilots.jpg', 'background_image' => 'background-twentyonepilots.jpg'],
 
             ['name' => 'Hatikoali', 'image' => 'hatikoali.jpg', 'background_image' => null],
-            ['name' => 'Tarkan', 'image' => 'tarkan.jpg', 'background_image' => null],
-            ['name' => 'NESLI', 'image' => 'nesli.jpg', 'background_image' => null],
+            ['name' => 'Tarkan', 'image' => 'tarkan.jpg', 'background_image' => 'tarkan/background-tarkan.webp'],
+            ['name' => 'NESLI', 'image' => 'nesli.jpg', 'background_image' => 'nesli/background-nesli.webp'],
             ['name' => 'Harmony Secret', 'image' => 'secretdeal.jpg', 'background_image' => null],
             ['name' => 'Sam Smith', 'image' => 'smith.jpg', 'background_image' => null],
             ['name' => 'Nirvana', 'image' => 'nirvana.jpg', 'background_image' => null],
@@ -31,7 +31,7 @@ class ArtistSeeder extends Seeder
             ['name' => 'Marco Mengoni', 'image' => 'marcomengoni.jpg', 'background_image' => null],
             ['name' => 'Max Barskih', 'image' => 'max.jpg', 'background_image' => null],
             ['name' => 'Mumford & Sons', 'image' => 'mumford-babel.jpg', 'background_image' => null],
-            ['name' => 'Linkin Park', 'image' => 'linkinpark.jpg', 'background_image' => null],
+            ['name' => 'Linkin Park', 'image' => 'linkinpark.jpg', 'background_image' => 'linkinpark/background-linkin.webp'],
 
         ];
 

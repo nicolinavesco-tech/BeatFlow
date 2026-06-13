@@ -173,6 +173,7 @@ class SongSeeder extends Seeder
                     'artist_id' => $song['artist_id'],
                     'file_path' => $song['file_path'],
                     'image_path' => $song['image_path'],
+                    'album_id' => $song['album_id'] ?? null,
                     'genre_id' => $song['genre_id'],
                 ]
             );

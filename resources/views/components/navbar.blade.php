@@ -37,9 +37,9 @@
 
   <div class="flex items-center gap-1 md:gap-4">
     @auth
-    <button class="hidden md:block btn bg-white text-black rounded-3xl">Esplora Premium</button>
+    <button @click.prevent="tab = 'premium'" class="hidden md:block btn bg-white text-black rounded-3xl">Esplora Premium</button>
 
-    <a href="" class="hidden md:block"><span class="text-gray-400"><i class="fa-solid fa-circle-down text-gray-400"></i> Installa app</span></a>
+    <a href="" @click.prevent="tab = 'install'" class="hidden md:block"><span class="text-gray-400"><i class="fa-solid fa-circle-down text-gray-400"></i> Installa app</span></a>
     <i class="fa-solid fa-bell text-white"></i>
     <div class="dropdown hidden md:block">
       <button tabindex="0"><i class="fa-solid fa-people-line text-white"></i></button>
@@ -80,7 +80,7 @@
             <i class="fa-solid fa-up-right-from-square"></i>
           </a>
         </li>
-        <li><a class="text-white text-base">Profilo</a></li>
+        <li><a href="#" @click.prevent="tab = 'profilo'" class="cursor-pointer text-white text-base">Profilo</a></li>
         <li><a class="text-white text-base">Recenti</a></li>
         <li>
           <a href="{{ route('premium') }}" class="flex justify-between items-center text-white text-base">

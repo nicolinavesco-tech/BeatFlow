@@ -1,4 +1,6 @@
 
+
+
 // Riproduzione audio con controllo di riproduzione e pausa
 let currentAudio = null;
 
@@ -35,21 +37,23 @@ window.playSong = function (audioId) {
 const btn = document.querySelector('#toggleBtn');
 const hiddenSongs = document.querySelectorAll('.hidden.extra-song');
 
-let expanded = false;
-btn.addEventListener('click', () => {
-    expanded = !expanded;
+if (btn) {
+    let expanded = false;
+    btn.addEventListener('click', () => {
+        expanded = !expanded;
 
-    hiddenSongs.forEach(song => {
-        if (expanded) {
-            song.classList.remove('hidden');
-            song.classList.add('show');
-        } else {
-            song.classList.remove('show');
-            song.classList.add('hidden');
-        }
+        hiddenSongs.forEach(song => {
+            if (expanded) {
+                song.classList.remove('hidden');
+                song.classList.add('show');
+            } else {
+                song.classList.remove('show');
+                song.classList.add('hidden');
+            }
+        });
+        btn.textContent = expanded ? 'Mostra meno' : 'Mostra altro';
     });
-    btn.textContent = expanded ? 'Mostra meno' : 'Mostra altro';
-});
+}
 
 // Carosello Brani di tendenza
 function scrollTrending(amount) {

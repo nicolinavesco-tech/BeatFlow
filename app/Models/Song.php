@@ -19,6 +19,7 @@ class Song extends Model
         'file_path',
         'image_path',
         'genre_id',
+        'album_id',
     ];
 
     public function genre(): BelongsTo
