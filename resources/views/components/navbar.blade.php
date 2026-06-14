@@ -40,7 +40,7 @@
     <button @click.prevent="tab = 'premium'" class="hidden md:block btn bg-white text-black rounded-3xl">Esplora Premium</button>
 
     <a href="" @click.prevent="tab = 'install'" class="hidden md:block"><span class="text-gray-400"><i class="fa-solid fa-circle-down text-gray-400"></i> Installa app</span></a>
-    <i class="fa-solid fa-bell text-white"></i>
+    <a href="" @click.prevent="tab = 'news'" class=""><i class="fa-solid fa-bell text-white"></i></a>
     <div class="dropdown hidden md:block">
       <button tabindex="0"><i class="fa-solid fa-people-line text-white"></i></button>
       <div tabindex="-1" class="menu menu-sm dropdown-content  bg-slate-700/80 rounded-box z-1 w-55 p-2 space-y-5 mt-3 shadow translate-x-[-50%]">
@@ -81,7 +81,6 @@
           </a>
         </li>
         <li><a href="#" @click.prevent="tab = 'profilo'" class="cursor-pointer text-white text-base">Profilo</a></li>
-        <li><a class="text-white text-base">Recenti</a></li>
         <li>
           <a href="{{ route('premium') }}" class="flex justify-between items-center text-white text-base">
             <span>Effettua l'upgrade a Premium</span>
@@ -100,7 +99,7 @@
             <i class="fa-solid fa-up-right-from-square"></i>
           </a>
         </li>
-        <li><a class="text-white text-base">Settings</a></li>
+        <li><a @click.prevent="tab = 'settings'" class="text-white text-base">Settings</a></li>
         <li>
           <form action="{{route('logout')}}" method="POST" class="">
             @csrf
@@ -135,7 +134,7 @@
             </a>
           </li>
           <li>
-            <a href="{{ route('download') }}" class="text-base text-gray-400">Installa app</a>
+            <a href="" @click.prevent="tab = 'install'" class="text-base text-gray-400">Installa app</a>
           </li>
           <li>
             <a href="{{route('register')}}" class="text-base font-bold">Iscriviti</a>

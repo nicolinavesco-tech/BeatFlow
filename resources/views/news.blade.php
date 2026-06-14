@@ -97,28 +97,19 @@
             </div>
 
         </aside>
-        <div class="min-h-screen flex rounded-xl border border-base-100 w-full min-w-0 bg-base-100 flex-col gap-6 pt-20 bg-[linear-gradient(135deg,#0a0a0a_0%,#1DB954_100%)]">
-            <div class="w-100 ps-10">
-                <a href="{{ route('homepage') }}" class="text-white text-2xl font-bold flex items-center gap-2">
-                    <img src="/logo/logo.png" class="w-15" alt="Logo di BeatFlow" />
-                    BeatFlow
-                </a>
+        <div class="min-h-screen flex rounded-xl border border-base-100 w-full min-w-0 bg-base-100 flex-col gap-6 pt-20">
+            <div class="w-full space-y-4 flex flex-col items-center">
+                <h2 class="text-white text-3xl font-bold flex items-center gap-2">Novità</h2>
+                <p class="text-white text-base text-semibold">Le ultime uscite di artisti, podcast e show che segui.</p>
+                <div class="flex gap-4">
+                    <a href="" class="btn bg-base-300 text-white rounded-3xl">Musica</a>
+                    <a href="{{ route('podcast') }}" class="btn bg-base-300 text-white rounded-3xl">Podcast e show</a>
+                </div>
             </div>
-            <h2 class="text-3xl  text-white font-bold ps-10">Scarica BeatFlow per Windows</h2>
-            <p class="text-white text-xl max-w-2xl ps-10 text-semibold">Approfitta di audio di alta qualità, riproduzione in modalità offline, integrazione Windows Game Bar e del feed Attività amici, per vedere cosa ascoltano i tuoi amici in tempo reale.</p>
-            <div class="flex flex-col gap-4 justify-start ps-10">
-                <button class="cursor-pointer">
-                    <div class="flex max-w-36 h-12 px-3 gap-2 rounded-xl items-center justify-center bg-black text-white dark:text-black dark:bg-white sm:h-14">
-                        <i class="fa-brands fa-microsoft text-blue-700 fa-2x"></i>
-                        <div>
-                            <div class="text-[.5rem] sm:text-xs text-left">Scarica da</div>
-                            <div class="text-sm font-semibold font-sans -mt-1 sm:text-xl">
-                                Microsoft
-                            </div>
-                        </div>
-                    </div>
-                </button>
-                <a href="{{ route('download') }}" class=" text-white hover:underline">Scarica direttamente da BeatFlow</a>
+
+            <div class="flex flex-col gap-4 items-center pt-10">
+                <h3 class="text-white text-3xl font-bold">Non abbiamo ancora aggiornamenti per te</h3>
+               <p class="text-white text-base text-semibold">Quando ci sono novità, le pubblichiamo qui. Segui i tuoi artisti e podcast preferiti per ricevere tutti gli aggiornamenti che li riguardano.</p>
             </div>
         </div>
 

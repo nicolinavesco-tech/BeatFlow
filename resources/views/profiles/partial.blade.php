@@ -111,8 +111,8 @@
 
                     <div>
                         <p class="text-sm text-white uppercase">Profilo</p>
-                        <h1 class="leading-tight text-4xl md:text-7xl xl:text-8xl font-bold text-white">{{ auth()->user()->name }}</h1>
-                        <p class="text-sm md:text-base text-white">{{ auth()->user()->email }}</p>
+                        <h1 class="leading-tight text-4xl md:text-7xl xl:text-8xl font-bold text-white">{{ auth()->user()?->name }}</h1>
+                        <p class="text-sm md:text-base text-white">{{ auth()->user()?->email }}</p>
                     </div>
                 </div>
             </header>

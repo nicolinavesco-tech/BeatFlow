@@ -97,29 +97,98 @@
             </div>
 
         </aside>
-        <div class="min-h-screen flex rounded-xl border border-base-100 w-full min-w-0 bg-base-100 flex-col gap-6 pt-20 bg-[linear-gradient(135deg,#0a0a0a_0%,#1DB954_100%)]">
-            <div class="w-100 ps-10">
-                <a href="{{ route('homepage') }}" class="text-white text-2xl font-bold flex items-center gap-2">
-                    <img src="/logo/logo.png" class="w-15" alt="Logo di BeatFlow" />
-                    BeatFlow
-                </a>
-            </div>
-            <h2 class="text-3xl  text-white font-bold ps-10">Scarica BeatFlow per Windows</h2>
-            <p class="text-white text-xl max-w-2xl ps-10 text-semibold">Approfitta di audio di alta qualità, riproduzione in modalità offline, integrazione Windows Game Bar e del feed Attività amici, per vedere cosa ascoltano i tuoi amici in tempo reale.</p>
-            <div class="flex flex-col gap-4 justify-start ps-10">
-                <button class="cursor-pointer">
-                    <div class="flex max-w-36 h-12 px-3 gap-2 rounded-xl items-center justify-center bg-black text-white dark:text-black dark:bg-white sm:h-14">
-                        <i class="fa-brands fa-microsoft text-blue-700 fa-2x"></i>
-                        <div>
-                            <div class="text-[.5rem] sm:text-xs text-left">Scarica da</div>
-                            <div class="text-sm font-semibold font-sans -mt-1 sm:text-xl">
-                                Microsoft
-                            </div>
-                        </div>
+        <div class="min-h-screen flex rounded-xl border border-base-100 w-full items-center min-w-0 bg-base-100 flex-col gap-4 pt-5">
+
+            <div class="w-full max-w-4xl mx-auto px-8 py-10 space-y-6 mb-6">
+                <h2 class="text-white text-3xl font-bold flex items-center gap-2">Impostazioni</h2>
+
+                <p class="text-white text-xl font-bold">Account</p>
+                <div class="flex gap-5 items-center justify-between">
+                    <p class="text-sm text-gray-400">Modifica metodi di accesso</p>
+                    <button class="btn bg-transparent text-white border border-white rounded-3xl">Modifica</button>
+                </div>
+
+                <p class="text-white text-xl font-bold">Lingua</p>
+                <div class="flex gap-5 items-center justify-between">
+                    <p class="text-sm text-gray-400">Scegli lingua - Le modifiche saranno applicate dopo il riavvio dell'app</p>
+                    <select class="select">
+                        <option disabled selected>Italiano(Italian)</option>
+                        <option>English</option>
+                        <option>Chinese</option>
+                        <option>Russian</option>
+                    </select>
+                </div>
+                <p class="text-white text-xl font-bold">Qualità audio</p>
+                <div class="flex gap-5 items-center justify-between">
+                    <p class="text-sm text-gray-400">Qualità dell'ascolto</p>
+                    <select class="select">
+                        <option disabled selected>Automatico</option>
+                        <option>English</option>
+                        <option>Chinese</option>
+                        <option>Russian</option>
+                    </select>
+                </div>
+                <div class="flex gap-5 items-center justify-between">
+                    <p class="text-sm text-gray-400">Normalizza volume - Imposta lo stesso livello di volume per tutti i brani e i podcast</p>
+                    <input type="checkbox" class="toggle validator" required title="Required" />
+                </div>
+                <p class="text-white text-xl font-bold">La tua libreria</p>
+                <div class="flex gap-5 items-center justify-between">
+                    <p class="text-sm text-gray-400">Usa il layout compatto della libreria</p>
+                    <input type="checkbox" class="toggle validator" required title="Required" />
+                </div>
+                <div class="flex gap-5 items-center justify-between">
+                    <p class="text-sm text-gray-400">Importa la tua libreria</p>
+                    <button class="btn bg-transparent text-white border border-white rounded-3xl">Importa libreria</button>
+                </div>
+                <p class="text-white text-xl font-bold">Mostra</p>
+                <div class="flex gap-5 items-center justify-between">
+                    <p class="text-sm text-gray-400">Mostra il pannello Stai ascoltando quando clicchi su Play</p>
+                    <input type="checkbox" class="toggle toggle-success" checked />
+                </div>
+                <p class="text-white text-xl font-bold">Video canvas</p>
+                <p class="text-white text-base font-bold">Video musicali</p>
+                <div class="flex gap-5 items-center justify-between">
+                    <p class="text-xs text-gray-400">Quando l'opzione è disattivata, i video musicali e le esibizioni dal vivo vengono riprodotti solo come audio.</p>
+                    <input type="checkbox" class="toggle toggle-success" checked />
+                </div>
+                <p class="text-white text-base font-bold">Canvas</p>
+                <div class="flex gap-5 items-center justify-between">
+                    <p class="text-xs text-gray-400">Brevi immagini a ciclo continuo durante la riproduzione di un brano.</p>
+                    <input type="checkbox" class="toggle toggle-success" checked />
+                </div>
+                <p class="text-white text-base font-bold">Altri video</p>
+                <div class="flex gap-5 items-center justify-between">
+                    <p class="text-xs text-gray-400">Video a scorrimento verticale, video podcast, video di creator e autori. Gli annunci video non possono essere disattivati.</p>
+                    <input type="checkbox" class="toggle toggle-success" checked />
+                </div>
+                <div class="flex flex-col items-start border border-slate-700/80 bg-slate-800/50 rounded-xl p-4 gap-4">
+                    <h2 class="text-white text-2xl font-bold">Ottimizza l'audio con l'app Windows</h2>
+                    <div class="flex justify-between w-full">
+                        <p class="text-base  text-gray-400">Migliora la qualità dell'ascolto, regola l'equalizzatore per adattarlo al meglio ai tuoi altoparlanti e approfitta di un volume coerente per tutte le tracce.</p>
+                        <button class="btn bg-[#1DB954] text-black rounded-3xl font-bold">Scarica l'app gratuita</button>
                     </div>
-                </button>
-                <a href="{{ route('download') }}" class=" text-white hover:underline">Scarica direttamente da BeatFlow</a>
+                </div>
+
+                    <p class="text-white text-xl font-bold">Social</p>
+                    
+                    <div class="flex gap-5 items-center justify-between">
+                        <p class="text-xs text-gray-400">Le persone possono vedere le playlist che hai aggiunto al tuo profilo.</p>
+                        <input type="checkbox" class="toggle toggle-success" checked />
+                    </div>
+                    <div class="flex gap-5 items-center justify-between">
+                        <p class="text-xs text-gray-400">Sul tuo profilo, le persone possono vedere chi ti segue e chi stai seguendo.</p>
+                        <input type="checkbox" class="toggle toggle-success" checked />
+                    </div>
+                    <div class="flex gap-5 items-center justify-between">
+                        <p class="text-xs text-gray-400">Condividi la mia attività di ascolto con i follower sul computer</p>
+                        <input type="checkbox" class="toggle validator" required title="Required" />
+                    </div>
+                
             </div>
+
+
+
         </div>
 
 

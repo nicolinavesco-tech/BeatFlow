@@ -226,4 +226,10 @@
     <div x-show="tab === 'install'">
         @include('install')
     </div>
+    <div x-show="tab === 'news'">
+        @include('news')
+    </div>
+    <div x-show="tab === 'settings'">
+        @include('settings')
+    </div>
 </x-layout>
