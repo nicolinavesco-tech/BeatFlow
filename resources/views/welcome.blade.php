@@ -22,6 +22,46 @@
                                 </svg>
                                 <span>Crea</span>
                             </label>
+                            @auth
+                             <ul tabindex="0" class="dropdown-content menu bg-base-100 rounded-box z-1 w-84 p-2 shadow border border-slate-700/80 mt-2">
+                                <li>
+                                    <div class="dropdown dropdown-right flex">
+                                        <div class="flex items-center justify-center w-14 h-14 border border-gray-600 bg-gray-300/40 rounded-full shrink-0">
+                                            <button @click.prevent="tab = 'createPlaylist'" tabindex="0"><i class="fa-brands fa-itunes-note fa-2x hover:text-[#1DB954] hover:scale-110 hover:rotate-12 transition-transform duration-300"></i></button>
+                                        </div>
+                                        <div class="flex flex-col items-start ">
+                                            <span class="font-bold text-base">Playlist</span>
+                                            <p class="text-gray-400 text-xs">Riunisci i tuoi brani preferiti</p>
+                                        </div>
+                                    </div>
+
+                                </li>
+                                <li>
+                                    <a href="{{ route('login') }}" class="flex items-center gap-3">
+                                        <div class="flex items-center justify-center w-14 h-14 border border-gray-600 bg-gray-300/40 rounded-full shrink-0">
+                                            <i class="fa-solid fa-chart-pie fa-2x hover:text-[#1DB954] hover:scale-110 hover:rotate-12 transition-transform duration-300"></i>
+                                        </div>
+                                        <div class="flex flex-col items-start">
+                                            <span class="font-bold text-base">Blend</span>
+                                            <p class="text-gray-400 text-xs">Fondi i gusti dei tuoi amici in una playlist</p>
+                                        </div>
+                                    </a>
+                                </li>
+                                <hr class="border-t border-gray-600 my-2">
+                                <li>
+                                    <a href="" class="flex items-center">
+                                        <div class="flex items-center justify-center w-14 h-14 border border-gray-600 bg-gray-300/40 rounded-full shrink-0">
+                                            <i class="fa-regular fa-folder-closed fa-2x hover:text-[#1DB954] hover:scale-110 hover:rotate-12 transition-transform duration-300"></i>
+                                        </div>
+                                        <div class="flex flex-col items-start ">
+                                            <span class="font-bold text-base">Cartella</span>
+                                            <p class="text-gray-400 text-xs">Organizza le tue playlist</p>
+                                        </div>
+                                    </a>
+                                </li>
+
+                            </ul>
+                            @else
                             <ul tabindex="0" class="dropdown-content menu bg-base-100 rounded-box z-1 w-84 p-2 shadow border border-slate-700/80 mt-2">
                                 <li>
                                     <div class="dropdown dropdown-right flex">
@@ -69,6 +109,7 @@
                                 </li>
 
                             </ul>
+                            @endauth
                         </div>
                     </div>
 
@@ -231,5 +272,8 @@
     </div>
     <div x-show="tab === 'settings'">
         @include('settings')
+    </div>
+    <div x-show="tab === 'createPlaylist'">
+        @include('playlist.createPlaylist')
     </div>
 </x-layout>

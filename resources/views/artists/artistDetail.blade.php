@@ -118,9 +118,16 @@
                         <source src="" type="audio/mpeg">
                     </audio>
 
-                    <button type="button" class="btn text-white bg-black/40 backdrop-blur-md rounded-full hover:bg-black/60 transition w-fit border-none">
-                        Segui
-                    </button>
+                    <form action="{{route('artists.favorite', $artist)}}" method="POST">
+                        @csrf
+                        <button type="submit" class="btn text-white bg-black/40 backdrop-blur-md rounded-full hover:bg-black/60 transition w-fit border-none">
+                            @auth
+                            {{ auth()->user()->favoriteArtists->contains($artist->id) ? 'Seguito ✓': 'Segui'}}
+                            @else
+                            Segui
+                            @endauth
+                        </button>
+                    </form>
 
                     <button type="button" popovertarget="artist-popover" style="anchor-name: --artist-anchor">
                         <i class="fa-solid fa-ellipsis fa-2x text-gray-400 hover:text-white"></i>

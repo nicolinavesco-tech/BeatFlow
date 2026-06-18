@@ -9,7 +9,7 @@
                 <div>
 
                     <label class="label" for="email"></label>
-                    <input type="email" class="input" id="email" placeholder="mario@rossi.com" name="email">
+                    <input type="email" class="input" id="email" placeholder="mario@rossi.com" required name="email">
 
 
                 </div>
@@ -17,9 +17,18 @@
                 <div>
 
                     <label class="label" for="password"></label>
-                    <input type="password" class="input" id="password" name="password" placeholder="Password" />
+                    <input type="password" class="input" id="password" name="password" required placeholder="Password" />
 
                 </div>
+                @if ($errors->any())
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+                @endif
                 <button type="submit" class="btn bg-green-500 hover:bg-green-600 mt-4 text-l">Login</button>
             </fieldset>
 

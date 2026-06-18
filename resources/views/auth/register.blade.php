@@ -27,14 +27,22 @@
 
                 <div>
                     <label class="label" for="password"></label>
-                    <input type="password" class="input" id="password" name="password" required placeholder="Password"/>
+                    <input type="password" class="input" id="password" name="password" required placeholder="Password" />
                 </div>
 
                 <div>
                     <label class="label" for="password_confirmation"></label>
-                    <input type="password" class="input" id="password_confirmation" name="password_confirmation" required placeholder="Conferma Password"/>
+                    <input type="password" class="input" id="password_confirmation" name="password_confirmation" required placeholder="Conferma Password" />
                 </div>
-
+                @if ($errors->any())
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+                @endif
                 <button type="submit" class="btn bg-green-500 hover:bg-green-600 mt-4 text-l">
                     Registrati
                 </button>

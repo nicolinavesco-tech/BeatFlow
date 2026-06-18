@@ -13,13 +13,18 @@ Route::get('/download', [HomeController::class, 'download'])->name('download');
 Route::get('/support', [HomeController::class, 'support'])->name('support');
 Route::get('/premium', [HomeController::class, 'premium'])->name('premium');
 Route::get('/podcast', [HomeController::class, 'podcast'])->name('podcast');
+
+// Route protette
+Route::middleware('auth')->group(function(){
 Route::get('/accountOverview', [HomeController::class, 'accountOverview'])->name('accountOverview');
+Route::post('/songs', [SongController::class, 'store'])->name('songs.store');
+Route::post('/artists/favorite/{artist}', [ArtistController::class, 'favorite'])->name('artists.favorite');
 
 
+});
 
 
 Route::get('/songs', [SongController::class, 'index'])->name('songs.index');
-Route::post('/songs', [SongController::class, 'store'])->name('songs.store');
 Route::get('/songs/detail/{song}', [SongController::class, 'show'])->name('songs.show');
 Route::get('/search', [SearchController::class, 'search'])->name('global.search');
 

@@ -1,6 +1,3 @@
-
-
-
 // Riproduzione audio con controllo di riproduzione e pausa
 let currentAudio = null;
 

@@ -3,6 +3,7 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+use App\Models\Artist;
 use App\Models\Song;
 use Database\Factories\UserFactory;
 use Illuminate\Database\Eloquent\Attributes\Fillable;
@@ -34,5 +35,8 @@ class User extends Authenticatable
     public function songs(): BelongsToMany
     {
         return $this->belongsToMany(Song::class);
+    }
+    public function favoriteArtists(){
+        return $this->belongsToMany(Artist::class);
     }
 }

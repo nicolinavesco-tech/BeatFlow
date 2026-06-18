@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Models\Album;
 use App\Models\Song;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
@@ -23,5 +24,8 @@ class Artist extends Model
     public function albums()
     {
         return $this->hasMany(Album::class);
+    }
+    public function users(){
+        return $this->belongsToMany(User::class);
     }
 }
