@@ -39,4 +39,10 @@ class User extends Authenticatable
     public function favoriteArtists(){
         return $this->belongsToMany(Artist::class);
     }
+    public function addSongs(){
+        return $this->belongsToMany(Song::class)->withTimestamps();
+    }
+    public function playlists(){
+        return $this->hasMany(Playlist::class);
+    }
 }

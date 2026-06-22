@@ -37,6 +37,10 @@ class SearchController extends Controller
         })
         ->get();
 
+        if($request->wantsJson()){
+            return response()->json($songs);
+        }
+
     return view('songs.search', [
         'songs' => $songs,
         'search' => $query

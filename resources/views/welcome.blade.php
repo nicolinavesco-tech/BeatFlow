@@ -274,6 +274,6 @@
         @include('settings')
     </div>
     <div x-show="tab === 'createPlaylist'">
-        @include('playlist.createPlaylist')
+        @include('playlists.createPlaylist')
     </div>
 </x-layout>

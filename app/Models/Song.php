@@ -40,4 +40,11 @@ class Song extends Model
     {
         return $this->belongsTo(Album::class);
     }
+    public function getDurationFormattedAttribute(){
+        if(!$this->duration) return '--:--';
+
+        $minutes=floor($this->duration/60);
+        $seconds=$this->duration % 60;
+        return sprintf('%d:%02d', $minutes, $seconds);
+    }
 }

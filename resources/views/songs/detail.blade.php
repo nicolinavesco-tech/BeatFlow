@@ -131,7 +131,22 @@
                         <source src="{{ asset($song->file_path) }}" type="audio/mpeg">
                     </audio>
 
-                    <i class="fa-solid fa-circle-plus fa-2x text-gray-400 hover:text-white cursor-pointer"></i>
+                    <form action="{{route('songs.add', $song)}}" method="POST">
+                        @csrf
+                        <button type="submit" class=" text-white rounded-full w-fit">
+                            @auth
+                            @if(auth()->user()->addSongs->contains($song->id))
+                            <i class="fa-solid fa-circle-check fa-2x text-[#1DB954]" title="Aggiunto"></i>
+                            @else
+                            <i class="fa-solid fa-circle-plus fa-2x text-gray-400 hover:text-white cursor-pointer"></i>
+                            @endif
+                            @else
+                            <i class="fa-solid fa-circle-plus fa-2x text-gray-400 hover:text-white cursor-pointer" title="Accedi per aggiungere"></i>
+                            @endauth
+                        </button>
+                    </form>
+
+
 
                     <button popovertarget="popover-1" style="anchor-name:--anchor-1">
                         <i class="fa-solid fa-ellipsis fa-2x text-gray-400 hover:text-white"></i>

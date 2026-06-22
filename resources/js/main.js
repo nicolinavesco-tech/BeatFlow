@@ -67,3 +67,54 @@ function scrollTrending(amount) {
 // Rendi la funzione globale (importante per onclick nel Blade)
 window.scrollTrending = scrollTrending;
 
+// Ricerca canzoni nella createPlaylist 
+window.searchForPlaylist = function (event) {
+    event.preventDefault();
+
+    const query = document.querySelector('#playlistSearchInput').value;
+    const resultsBox = document.querySelector('#playlistSearchResults');
+
+    fetch(`/search?q=${encodeURIComponent(query)}`, {
+        headers: { 'Accept': 'application/json' }
+    })
+        .then(response => response.json())
+        .then(songs => {
+            resultsBox.innerHTML = songs.map(song => `
+            <div class= "flex items-center justify-between gap-3 hover:bg-slate-700/55 rounded-lg p-2">
+                <div class="flex gap-3">
+                   <img src="/${song.image_path}" class="w-12 h-12 rounded object-cover">
+                  <div>
+                      <p class="text-white font-bold">${song.title}</p>
+                      <p class="text-gray-400 text-sm">${song.artist}</p>
+                    </div>
+                </div>
+               <button type="button" onclick="addSongToPlaylist(${song.id}, this)" class="btn rounded-full border border-white">Aggiungi</button>
+            </div>`).join('');
+        });
+};
+// Aggiunta canzone alla playlist quando l'utente è loggato
+window.addSongToPlaylist=function(songId, buttonEl){
+    const token = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+
+    fetch(`/songs/add/${songId}`, {
+        method: 'POST',
+        headers: {
+            'X-CSRF-TOKEN': token,
+            'Accept': 'application/json'
+        }
+    })
+        .then(response=>{
+            if(response.ok){
+                buttonEl.textContent = 'Aggiunta ✓';
+                buttonEl.disabled=true;
+                buttonEl.classList.add('opacity-50');
+            }
+        });
+}
+
+// Preview playlist
+function previewNewPlaylistImage(event) {
+    const file = event.target.files[0];
+    if (!file) return;
+    document.getElementById('new-playlist-preview').src = URL.createObjectURL(file);
+}

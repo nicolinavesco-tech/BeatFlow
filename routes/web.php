@@ -4,6 +4,7 @@ use App\Http\Controllers\AlbumController;
 use App\Http\Controllers\ArtistController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\JamendoController;
+use App\Http\Controllers\PlaylistController;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\SongController;
 use Illuminate\Support\Facades\Route;
@@ -19,6 +20,9 @@ Route::middleware('auth')->group(function(){
 Route::get('/accountOverview', [HomeController::class, 'accountOverview'])->name('accountOverview');
 Route::post('/songs', [SongController::class, 'store'])->name('songs.store');
 Route::post('/artists/favorite/{artist}', [ArtistController::class, 'favorite'])->name('artists.favorite');
+Route::post('/songs/add/{song}', [SongController::class, 'add'])->name('songs.add');
+Route::delete("/songs/destroy/{song}", [SongController::class, "destroy"])->name("songs.destroy");
+
 
 
 });
@@ -36,3 +40,8 @@ Route::get('/jamendo/search', [JamendoController::class, 'search']);
 
 // Albums
 Route::get('/albums/{album}', [AlbumController::class, 'show'])->name('albums.show');
+
+// Playlist
+Route::post('/playlists', [PlaylistController::class, 'store'])->name('playlists.store');
+Route::get('/playlists/{playlist}', [PlaylistController::class, 'show'])->name('playlists.show');
+Route::delete('/playlists/{playlist}', [PlaylistController::class, 'destroy'])->name('playlists.destroy');

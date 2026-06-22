@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Song;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class SongController extends Controller
 {
@@ -12,16 +13,17 @@ class SongController extends Controller
      */
     public function index()
     {
-        $songs= Song::latest()->get();
+        $songs = Song::latest()->get();
         return view('songs.index', compact('songs'));
     }
 
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function add(Song $song)
     {
-        //
+        Auth::user()->addSongs()->syncWithoutDetaching([$song->id]);
+        return back();
     }
 
     /**
@@ -29,7 +31,7 @@ class SongController extends Controller
      */
     public function store(Request $request)
     {
-       
+
         $request->validate([
             'title' => 'required|string|max:255',
             'artist' => 'nullable|string|max:255',
@@ -53,7 +55,7 @@ class SongController extends Controller
      */
     public function show(Song $song)
     {
-     $song->load(['genre', 'artistModel']);
+        $song->load(['genre', 'artistModel']);
 
         $otherSongs = Song::with(['genre', 'artistModel'])
             ->where('artist_id', $song->artist_id)
@@ -61,16 +63,12 @@ class SongController extends Controller
             ->get();
 
         return view('songs.detail', compact('song', 'otherSongs'));
-
     }
 
-/**
- * Show the form for editing the specified resource.
- */
-public function edit(Song $song)
-    {
-        //
-    }
+    /**
+     * Show the form for editing the specified resource.
+     */
+    public function edit(Song $song) {}
 
     /**
      * Update the specified resource in storage.
@@ -85,7 +83,7 @@ public function edit(Song $song)
      */
     public function destroy(Song $song)
     {
-        //
+        Auth::user()->addSongs()->detach($song->id);
+        return back();
     }
-
 }
