@@ -9,7 +9,7 @@
   @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 
-<body x-data="{ tab: 'home' }">
+<body x-data="{ tab: new URLSearchParams(window.location.search).get('tab') || 'home' }">
   <x-navbar />
 
   {{$slot}}

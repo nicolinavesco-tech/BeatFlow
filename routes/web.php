@@ -22,9 +22,8 @@ Route::post('/songs', [SongController::class, 'store'])->name('songs.store');
 Route::post('/artists/favorite/{artist}', [ArtistController::class, 'favorite'])->name('artists.favorite');
 Route::post('/songs/add/{song}', [SongController::class, 'add'])->name('songs.add');
 Route::delete("/songs/destroy/{song}", [SongController::class, "destroy"])->name("songs.destroy");
-
-
-
+Route::post('/songs/{song}/favorite', [SongController::class, 'addFavorites'])->name('favorites.add');
+Route::delete('/songs/{song}/favorite',[SongController::class, 'removeFromFavorites'])->name('favorites.destroy');
 });
 
 
@@ -44,4 +43,5 @@ Route::get('/albums/{album}', [AlbumController::class, 'show'])->name('albums.sh
 // Playlist
 Route::post('/playlists', [PlaylistController::class, 'store'])->name('playlists.store');
 Route::get('/playlists/{playlist}', [PlaylistController::class, 'show'])->name('playlists.show');
+Route::post('/playlists/{playlist}/songs', [PlaylistController::class, 'addSong'])->name('playlists.addSong');
 Route::delete('/playlists/{playlist}', [PlaylistController::class, 'destroy'])->name('playlists.destroy');

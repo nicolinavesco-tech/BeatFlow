@@ -47,4 +47,7 @@ class Song extends Model
         $seconds=$this->duration % 60;
         return sprintf('%d:%02d', $minutes, $seconds);
     }
+    public function usersWhoLike(){
+        return $this->belongsToMany(User::class, 'favorite_songs');
+    }
 }

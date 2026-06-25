@@ -1,5 +1,6 @@
 // Riproduzione audio con controllo di riproduzione e pausa
 let currentAudio = null;
+let playlistId = null;
 
 window.playSong = function (audioId) {
     const newAudio = document.getElementById(audioId);
@@ -74,6 +75,9 @@ window.searchForPlaylist = function (event) {
     const query = document.querySelector('#playlistSearchInput').value;
     const resultsBox = document.querySelector('#playlistSearchResults');
 
+    const urlParts=window.location.pathname.split('/');
+    playlistId = urlParts[urlParts.indexOf('playlists')+1];
+
     fetch(`/search?q=${encodeURIComponent(query)}`, {
         headers: { 'Accept': 'application/json' }
     })
@@ -88,33 +92,43 @@ window.searchForPlaylist = function (event) {
                       <p class="text-gray-400 text-sm">${song.artist}</p>
                     </div>
                 </div>
-               <button type="button" onclick="addSongToPlaylist(${song.id}, this)" class="btn rounded-full border border-white">Aggiungi</button>
+               <button type="button" onclick="addSongToPlaylist(${song.id}, ${playlistId}, this)" class="btn rounded-full border border-white">Aggiungi</button>
             </div>`).join('');
         });
 };
 // Aggiunta canzone alla playlist quando l'utente è loggato
-window.addSongToPlaylist=function(songId, buttonEl){
+window.addSongToPlaylist=function(songId, playlistId, buttonEl){
     const token = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
 
-    fetch(`/songs/add/${songId}`, {
+    fetch(`/playlists/${playlistId}/songs`, {
         method: 'POST',
         headers: {
             'X-CSRF-TOKEN': token,
+            'Content-Type': 'application/json',
             'Accept': 'application/json'
-        }
+        },
+        body: JSON.stringify({song_id:songId})
     })
         .then(response=>{
             if(response.ok){
                 buttonEl.textContent = 'Aggiunta ✓';
                 buttonEl.disabled=true;
                 buttonEl.classList.add('opacity-50');
+                setTimeout(()=>location.reload(), 800);
             }
-        });
+        })
+        .catch(error=>console.error('Errore', error));
 }
 
 // Preview playlist
 function previewNewPlaylistImage(event) {
     const file = event.target.files[0];
     if (!file) return;
-    document.getElementById('new-playlist-preview').src = URL.createObjectURL(file);
+
+    const preview = document.getElementById('new-playlist-preview');
+    const placeholder = document.getElementById('new-playlist-placeholder');
+
+    preview.src = URL.createObjectURL(file);
+    preview.classList.remove('hidden');
+    placeholder.classList.add('hidden');
 }

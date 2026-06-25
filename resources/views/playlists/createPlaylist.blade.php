@@ -1,4 +1,5 @@
 <main class="container-fluid">
+
     <section class="min-h-screen flex bg-black  pt-20 gap-2">
         {{-- Sidebar nascosta su mobile --}}
         <aside class="hidden lg:flex w-90 bg-base-100 rounded-xl flex-col h-screen sticky top-20 space-y-6 shrink-0">
@@ -65,11 +66,11 @@
 
 
             @auth
-            @foreach(auth()->user()->favoriteArtists as $artist)
-            <a href="{{ route('artists.show', $artist) }}" class="flex gap-3 ps-3">
-                <img src="media/{{ $artist->image }}" alt="{{ $artist->name }}" class="cover w-20 h-20 rounded-full {{ in_array($artist->name, ['Skai IsYourGod', 'Blackpink', 'Twenty One Pilots']) ? 'object-cover' : '' }}">
+            @foreach(auth()->user()->favoriteArtists as $favoriteArtist)
+            <a href="{{ route('artists.show', $favoriteArtist) }}" class="flex gap-3 ps-3">
+                <img src="/media/{{ $favoriteArtist->image }}" alt="{{ $favoriteArtist->name }}" class="cover w-20 h-20 rounded-full {{ in_array($favoriteArtist->name, ['Skai IsYourGod', 'Blackpink', 'Twenty One Pilots']) ? 'object-cover' : '' }}">
                 <div class="flex flex-col justify-center">
-                    <p class="text-white font-bold">{{ $artist->name }}</p>
+                    <p class="text-white font-bold">{{ $favoriteArtist->name }}</p>
                     <p class="text-sm text-gray-400">Artista</p>
                 </div>
             </a>
@@ -85,7 +86,7 @@
                         <p class="text-sm text-gray-400">Playlist</p>
                     </div>
                 </a>
-                <form action="{{route('playlists.destroy', $playlist)}}" method="POST" >
+                <form action="{{route('playlists.destroy', $playlist)}}" method="POST">
                     @csrf
                     @method('DELETE')
                     <button class="p-5">
@@ -105,18 +106,23 @@
                         <i class="fa-solid fa-chevron-left"></i>
                         <span>Torna indietro</span>
                     </a>
-                    <form action="{{ route('playlists.store') }}" method="POST" enctype="multipart/form-data" class="flex gap-6 w-full max-w-sm pt-5">
+                    <form action="{{ route('playlists.store') }}" method="POST" enctype="multipart/form-data" class="flex gap-6 w-full pt-5">
                         @csrf
-                        <div class="flex flex-col items-center gap-3">
-                            <img id="new-playlist-preview" src=""
-                                class="w-70 h-50 rounded-xl object-cover shadow-lg bg-slate-800 hover:scale-105 transition duration-300">
-                            <label for="playlist-image" class=" text-white rounded-full w-fit -translate-y-35.5 ">
-                                <input type="file" id="new-playlist-image" name="image" accept="image/*" class="hidden" onchange="previewNewPlaylistImage(event)">
-                                <div class="flex flex-col items-center gap-3">
-                                    <i class="fa-solid fa-pen fa-2x text-white"></i>
-                                    <span class="ml-2">Scegli foto</span>
-                                </div>
-                            </label>
+                        <div class="relative group cursor-pointer w-80 h-70"
+                            onclick="document.querySelector('#new-playlist-image').click()">
+
+                            <img id="new-playlist-preview" src="" class="w-full h-full rounded-xl object-cover shadow-lg hidden">
+                            <div id="new-playlist-placeholder" class="w-full h-full rounded-xl bg-slate-800 flex items-center justify-center shadow-lg">
+                                <i class="fa-solid fa-music fa-4x text-gray-500"></i>
+                            </div>
+
+                            <div class="absolute inset-0 rounded-xl bg-black/50 opacity-0 group-hover:opacity-100 flex flex-col items-center justify-center transition duration-300">
+                                <i class="fa-solid fa-pen fa-2x text-white"></i>
+                                <span class="text-white text-sm mt-2">Scegli foto</span>
+                            </div>
+
+                            <input type="file" id="new-playlist-image" name="image" accept="image/*" class="hidden"
+                                onchange="previewNewPlaylistImage(event)">
                         </div>
                         <div class="flex flex-col gap-3 justify-center">
 
@@ -156,61 +162,66 @@
                 </div>
                 <div class="pt-6 border-t border-slate-700 p-5">
                     <ul class="hidden md:block list bg-base-100 rounded-box shadow-md w-full">
-                        <li class="p-4 pb-2 text-xs opacity-60 tracking-wide">Tracklist</li>
+                        <li class="p-4 pb-2 text-xs opacity-60 tracking-wide">Aggiunte di recente</li>
                         @auth
-                        @foreach(auth()->user()->addSongs as $index => $song)
-                        <div class="group flex items-center p-5 pt-3 hover:bg-slate-700">
-                            <div class="flex gap-3 items-center flex-1">
-                                <div class="relative w-6 h-6 flex items-center justify-center ">
-                                    <span class="text-xl leading-none font-thin opacity-30 tabular-nums group-hover:hidden ">{{ str_pad($index + 1, 2, '0', STR_PAD_LEFT) }}</span>
-                                    <button class=" absolute inset-0 hidden group-hover:flex w-6 items-center justify-center text-white" onclick="playSong('audio-add-{{$song->id}}')">
-                                        <svg class="size-[1.2em]" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                                            <g stroke-linejoin="round" stroke-linecap="round" stroke-width="2" fill="none" stroke="currentColor">
-                                                <path d="M6 3L20 12 6 21 6 3z"></path>
-                                            </g>
-                                        </svg>
-                                    </button>
-                                </div>
+                        @php $recentSongs = auth()->user()->addSongs()->latest('pivot_created_at')->take(5)->get(); @endphp
+                        @if($recentSongs->count() > 0)
+                        @foreach($recentSongs as $index => $song)
+                        <div class="group flex items-center p-3 hover:bg-slate-700 rounded-lg">
 
-                                <img class="size-10 rounded-box object-cover" src="{{ asset($song->image_path) }}" alt="{{ $song->title }}">
-
-                                <div class="flex flex-col justify-center">
-                                    <a href="{{ route('songs.show', $song) }}" class="text-white font-bold hover:underline">{{ $song->title }}</a>
-                                    <a href="{{ route('artists.show', $song->artistModel) }}" class="text-xs uppercase font-semibold opacity-60 hover:underline">{{$song->artist}}</a>
-                                </div>
+                            {{-- Numero + play --}}
+                            <div class="relative w-6 h-6 flex items-center justify-center shrink-0 mr-3">
+                                <span class="text-sm leading-none font-thin opacity-30 tabular-nums group-hover:hidden">{{ str_pad($index + 1, 2, '0', STR_PAD_LEFT) }}</span>
+                                <button class="absolute inset-0 hidden group-hover:flex items-center justify-center text-white" onclick="playSong('audio-recent-{{ $song->id }}')">
+                                    <svg class="size-[1.2em]" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                        <g stroke-linejoin="round" stroke-linecap="round" stroke-width="2" fill="none" stroke="currentColor">
+                                            <path d="M6 3L20 12 6 21 6 3z"></path>
+                                        </g>
+                                    </svg>
+                                </button>
                             </div>
-                            <div class="flex gap-2">
 
-                                <p class="text-white font-bold w-55 truncate">{{ $song->album->title ?? 'Singolo' }}</p>
-                                <p class="text-gray-400 text-sm w-36">{{ $song->pivot->created_at?->format('d/m/Y') ?? 'N/D' }}</p>
-                                <span class="text-gray-400 text-sm w-16 text-left">{{ $song->duration_formatted }}</span>
-                                <div class="dropdown dropdown-end">
-                                    <button tabindex="0" role="button">
-                                        <i class="fa-solid fa-ellipsis text-gray-400 hover:text-white"></i>
-                                    </button>
-                                    <ul tabindex="0" class="dropdown-content menu bg-base-100 rounded-box z-1 w-52 p-2 shadow-sm">
-                                        <li><a><i class="fa-solid fa-circle-plus text-gray-400 hover:text-white"></i> Aggiungi alla playlist</a></li>
-                                        <li>
-                                            <form action="{{route('songs.destroy', $song)}}" method="POST">
-                                                @csrf
-                                                @method('DELETE')
-                                                <button class="flex items-center gap-2 w-full text-left">
-                                                    <i class="fa-solid fa-trash text-gray-400 hover:text-white"></i> Rimuovi da questa playlist
-                                                </button>
-                                            </form>
-                                        </li>
-                                        <li class="border-t border-gray-400"><a href="{{route('albums.show', $album)}}"><i class="fa-solid fa-plus text-gray-400 hover:text-white"></i> Vai all'album</a></li>
-                                        <li><a><i class="fa-solid fa-arrow-up-from-bracket text-gray-400 hover:text-white"></i> Condividi</a></li>
-                                        <li class="border-t border-gray-400"><a><i class="fa-solid fa-desktop text-gray-400 hover:text-white"></i> Apri con l'app del desktop</a></li>
-                                    </ul>
+                            {{-- Immagine + titolo --}}
+                            <div class="flex gap-3 items-center flex-1 min-w-0">
+                                <img class="size-10 rounded-lg object-cover shrink-0" src="{{ asset($song->image_path) }}" alt="{{ $song->title }}">
+                                <div class="flex flex-col justify-center min-w-0">
+                                    <a href="{{ route('songs.show', $song) }}" class="text-white font-bold hover:underline truncate">{{ $song->title }}</a>
+                                    <a href="{{ route('artists.show', $song->artistModel) }}" class="text-xs uppercase font-semibold opacity-60 hover:underline">{{ $song->artist }}</a>
                                 </div>
                             </div>
 
-                            <audio id="audio-add-{{$song->id}}">
+                            {{-- Durata --}}
+                            <span class="text-white font-bold w-50 truncate">{{ $song->album->title ?? 'Singolo' }}</span>
+                            <span class="text-gray-400 text-sm w-50">{{ $song->pivot->created_at?->format('d/m/Y') ?? 'N/D' }}</span>
+                            <span class="text-gray-400 text-sm w-16 text-left shrink-0">{{ $song->duration_formatted }}</span>
+
+
+                            <div class="dropdown dropdown-end">
+                                <button tabindex="0" role="button">
+                                    <i class="fa-solid fa-ellipsis text-gray-400 hover:text-white"></i>
+                                </button>
+                                <ul tabindex="0" class="dropdown-content menu bg-base-100 rounded-box z-10 w-52 p-2 shadow-sm border border-slate-700">
+                                    <li><a><i class="fa-solid fa-circle-plus text-gray-400 hover:text-white"></i> Aggiungi alla playlist</a></li>
+                                    <li><a href="{{ route('songs.show', $song) }}"><i class="fa-solid fa-music text-gray-400 hover:text-white"></i> Vai alla canzone</a></li>
+                                    <li><a href="{{ route('artists.show', $song->artistModel) }}"><i class="fa-solid fa-user text-gray-400 hover:text-white"></i> Vai all'artista</a></li>
+                                    @if($song->album)
+                                    <li><a href="{{ route('albums.show', $song->album) }}"><i class="fa-solid fa-record-vinyl text-gray-400 hover:text-white"></i> Vai all'album</a></li>
+                                    @endif
+                                    <li class="border-t border-gray-600"><a><i class="fa-solid fa-arrow-up-from-bracket text-gray-400 hover:text-white"></i> Condividi</a></li>
+                                </ul>
+                            </div>
+
+                            <audio id="audio-recent-{{ $song->id }}">
                                 <source src="{{ asset($song->file_path) }}" type="audio/mpeg">
                             </audio>
                         </div>
                         @endforeach
+                        @else
+                        <div class="flex flex-col items-center justify-center gap-2 py-10 text-gray-400">
+                            <i class="fa-solid fa-music fa-2x opacity-30"></i>
+                            <p class="text-sm">Nessuna canzone aggiunta ancora</p>
+                        </div>
+                        @endif
                         @endauth
                     </ul>
                 </div>

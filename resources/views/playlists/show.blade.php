@@ -1,6 +1,6 @@
 <x-layout>
-
     <main class="container-fluid">
+        <div id="playlist-data" data-playlist-id="{{ $playlist->id }}"></div>
         <section class="min-h-screen flex bg-black  pt-20 gap-2">
             {{-- Sidebar nascosta su mobile --}}
             <aside class="hidden lg:flex w-90 bg-base-100 rounded-xl flex-col h-screen sticky top-20 space-y-6 shrink-0">
@@ -67,20 +67,40 @@
 
 
                 @auth
-                @foreach(auth()->user()->favoriteArtists as $artist)
-                <a href="{{ route('artists.show', $artist) }}" class="flex gap-3 ps-3">
-                    <img src="/media/{{ $artist->image }}" alt="{{ $artist->name }}" class="cover w-20 h-20 rounded-full {{ in_array($artist->name, ['Skai IsYourGod', 'Blackpink', 'Twenty One Pilots']) ? 'object-cover' : '' }}">
+                @foreach(auth()->user()->favoriteArtists as $favoriteArtist)
+                <a href="{{ route('artists.show', $favoriteArtist) }}" class="flex gap-3 ps-3">
+                    <img src="/media/{{ $favoriteArtist->image }}" alt="{{ $favoriteArtist->name }}" class="cover w-20 h-20 rounded-full {{ in_array($favoriteArtist->name, ['Skai IsYourGod', 'Blackpink', 'Twenty One Pilots']) ? 'object-cover' : '' }}">
                     <div class="flex flex-col justify-center">
-                        <p class="text-white font-bold">{{ $artist->name }}</p>
+                        <p class="text-white font-bold">{{ $favoriteArtist->name }}</p>
                         <p class="text-sm text-gray-400">Artista</p>
                     </div>
                 </a>
                 @endforeach
-                @endauth
+
+                 <!-- Playlist utente -->
+            @foreach(auth()->user()->playlists as $userPlaylist)
+            <div class="flex justify-between items-center">
+                <a href="{{ route('playlists.show', $userPlaylist)}}" class="flex gap-3 ps-3">
+                    <img src="{{$userPlaylist->image_path ? Storage::url($userPlaylist->image_path) : 'https://placehold.co/80x80/282828/ffffff?text=♪'}}" alt="{{$userPlaylist->name}}" class="w-20 h-20 rounded-md object-cover shrink-0">
+                    <div class="flex flex-col justify-center">
+                        <p class="text-white font-bold">{{$userPlaylist->name}}</p>
+                        <p class="text-sm text-gray-400">Playlist</p>
+                    </div>
+                </a>
+                <form action="{{route('playlists.destroy', $userPlaylist)}}" method="POST">
+                    @csrf
+                    @method('DELETE')
+                    <button class="p-5">
+                        <i class="fa-solid fa-trash hover:text-red-600"></i>
+                    </button>
+                </form>
+            </div>
+            @endforeach
+            @endauth
 
             </aside>
 
-            <div x-show="tab !== 'createPlaylist'" class="flex rounded-xl border border-base-100 w-full flex-col gap-6 bg-base-100">
+            <div class="flex rounded-xl border border-base-100 w-full flex-col gap-6 bg-base-100">
                 <div class="flex rounded-xl border border-base-100 w-full flex-col gap-6 bg-base-100">
                     <div class="min-h-80 p-5 md:p-8 rounded-t-xl  bg-[linear-gradient(to_top,transparent_0%,#15803d_70%,#4ade80)]">
                         <a href="{{ route('homepage') }}" class="flex items-center gap-2 text-white px-4 py-2 bg-black/40 backdrop-blur-md rounded-full hover:bg-black/60 transition w-fit">
@@ -94,8 +114,7 @@
                             <label for="playlist-image" class=" text-white rounded-full w-fit -translate-y-25.5 -translate-x-50.5">
                                 <input type="file" id="playlist-image" class="hidden" />
                                 <div class="flex flex-col items-center gap-3">
-                                    <!-- <i class="fa-solid fa-pen fa-2x text-white"></i> -->
-                                    <!-- <span class="ml-2">Scegli foto</span> -->
+                                  
                                 </div>
                             </label>
 
@@ -140,7 +159,7 @@
                         <ul class="hidden md:block list bg-base-100 rounded-box shadow-md w-full">
                             <li class="p-4 pb-2 text-xs opacity-60 tracking-wide">Tracklist</li>
                             @auth
-                            @foreach(auth()->user()->addSongs as $index => $song)
+                            @foreach($playlist->songs as $index => $song)
                             <div class="group flex items-center p-5 pt-3 hover:bg-slate-700">
                                 <div class="flex gap-3 items-center flex-1">
                                     <div class="relative w-6 h-6 flex items-center justify-center ">

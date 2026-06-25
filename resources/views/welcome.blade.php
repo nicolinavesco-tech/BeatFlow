@@ -1,8 +1,8 @@
 <x-layout>
     <div x-show="tab === 'home'">
         <main class="container-fluid">
-            <section class="min-h-screen flex bg-black justify-content-center align-items-center pt-20 gap-2 homepage-section">
-                <div class="border hidden md:block rounded-xl border-base-100 bg-base-100 w-100 space-y-5 aside-bar">
+            <section class="min-h-screen flex bg-black pt-20 gap-2 homepage-section">
+                <div class="border hidden md:block rounded-xl border-base-100 bg-base-100 w-90 shrink-0 space-y-5 aside-bar">
                     <div class="flex justify-between">
                         <p class="text-xl font-bold mb-4 p-5">La tua libreria</p>
                         <div class="dropdown dropdown-start p-4">
@@ -23,7 +23,7 @@
                                 <span>Crea</span>
                             </label>
                             @auth
-                             <ul tabindex="0" class="dropdown-content menu bg-base-100 rounded-box z-1 w-84 p-2 shadow border border-slate-700/80 mt-2">
+                            <ul tabindex="0" class="dropdown-content menu bg-base-100 rounded-box z-1 w-84 p-2 shadow border border-slate-700/80 mt-2">
                                 <li>
                                     <div class="dropdown dropdown-right flex">
                                         <div class="flex items-center justify-center w-14 h-14 border border-gray-600 bg-gray-300/40 rounded-full shrink-0">
@@ -113,6 +113,37 @@
                         </div>
                     </div>
 
+                    @auth
+                    @foreach(auth()->user()->favoriteArtists as $favoriteArtist)
+                    <a href="{{ route('artists.show', $favoriteArtist) }}" class="flex gap-3 ps-3">
+                        <img src="/media/{{ $favoriteArtist->image }}" alt="{{ $favoriteArtist->name }}" class="cover w-20 h-20 rounded-full {{ in_array($favoriteArtist->name, ['Skai IsYourGod', 'Blackpink', 'Twenty One Pilots']) ? 'object-cover' : '' }}">
+                        <div class="flex flex-col justify-center">
+                            <p class="text-white font-bold">{{ $favoriteArtist->name }}</p>
+                            <p class="text-sm text-gray-400">Artista</p>
+                        </div>
+                    </a>
+                    @endforeach
+
+                    <!-- Playlist utente -->
+                    @foreach(auth()->user()->playlists as $userPlaylist)
+                    <div class="flex justify-between items-center">
+                        <a href="{{ route('playlists.show', $userPlaylist)}}" class="flex gap-3 ps-3">
+                            <img src="{{$userPlaylist->image_path ? Storage::url($userPlaylist->image_path) : 'https://placehold.co/80x80/282828/ffffff?text=♪'}}" alt="{{$userPlaylist->name}}" class="w-20 h-20 rounded-md object-cover shrink-0">
+                            <div class="flex flex-col justify-center">
+                                <p class="text-white font-bold">{{$userPlaylist->name}}</p>
+                                <p class="text-sm text-gray-400">Playlist</p>
+                            </div>
+                        </a>
+                        <form action="{{route('playlists.destroy', $userPlaylist)}}" method="POST">
+                            @csrf
+                            @method('DELETE')
+                            <button class="p-5">
+                                <i class="fa-solid fa-trash hover:text-red-600"></i>
+                            </button>
+                        </form>
+                    </div>
+                    @endforeach
+                    @else
                     <div class="border border-slate-700 rounded-xl p-5 space-y-4 bg-slate-700/55 me-2 ms-2">
                         <h3 class="text-white font-bold">Crea la tua prima playlist</h3>
                         <p class="text-white text-sm">E' facile, ti aiuteremo</p>
@@ -135,7 +166,9 @@
                         <p class="text-white text-sm">Ti aggiorneremo sui nuovi episodi</p>
                         <a href="{{ route('podcast') }}" class="btn bg-white text-black rounded-3xl">Sfoglia i podcast</a>
                     </div>
+                    @endauth
                 </div>
+
                 <!-- Mobile-->
                 <div class="min-h-full flex flex-col md:hidden bg-[linear-gradient(to_left,#121212_0%,#1DB954_100%)] mt-16 p-5 rounded-xl">
                     <div class="flex justify-center">
@@ -153,7 +186,7 @@
                     </div>
                 </div>
 
-                <div class="flex rounded-xl border border-base-100 bg-base-100 w-375 bg flex-col gap-2 p-5 content-bar">
+                <div class="flex rounded-xl border border-base-100 bg-base-100 w-373 flex-col gap-2 p-5 content-bar">
                     <a href="" class="text-2xl font-bold">Brani di tendenza</a>
                     <div class="relative w-full group/carousel">
                         <button

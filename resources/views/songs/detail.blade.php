@@ -22,6 +22,46 @@
                             </svg>
                             <span>Crea</span>
                         </label>
+                        @auth
+                        <ul tabindex="0" class="dropdown-content menu bg-base-100 rounded-box z-1 w-84 p-2 shadow border border-slate-700/80 mt-2">
+                            <li>
+                                <div class="dropdown dropdown-right flex">
+                                    <div class="flex items-center justify-center w-14 h-14 border border-gray-600 bg-gray-300/40 rounded-full shrink-0">
+                                        <button @click.prevent="tab = 'createPlaylist'" tabindex="0"><i class="fa-brands fa-itunes-note fa-2x hover:text-[#1DB954] hover:scale-110 hover:rotate-12 transition-transform duration-300"></i></button>
+                                    </div>
+                                    <div class="flex flex-col items-start ">
+                                        <span class="font-bold text-base">Playlist</span>
+                                        <p class="text-gray-400 text-xs">Riunisci i tuoi brani preferiti</p>
+                                    </div>
+                                </div>
+
+                            </li>
+                            <li>
+                                <a href="{{ route('login') }}" class="flex items-center gap-3">
+                                    <div class="flex items-center justify-center w-14 h-14 border border-gray-600 bg-gray-300/40 rounded-full shrink-0">
+                                        <i class="fa-solid fa-chart-pie fa-2x hover:text-[#1DB954] hover:scale-110 hover:rotate-12 transition-transform duration-300"></i>
+                                    </div>
+                                    <div class="flex flex-col items-start">
+                                        <span class="font-bold text-base">Blend</span>
+                                        <p class="text-gray-400 text-xs">Fondi i gusti dei tuoi amici in una playlist</p>
+                                    </div>
+                                </a>
+                            </li>
+                            <hr class="border-t border-gray-600 my-2">
+                            <li>
+                                <a href="" class="flex items-center">
+                                    <div class="flex items-center justify-center w-14 h-14 border border-gray-600 bg-gray-300/40 rounded-full shrink-0">
+                                        <i class="fa-regular fa-folder-closed fa-2x hover:text-[#1DB954] hover:scale-110 hover:rotate-12 transition-transform duration-300"></i>
+                                    </div>
+                                    <div class="flex flex-col items-start ">
+                                        <span class="font-bold text-base">Cartella</span>
+                                        <p class="text-gray-400 text-xs">Organizza le tue playlist</p>
+                                    </div>
+                                </a>
+                            </li>
+
+                        </ul>
+                        @else
                         <ul tabindex="0" class="dropdown-content menu bg-base-100 rounded-box z-1 w-84 p-2 shadow border border-slate-700/80 mt-2">
                             <li>
                                 <div class="dropdown dropdown-right flex">
@@ -69,9 +109,41 @@
                             </li>
 
                         </ul>
+                        @endauth
                     </div>
                 </div>
 
+                @auth
+                @foreach(auth()->user()->favoriteArtists as $favoriteArtist)
+                <a href="{{ route('artists.show', $favoriteArtist) }}" class="flex gap-3 ps-3">
+                    <img src="/media/{{ $favoriteArtist->image }}" alt="{{ $favoriteArtist->name }}" class="cover w-20 h-20 rounded-full {{ in_array($favoriteArtist->name, ['Skai IsYourGod', 'Blackpink', 'Twenty One Pilots']) ? 'object-cover' : '' }}">
+                    <div class="flex flex-col justify-center">
+                        <p class="text-white font-bold">{{ $favoriteArtist->name }}</p>
+                        <p class="text-sm text-gray-400">Artista</p>
+                    </div>
+                </a>
+                @endforeach
+
+                <!-- Playlist utente -->
+                @foreach(auth()->user()->playlists as $userPlaylist)
+                <div class="flex justify-between items-center">
+                    <a href="{{ route('playlists.show', $userPlaylist)}}" class="flex gap-3 ps-3">
+                        <img src="{{$userPlaylist->image_path ? Storage::url($userPlaylist->image_path) : 'https://placehold.co/80x80/282828/ffffff?text=♪'}}" alt="{{$userPlaylist->name}}" class="w-20 h-20 rounded-md object-cover shrink-0">
+                        <div class="flex flex-col justify-center">
+                            <p class="text-white font-bold">{{$userPlaylist->name}}</p>
+                            <p class="text-sm text-gray-400">Playlist</p>
+                        </div>
+                    </a>
+                    <form action="{{route('playlists.destroy', $userPlaylist)}}" method="POST">
+                        @csrf
+                        @method('DELETE')
+                        <button class="p-5">
+                            <i class="fa-solid fa-trash hover:text-red-600"></i>
+                        </button>
+                    </form>
+                </div>
+                @endforeach
+                @else
                 <div class="border border-slate-700 rounded-xl p-5 space-y-4 bg-slate-700/55 me-2 ms-2">
                     <h3 class="text-white font-bold">Crea la tua prima playlist</h3>
                     <p class="text-white text-sm">E' facile, ti aiuteremo</p>
@@ -94,6 +166,7 @@
                     <p class="text-white text-sm">Ti aggiorneremo sui nuovi episodi</p>
                     <a href="{{ route('podcast') }}" class="btn bg-white text-black rounded-3xl">Sfoglia i podcast</a>
                 </div>
+                @endauth
                 </div>
             </aside>
 
@@ -106,9 +179,7 @@
 
                 {{-- Hero: immagine + titolo --}}
                 <div class="flex flex-col md:flex-row gap-5 md:gap-8 items-center md:items-end">
-                    <img
-                        src="/media/{{ $song->artistModel->image }}"
-                        alt="{{ $song->artist }}"
+                    <img src="/media/{{ $song->artistModel->image }}" alt="{{ $song->artist }}"
                         class="w-48 h-48 md:w-72 md:h-72 rounded-xl shadow-lg object-cover hover:scale-105 transition duration-300">
 
                     <div class="flex flex-col gap-3 text-center md:text-left">
@@ -131,17 +202,17 @@
                         <source src="{{ asset($song->file_path) }}" type="audio/mpeg">
                     </audio>
 
-                    <form action="{{route('songs.add', $song)}}" method="POST">
+                    <form action="{{route('favorites.add', $song)}}" method="POST">
                         @csrf
                         <button type="submit" class=" text-white rounded-full w-fit">
                             @auth
-                            @if(auth()->user()->addSongs->contains($song->id))
-                            <i class="fa-solid fa-circle-check fa-2x text-[#1DB954]" title="Aggiunto"></i>
+                            @if(auth()->user()->favoriteSongs->contains($song->id))
+                            <i class="fa-solid fa-heart text-red-600"></i>
                             @else
-                            <i class="fa-solid fa-circle-plus fa-2x text-gray-400 hover:text-white cursor-pointer"></i>
+                            <i class="fa-regular fa-heart text-red-600 cursor-pointer"></i>
                             @endif
                             @else
-                            <i class="fa-solid fa-circle-plus fa-2x text-gray-400 hover:text-white cursor-pointer" title="Accedi per aggiungere"></i>
+                            <i class="fa-regular fa-heart text-red-600 cursor-pointer" title="Accedi per aggiungere"></i>
                             @endauth
                         </button>
                     </form>

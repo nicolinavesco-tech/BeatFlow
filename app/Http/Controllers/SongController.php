@@ -26,9 +26,14 @@ class SongController extends Controller
         return back();
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
+    public function addFavorites(Song $song)
+    {
+        auth()->user()->favoriteSongs()->syncWithoutDetaching($song->id);
+
+        return back();
+    }
+
+
     public function store(Request $request)
     {
 
@@ -85,5 +90,12 @@ class SongController extends Controller
     {
         Auth::user()->addSongs()->detach($song->id);
         return back();
+    }
+
+    public function removeFromFavorites(Song $song)
+    {
+        auth()->user()->favoriteSongs()->detach($song->id);
+
+        return response()->json(['success' => true]);
     }
 }
