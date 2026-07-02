@@ -24,6 +24,7 @@ Route::post('/songs/add/{song}', [SongController::class, 'add'])->name('songs.ad
 Route::delete("/songs/destroy/{song}", [SongController::class, "destroy"])->name("songs.destroy");
 Route::post('/songs/{song}/favorite', [SongController::class, 'addFavorites'])->name('favorites.add');
 Route::delete('/songs/{song}/favorite',[SongController::class, 'removeFromFavorites'])->name('favorites.destroy');
+Route::get('/songs/{song}/is-favorite', [SongController::class, 'isFavorite'])->name('favorites.check');
 });
 
 

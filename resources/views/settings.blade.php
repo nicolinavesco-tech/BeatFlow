@@ -3,7 +3,7 @@
     <section class="min-h-screen flex bg-black justify-center items-start pt-20 gap-2">
 
         {{-- Sidebar nascosta su mobile--}}
-        <aside class="hidden lg:flex w-90 bg-base-100 rounded-xl flex-col h-screen sticky top-20 space-y-6 shrink-0">
+        <aside class="hidden lg:flex w-90 bg-base-100 rounded-xl flex-col h-screen sticky top-20 space-y-6 shrink-0 z-9999">
             <div class="flex justify-between">
                 <p class="text-xl font-bold mb-4 p-5">La tua libreria</p>
                 <div class="dropdown dropdown-start p-4">

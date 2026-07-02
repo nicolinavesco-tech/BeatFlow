@@ -23,6 +23,7 @@ class SearchController extends Controller
             ]);
 
             $tracks = $response->json('results') ?? [];
+            
 
             return view('jamendo.search', compact('tracks', 'query'));
         }

@@ -3,7 +3,7 @@
     <section class="min-h-screen flex bg-black justify-center items-start pt-20 gap-2">
 
         {{-- Sidebar nascosta su mobile--}}
-        <aside class="hidden lg:flex w-90 bg-base-100 rounded-xl flex-col h-screen sticky top-20 space-y-6 shrink-0">
+        <aside class="hidden lg:flex w-90 bg-base-100 rounded-xl flex-col h-screen sticky top-20 space-y-6 shrink-0 z-9999">
             <div class="flex justify-between">
                 <p class="text-xl font-bold mb-4 p-5">La tua libreria</p>
                 <div class="dropdown dropdown-start p-4">
@@ -144,6 +144,11 @@
                 </form>
             </div>
             @endforeach
+            <div class="border border-slate-700 rounded-xl p-5 space-y-4 bg-slate-700/55 me-2 ms-2">
+                <h3 class="text-white font-bold">Cerca qualche podcast da seguire</h3>
+                <p class="text-white text-sm">Ti aggiorneremo sui nuovi episodi</p>
+                <a href="{{ route('podcast') }}" class="btn bg-white text-black rounded-3xl">Sfoglia i podcast</a>
+            </div>
             @else
             <div class="border border-slate-700 rounded-xl p-5 space-y-4 bg-slate-700/55 me-2 ms-2">
                 <h3 class="text-white font-bold">Crea la tua prima playlist</h3>
@@ -193,7 +198,5 @@
                 <a href="{{ route('download') }}" class=" text-white hover:underline">Scarica direttamente da BeatFlow</a>
             </div>
         </div>
-
-
     </section>
 </main>

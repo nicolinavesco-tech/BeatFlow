@@ -25,7 +25,10 @@ class PlaylistController extends Controller
         ]);
         
         $playlist->songs()->syncWithoutDetaching($request->song_id);
-        return response()->json(['success'=> true]);
+        if($request->wantsJson()){
+            return response()->json(['success'=> true]);
+        }
+        return back()->with('success', 'Canzone aggiunta alla playlist!');
     }
    
 

@@ -143,6 +143,11 @@
                         </form>
                     </div>
                     @endforeach
+                    <div class="border border-slate-700 rounded-xl p-5 space-y-4 bg-slate-700/55 me-2 ms-2">
+                        <h3 class="text-white font-bold">Cerca qualche podcast da seguire</h3>
+                        <p class="text-white text-sm">Ti aggiorneremo sui nuovi episodi</p>
+                        <a href="{{ route('podcast') }}" class="btn bg-white text-black rounded-3xl">Sfoglia i podcast</a>
+                    </div>
                     @else
                     <div class="border border-slate-700 rounded-xl p-5 space-y-4 bg-slate-700/55 me-2 ms-2">
                         <h3 class="text-white font-bold">Crea la tua prima playlist</h3>
@@ -197,8 +202,11 @@
                         </button>
                         <div id="trendingCarousel" class="flex gap-4 overflow-x-auto scroll-smooth pt-2 pb-4" style="scrollbar-width: none;">
                             @foreach ($songs as $song)
-                            <div class="group shrink-0 w-52 flex flex-col relative hover:bg-slate-700/55 rounded-lg p-2 transition">
-                                <a href="{{ route('songs.show', $song) }}" class="block">
+                            <div class="group shrink-0 w-52 flex flex-col relative hover:bg-slate-700/55 rounded-lg p-2 transition"
+                                data-song-title="{{ $song->title }}"
+                                data-song-artist="{{ $song->artist }}"
+                                data-song-id="{{ $song->id }}">
+                                <a href=" {{ route('songs.show', $song) }}" class="block">
                                     <img src="{{ asset('media/' . $song->artistModel->image) }}" alt="{{ $song->title }}" class="w-48 h-48 rounded-lg object-cover">
                                     <h3 class="font-bold pt-2 truncate">{{ $song->title }}</h3>
                                     <p class="text-sm text-gray-400 truncate">{{ $song->artist }}</p>
@@ -224,14 +232,15 @@
                     </div>
                     <a href="" class="text-2xl font-bold pt-15">Artisti più popolari</a>
                     <div class="relative w-full group/carousel">
-                        <button
-                            type="button"
-                            onclick="scrollCarousel('artistsCarousel', -350)"
+                        <button type="button" onclick="scrollCarousel('artistsCarousel', -350)"
                             class="btn btn-circle absolute left-0 top-16 z-20 bg-black/20 border-none text-white opacity-0 group-hover/carousel:opacity-100 transition-opacity duration-300">
                             ❮
                         </button>
                         <div id="artistsCarousel" class="flex gap-4 overflow-x-auto scroll-smooth pt-2 pb-4" style="scrollbar-width: none;">
                             @foreach ($artists as $artist)
+                            @php
+                            $artistSongId = optional($artist->songs->first())->id;
+                            @endphp
                             <div class="group shrink-0 w-44 flex flex-col hover:bg-slate-700/55 rounded-lg p-2 relative">
                                 <a href="{{ route('artists.show', $artist) }}" class="block">
                                     <img src="media/{{ $artist->image }}" alt="{{ $artist->name }}" class="cover w-40 h-40 rounded-full {{ in_array($artist->name, ['Skai IsYourGod', 'Blackpink', 'Twenty One Pilots']) ? 'object-cover' : '' }}">
@@ -240,10 +249,13 @@
                                 </a>
                                 <button
                                     type="button"
-                                    onclick="event.stopPropagation(); playSong('')"
+                                    onclick='event.stopPropagation(); playSong("audio-{{ $artistSongId }}")'
                                     class="absolute bottom-16 right-4 z-10 opacity-0 translate-y-5 group-hover:opacity-100 transition duration-300">
                                     <i class="fa-solid fa-circle-play fa-3x" style="color: rgb(0, 182, 27);"></i>
                                 </button>
+                                <audio id="audio-{{ $artistSongId }}">
+                                    <source src="{{ asset($artist->songs->first()?->file_path ?? '') }}" type="audio/mpeg">
+                                </audio>
                             </div>
                             @endforeach
                         </div>
@@ -272,10 +284,13 @@
                                 </a>
                                 <button
                                     type="button"
-                                    onclick="event.stopPropagation(); playSong('')"
+                                    onclick="event.stopPropagation(); playSong('audio-{{ $album->songs->first()?->id ?? ''}}')"
                                     class="absolute bottom-16 right-4 z-10 opacity-0 translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 transition duration-300">
                                     <i class="fa-solid fa-circle-play fa-3x" style="color: rgb(0, 182, 27);"></i>
                                 </button>
+                                <audio id="audio-{{ $album->songs->first()?->id ?? '' }}">
+                                    <source src="" type="audio/mpeg">
+                                </audio>
                             </div>
                             @endforeach
                         </div>

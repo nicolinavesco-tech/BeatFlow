@@ -75,13 +75,13 @@ class SongController extends Controller
      */
     public function edit(Song $song) {}
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Song $song)
-    {
-        //
-    }
+    // Check se la canzone è tra i preferiti dell'utente autenticato
+   public function isFavorite(Song $song)
+{
+    return response()->json([
+        'is_favorite' => auth()->user()->favoriteSongs->contains($song->id)
+    ]);
+}
 
     /**
      * Remove the specified resource from storage.

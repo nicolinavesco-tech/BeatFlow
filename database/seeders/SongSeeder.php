@@ -111,7 +111,7 @@ class SongSeeder extends Seeder
 
             // Irina Rimes
             ['title' => 'Visele', 'artist' => 'Irina Rimes', 'artist_id' => $irina?->id, 'album_id' => $cosmos->id, 'file_path' => 'songs/irina/IrinaRimes-Visele.mp3', 'image_path' => 'media/irina/irina(12).jpg', 'duration' => 218, 'genre_id' => $pop?->id],
-            ['title' => 'N-avem timp', 'artist' => 'Irina Rimes', 'artist_id' => $irina?->id, 'file_path' => 'songs/irina/IrinaRimes-Navemtimp.mp3', 'image_path' => 'media/irina/irina(11).jpg', 'duration' => 195, 'genre_id' => $pop?->id],
+            ['title' => 'N-avem timp', 'artist' => 'Irina Rimes', 'artist_id' => $irina?->id, 'file_path' => 'songs/irina/IrinaRimes-N-avemtimp.mp3', 'image_path' => 'media/irina/irina(11).jpg', 'duration' => 195, 'genre_id' => $pop?->id],
             ['title' => 'Changer', 'artist' => 'Irina Rimes', 'artist_id' => $irina?->id, 'file_path' => 'songs/irina/IrinaRimes-Changer.mp3', 'image_path' => 'media/irina/irina(10).jpg', 'duration' => 207, 'genre_id' => $pop?->id],
             ['title' => 'Bolnavi amandoi', 'artist' => 'Irina Rimes', 'artist_id' => $irina?->id, 'file_path' => 'songs/irina/IrinaRimes-Bolnaviamandoi.mp3', 'image_path' => 'media/irina/irina(9).jpg', 'duration' => 189, 'genre_id' => $pop?->id],
             ['title' => 'Ba ba ba', 'artist' => 'Irina Rimes', 'artist_id' => $irina?->id, 'file_path' => 'songs/irina/IrinaRimes-Bababa.mp3', 'image_path' => 'media/irina/irina(8).jpg', 'duration' => 176, 'genre_id' => $pop?->id],

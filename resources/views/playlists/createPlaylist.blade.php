@@ -2,7 +2,7 @@
 
     <section class="min-h-screen flex bg-black  pt-20 gap-2">
         {{-- Sidebar nascosta su mobile --}}
-        <aside class="hidden lg:flex w-90 bg-base-100 rounded-xl flex-col h-screen sticky top-20 space-y-6 shrink-0">
+        <aside class="hidden lg:flex w-90 bg-base-100 rounded-xl flex-col h-screen sticky top-20 space-y-6 shrink-0 z-9999">
             <div class="flex justify-between">
                 <p class="text-xl font-bold mb-4 p-5">La tua libreria</p>
                 <div class="dropdown dropdown-start p-4">
@@ -22,7 +22,7 @@
                         </svg>
                         <span>Crea</span>
                     </label>
-                    <ul tabindex="0" class="dropdown-content menu bg-base-100 rounded-box z-1 w-84 p-2 shadow border border-slate-700/80 mt-2">
+                    <ul tabindex="0" class="dropdown-content menu bg-base-100 rounded-box w-84 p-2 shadow border border-slate-700/80 mt-2">
                         <li>
                             <div class="dropdown dropdown-right flex">
                                 <div class="flex items-center justify-center w-14 h-14 border border-gray-600 bg-gray-300/40 rounded-full shrink-0">
@@ -167,7 +167,10 @@
                         @php $recentSongs = auth()->user()->addSongs()->latest('pivot_created_at')->take(5)->get(); @endphp
                         @if($recentSongs->count() > 0)
                         @foreach($recentSongs as $index => $song)
-                        <div class="group flex items-center p-3 hover:bg-slate-700 rounded-lg">
+                        <div class="group flex items-center p-3 hover:bg-slate-700 rounded-lg"
+                            data-song-title="{{ $song->title }}"
+                            data-song-artist="{{ $song->artist }}"
+                            data-song-id="{{ $song->id }}">
 
                             {{-- Numero + play --}}
                             <div class="relative w-6 h-6 flex items-center justify-center shrink-0 mr-3">
@@ -244,9 +247,6 @@
                             <select name="source" class="bg-slate-800/70 text-white text-sm outline-none ">
                                 <option value="local" @selected(request('source')==='local' )>
                                     Libreria
-                                </option>
-                                <option value="jamendo" @selected(request('source')==='jamendo' )>
-                                    Esplora
                                 </option>
                             </select>
                         </label>

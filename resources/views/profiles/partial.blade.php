@@ -2,7 +2,7 @@
     <section class="min-h-screen flex bg-black justify-center items-start pt-20 gap-2">
 
         {{-- Sidebar nascosta su mobile--}}
-        <aside class="hidden lg:flex w-90 bg-base-100 rounded-xl flex-col h-screen sticky top-20 space-y-6 shrink-0">
+        <aside class="hidden lg:flex w-90 bg-base-100 rounded-xl flex-col h-screen sticky top-20 space-y-6 shrink-0 z-9999">
             <div class="flex justify-between">
                 <p class="text-xl font-bold mb-4 p-5">La tua libreria</p>
                 <div class="dropdown dropdown-start p-4">
@@ -144,6 +144,11 @@
                 </form>
             </div>
             @endforeach
+            <div class="border border-slate-700 rounded-xl p-5 space-y-4 bg-slate-700/55 me-2 ms-2">
+                <h3 class="text-white font-bold">Cerca qualche podcast da seguire</h3>
+                <p class="text-white text-sm">Ti aggiorneremo sui nuovi episodi</p>
+                <a href="{{ route('podcast') }}" class="btn bg-white text-black rounded-3xl">Sfoglia i podcast</a>
+            </div>
             @else
             <div class="border border-slate-700 rounded-xl p-5 space-y-4 bg-slate-700/55 me-2 ms-2">
                 <h3 class="text-white font-bold">Crea la tua prima playlist</h3>
@@ -199,7 +204,10 @@
                         <li class="p-4 pb-2 text-xs opacity-60 tracking-wide">Le tue canzoni del cuore</li>
                         @auth
                         @forelse(auth()->user()->favoriteSongs as $index=>$favSong)
-                        <div class="group flex items-center p-3 rounded-lg hover:bg-slate-700/55">
+                        <div class="group flex items-center p-3 rounded-lg hover:bg-slate-700/55"
+                            data-song-title="{{ $favSong->title }}"
+                            data-song-artist="{{ $favSong->artist }}"
+                            data-song-id="{{ $favSong->id }}">
                             <div class="relative w-6 h-6 flex items-center justify-center ">
                                 <span class="text-xl leading-none font-thin opacity-30 tabular-nums group-hover:hidden ">{{ str_pad($index + 1, 2, '0', STR_PAD_LEFT) }}</span>
                                 <button class=" absolute inset-0 hidden group-hover:flex w-6 items-center justify-center text-white" onclick="playSong('audio-fav-{{$favSong->id}}')">

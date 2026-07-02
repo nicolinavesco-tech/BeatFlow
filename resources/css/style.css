@@ -1,18 +1,19 @@
 /* Section: Download */
 
 .hero-download {
-    background-image: url('/public/media/headerdownload.avif');
-    background-size: cover;
-    background-position: center;
+  background-image: url('/public/media/headerdownload.avif');
+  background-size: cover;
+  background-position: center;
 }
-.second-section{
-    background-image: url('/public/media/secondsection.jpg');
-    background-size: cover;
-    background-position: center;
+
+.second-section {
+  background-image: url('/public/media/secondsection.jpg');
+  background-size: cover;
+  background-position: center;
 }
 
 /* BUTTON MICROSOFT STORE */
-/* From Uiverse.io by Luciefer0981 */ 
+/* From Uiverse.io by Luciefer0981 */
 .brutalist-button {
   display: flex;
   align-items: center;
@@ -25,7 +26,7 @@
   font-family: Arial, sans-serif;
   font-weight: bold;
   border: 3px solid #fff;
-  outline: 3px solid #000;  
+  outline: 3px solid #000;
   box-shadow: 6px 6px 0;
   transition: all 0.1s ease-out;
   padding: 0 15px;
@@ -40,12 +41,10 @@
   left: -100%;
   width: 100%;
   height: 100%;
-  background: linear-gradient(
-    90deg,
-    transparent,
-    rgba(255, 255, 255, 0.8),
-    transparent
-  );
+  background: linear-gradient(90deg,
+      transparent,
+      rgba(255, 255, 255, 0.8),
+      transparent);
   z-index: 1;
   transition: none;
   /* Initially hide the pseudo-element */
@@ -56,6 +55,7 @@
   0% {
     left: -100%;
   }
+
   100% {
     left: 100%;
   }
@@ -78,6 +78,7 @@
   0% {
     left: -100%;
   }
+
   100% {
     left: 100%;
   }
@@ -122,12 +123,15 @@
 .ms-logo-square:nth-child(1) {
   background-color: #f25022;
 }
+
 .ms-logo-square:nth-child(2) {
   background-color: #7fba00;
 }
+
 .ms-logo-square:nth-child(3) {
   background-color: #00a4ef;
 }
+
 .ms-logo-square:nth-child(4) {
   background-color: #ffb900;
 }
@@ -162,19 +166,33 @@
 /* Spotify music card made by: csozi | Website: www.csozi.hu*/
 
 .card-audio {
-  position: relative;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
   width: 100%;
-  height: 130px;
+  height: 90px;
   background: #151515;
-  border-radius: 10px;
-  padding: 10px;
+  border-top: 1px solid #282828;
+  padding: 0 24px;
+  display: none;
+  align-items: center;
+  gap: 16px;
+  z-index: 9999;
+}
+
+.card-audio.active {
+  display: flex;
 }
 
 .top {
-  position: relative;
-  width: 100%;
   display: flex;
-  gap: 10px;
+  align-items: center;
+  gap: 12px;
+  min-width: 200px;
+  width: 30%;
+  flex: none;
+  position: static;
 }
 
 .pfp {
@@ -206,13 +224,14 @@
 }
 
 .time {
-  width: 90%;
-  background-color: #5e5e5e;
-  height: 6px;
-  border-radius: 3px;
   position: absolute;
-  left: 5%;
-  bottom: 24px;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: 4px;
+  background: #404040;
+  border-radius: 0;
 }
 
 .elapsed {
@@ -223,15 +242,13 @@
 }
 
 .controls {
-  gap: 4px;
-  align-items: center;
-  color: #ffffff;
   display: flex;
-  position: absolute;
-  bottom: 35px;
-  left: 0;
-  width: 100%;
+  align-items: center;
+  gap: 16px;
+  width: 40%;
+  flex: none;
   justify-content: center;
+  position: static;
 }
 
 .volume {
@@ -240,9 +257,11 @@
   margin-right: 2px;
 }
 
-.air {
-  height: 100%;
-  width: 42px;
+.player-right {
+  width: 30%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
 }
 
 .controls svg {
@@ -254,10 +273,18 @@
   color: #23da63;
 }
 
-.volume {
-  opacity: 0;
+.volume-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 8px;
   position: relative;
-  transition: 0.2s;
+}
+
+.volume {
+  width: 80px;
+  opacity: 0;
+  transition: opacity 0.2s;
+  position: relative;
 }
 
 .volume .slider {
@@ -285,19 +312,20 @@
   top: -25%;
 }
 
-.volume_button:hover ~ .volume {
+.volume-wrapper:hover .volume {
   opacity: 1;
 }
 
 .timetext {
-  color: white;
-  font-size: 8px;
   position: absolute;
+  bottom: 6px;
+  color: #a7a7a7;
+  font-size: 10px;
 }
 
 .time_now {
-  bottom: 10px;
-  left: 15px;
+  bottom: 5px;
+  left: 40px;
 }
 
 .time_full {
@@ -390,6 +418,7 @@
     flex-direction: column;
     padding: 20px;
   }
+
   /* Search Page */
   .search-page {
     flex-direction: column;
