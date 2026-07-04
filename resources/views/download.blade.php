@@ -62,7 +62,7 @@
                         </svg>
                         <div class="bg-black text-white">
                             <div class="text-[.5rem] sm:text-xs text-left">Scarica da</div>
-                            <div class="text-lg font-semibold font-sans -mt-1 sm:text-2xl">
+                            <div class="text-sm md:text-lg font-semibold font-sans -mt-1 sm:text-2xl">
                                 App Store
                             </div>
                         </div>
@@ -97,7 +97,7 @@
     <section class="h-100 bg-slate-700/55 second-section">
         <div class="flex flex-col justify-end items-center h-100 gap-5 p-5">
             <h2 class="text-3xl text-white font-bold text-center">Ascolta ovunque, con un unico account</h2>
-            <div class="flex gap-6">
+            <div class="flex flex-wrap justify-center gap-6">
                 <span class="text-center font-bold text-lg">Dispositivo mobile</span>
                 <span class="text-center font-bold text-lg">Computer</span>
                 <span class="text-center font-bold text-lg">Tablet</span>

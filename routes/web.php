@@ -46,3 +46,6 @@ Route::post('/playlists', [PlaylistController::class, 'store'])->name('playlists
 Route::get('/playlists/{playlist}', [PlaylistController::class, 'show'])->name('playlists.show');
 Route::post('/playlists/{playlist}/songs', [PlaylistController::class, 'addSong'])->name('playlists.addSong');
 Route::delete('/playlists/{playlist}', [PlaylistController::class, 'destroy'])->name('playlists.destroy');
+
+// Change language
+Route::post('/lingua/{lang}', [HomeController::class, 'setLanguage'])->name('setLocale');

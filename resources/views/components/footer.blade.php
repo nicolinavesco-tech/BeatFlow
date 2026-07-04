@@ -5,8 +5,8 @@
                 <img src="/logo/logo.png" class="w-15" alt="Logo di BeatFlow" />
             </a>
             <p class="text-sm text-gray-400">
-                BeatFlow — Musica senza confini.<br/>
-                Ascolta, scopri e condividi.
+                {{ __('ui.footer_slogan') }}<br/>
+                {{ __('ui.footer_slogan_2') }}
             </p>
             <div class="flex gap-4 mt-2">
                 <a href="" class="hover:text-[#1DB954] transition-colors">
@@ -30,45 +30,45 @@
             </div>
         </div>
         <nav class="flex flex-col gap-2">
-            <h6 class="footer-title text-white">Scopri</h6>
-            <a href="{{ route('homepage') }}" class="link link-hover text-gray-400 hover:text-white text-sm">Home</a>
-            <a href="{{ route('global.search') }}" class="link link-hover text-gray-400 hover:text-white text-sm">Cerca musica</a>
-            <a href="{{ route('podcast') }}" class="link link-hover text-gray-400 hover:text-white text-sm">Podcast</a>
-            <a href="{{ route('premium') }}" class="link link-hover text-gray-400 hover:text-white text-sm">BeatFlow Premium</a>
+            <h6 class="footer-title text-white">{{ __('ui.discover') }}</h6>
+            <a href="{{ route('homepage') }}" class="link link-hover text-gray-400 hover:text-white text-sm">{{ __('ui.home') }}</a>
+            <a href="{{ route('global.search') }}" class="link link-hover text-gray-400 hover:text-white text-sm">{{ __('ui.search_music') }}</a>
+            <a href="{{ route('podcast') }}" class="link link-hover text-gray-400 hover:text-white text-sm">{{ __('ui.podcast') }}</a>
+            <a href="{{ route('premium') }}" class="link link-hover text-gray-400 hover:text-white text-sm">{{ __('ui.beatflow_premium') }}</a>
         </nav>
 
         <nav class="flex flex-col gap-2">
-            <h6 class="footer-title text-white">Azienda</h6>
-            <a href="" class="link link-hover text-gray-400 hover:text-white text-sm">Chi siamo</a>
-            <a href="{{ route('support') }}" class="link link-hover text-gray-400 hover:text-white text-sm">Assistenza</a>
-            <a href="" class="link link-hover text-gray-400 hover:text-white text-sm">Lavora con noi</a>
-            <a href="" class="link link-hover text-gray-400 hover:text-white text-sm">Per gli artisti</a>
+            <h6 class="footer-title text-white">{{ __('ui.company') }}</h6>
+            <a href="" class="link link-hover text-gray-400 hover:text-white text-sm">{{ __('ui.about_us') }}</a>
+            <a href="{{ route('support') }}" class="link link-hover text-gray-400 hover:text-white text-sm">{{ __('ui.support') }}</a>
+            <a href="" class="link link-hover text-gray-400 hover:text-white text-sm">{{ __('ui.work_with_us') }}</a>
+            <a href="" class="link link-hover text-gray-400 hover:text-white text-sm">{{ __('ui.for_artists') }}</a>
         </nav>
 
         <nav class="flex flex-col gap-2">
-            <h6 class="footer-title text-white">App</h6>
-            <a href="{{ route('download') }}" class="link link-hover text-gray-400 hover:text-white text-sm">Scarica per Windows</a>
-            <a href="{{ route('download') }}" class="link link-hover text-gray-400 hover:text-white text-sm">Scarica per Mac</a>
-            <a href="{{ route('download') }}" class="link link-hover text-gray-400 hover:text-white text-sm">Scarica per iOS</a>
-            <a href="{{ route('download') }}" class="link link-hover text-gray-400 hover:text-white text-sm">Scarica per Android</a>
+            <h6 class="footer-title text-white">{{ __('ui.app') }}</h6>
+            <a href="{{ route('download') }}" class="link link-hover text-gray-400 hover:text-white text-sm">{{ __('ui.download_windows') }}</a>
+            <a href="{{ route('download') }}" class="link link-hover text-gray-400 hover:text-white text-sm">{{ __('ui.download_mac') }}</a>
+            <a href="{{ route('download') }}" class="link link-hover text-gray-400 hover:text-white text-sm">{{ __('ui.download_ios') }}</a>
+            <a href="{{ route('download') }}" class="link link-hover text-gray-400 hover:text-white text-sm">{{ __('ui.download_android') }}</a>
         </nav>
 
         <nav class="flex flex-col gap-2">
-            <h6 class="footer-title text-white">Legale</h6>
-            <a href="" class="link link-hover text-gray-400 hover:text-white text-sm">Termini di utilizzo</a>
-            <a href="" class="link link-hover text-gray-400 hover:text-white text-sm">Privacy policy</a>
-            <a href="" class="link link-hover text-gray-400 hover:text-white text-sm">Cookie policy</a>
-            <a href="" class="link link-hover text-gray-400 hover:text-white text-sm">Accessibilità</a>
+            <h6 class="footer-title text-white">{{ __('ui.legal') }}</h6>
+            <a href="" class="link link-hover text-gray-400 hover:text-white text-sm">{{ __('ui.terms') }}</a>
+            <a href="" class="link link-hover text-gray-400 hover:text-white text-sm">{{ __('ui.privacy') }}</a>
+            <a href="" class="link link-hover text-gray-400 hover:text-white text-sm">{{ __('ui.cookies') }}</a>
+            <a href="" class="link link-hover text-gray-400 hover:text-white text-sm">{{ __('ui.accessibility') }}</a>
         </nav>
 
     </div>
 
     <div class="flex flex-col md:flex-row justify-between items-center gap-3 pt-6 text-xs text-gray-500">
-        <p>© {{ date('Y') }} BeatFlow. Tutti i diritti riservati.</p>
+        <p>© {{ date('Y') }} {{ __('ui.all_rights_reserved') }}</p>
         <div class="flex gap-4">
-            <a href="" class="hover:text-white transition-colors">Privacy</a>
-            <a href="" class="hover:text-white transition-colors">Cookie</a>
-            <a href="" class="hover:text-white transition-colors">Termini</a>
+            <a href="" class="hover:text-white transition-colors">{{ __('ui.privacy') }}</a>
+            <a href="" class="hover:text-white transition-colors">{{ __('ui.cookies') }}</a>
+            <a href="" class="hover:text-white transition-colors">{{ __('ui.terms') }}</a>
         </div>
     </div>
 

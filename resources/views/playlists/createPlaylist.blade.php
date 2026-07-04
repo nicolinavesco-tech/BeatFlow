@@ -1,5 +1,4 @@
 <main class="container-fluid">
-
     <section class="min-h-screen flex bg-black  pt-20 gap-2">
         {{-- Sidebar nascosta su mobile --}}
         <aside class="hidden lg:flex w-90 bg-base-100 rounded-xl flex-col h-screen sticky top-20 space-y-6 shrink-0 z-9999">
@@ -26,9 +25,9 @@
                         <li>
                             <div class="dropdown dropdown-right flex">
                                 <div class="flex items-center justify-center w-14 h-14 border border-gray-600 bg-gray-300/40 rounded-full shrink-0">
-                                    <button @click.prevent="tab = 'createPlaylist'" tabindex="0">
+                                    <a href="{{ route('homepage') }}?tab=createPlaylist">
                                         <i class="fa-brands fa-itunes-note fa-2x hover:text-[#1DB954] hover:scale-110 hover:rotate-12 transition-transform duration-300"></i>
-                                    </button>
+                                    </a>
                                 </div>
                                 <div class="flex flex-col items-start ">
                                     <span class="font-bold text-base">Playlist</span>
@@ -228,31 +227,13 @@
                         @endauth
                     </ul>
                 </div>
-                <div class="gap-2 flex flex-col flex-1 p-5 ">
-                    <h3 class="text-white text-xl font-bold pb-4">Cerchiamo qualcosa per la tua playlist</h3>
-                    <form onsubmit="searchForPlaylist(event)">
-                        <label class="input w-100 flex items-center gap-2">
-                            <svg class="h-[1em] opacity-50" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                                <g
-                                    stroke-linejoin="round"
-                                    stroke-linecap="round"
-                                    stroke-width="2.5"
-                                    fill="none"
-                                    stroke="currentColor">
-                                    <circle cx="11" cy="11" r="8"></circle>
-                                    <path d="m21 21-4.3-4.3"></path>
-                                </g>
-                            </svg>
-                            <input type="search" id="playlistSearchInput" name="q" value="{{ request('q') }}" required placeholder="Cerca brani e episodi" class="flex-1" />
-                            <select name="source" class="bg-slate-800/70 text-white text-sm outline-none ">
-                                <option value="local" @selected(request('source')==='local' )>
-                                    Libreria
-                                </option>
-                            </select>
-                        </label>
-                    </form>
-                    <div id="playlistSearchResults" class="flex flex-col gap-2 pt-4"></div>
-
+                <div class="flex flex-col items-center justify-center gap-4 py-16 text-center">
+                    <i class="fa-solid fa-music fa-4x text-gray-600"></i>
+                    <h3 class="text-white text-2xl font-bold">Trova qualcosa da ascoltare</h3>
+                    <p class="text-gray-400 max-w-sm">Esplora i tuoi artisti preferiti o cerca nuovi brani. Clicca "Crea" per salvare la playlist e iniziare ad aggiungere canzoni.</p>
+                    <a href="{{ route('homepage') }}" class="btn bg-white text-black rounded-full px-6 font-bold mt-2">
+                        Esplora musica
+                    </a>
                 </div>
             </div>
         </div>

@@ -197,19 +197,16 @@ if (btn) {
 }
 
 // Carosello Brani di tendenza
-function scrollTrending(amount) {
-    const carousel = document.getElementById('trendingCarousel');
-
+function scrollCarousel(carouselId, amount) {
+    const carousel = document.getElementById(carouselId);
     if (!carousel) return;
-
     carousel.scrollBy({
         left: amount,
         behavior: 'smooth'
     });
 }
 
-// Rendi la funzione globale (importante per onclick nel Blade)
-window.scrollTrending = scrollTrending;
+window.scrollCarousel = scrollCarousel;
 
 // Ricerca canzoni nella createPlaylist 
 window.searchForPlaylist = function (event) {
@@ -217,11 +214,12 @@ window.searchForPlaylist = function (event) {
 
     const query = document.querySelector('#playlistSearchInput').value;
     const resultsBox = document.querySelector('#playlistSearchResults');
+    const source = document.querySelector('[name="source"]')?.value || 'local';
 
-    const urlParts = window.location.pathname.split('/');
-    playlistId = urlParts[urlParts.indexOf('playlists') + 1];
+    const form = event.target;
+    const playlistId = form.dataset.playlistId || null;
 
-    fetch(`/search?q=${encodeURIComponent(query)}`, {
+    fetch(`/search?q=${encodeURIComponent(query)}&source=${source}`, {
         headers: { 'Accept': 'application/json' }
     })
         .then(response => response.json())

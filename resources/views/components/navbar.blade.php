@@ -22,13 +22,13 @@
           </g>
         </svg>
 
-        <input type="search" name="q" value="{{ request('q') }}" required placeholder="Cosa vuoi ascoltare?" class="flex-1" />
+        <input type="search" name="q" value="{{ request('q') }}" required placeholder="{{ __('ui.search_placeholder') }}" class="flex-1" />
         <select name="source" class="bg-slate-800/70 text-white text-sm outline-none ">
           <option value="local" @selected(request('source')==='local' )>
-            Libreria
+            {{ __('ui.library') }}
           </option>
           <option value="jamendo" @selected(request('source')==='jamendo' )>
-            Esplora
+            {{ __('ui.explore') }}
           </option>
         </select>
       </label>
@@ -37,23 +37,23 @@
 
   <div class="flex items-center gap-1 md:gap-4">
     @auth
-    <button onclick="window.location.href='{{ route('homepage') }}?tab=premium'" class="hidden md:block btn bg-white text-black rounded-3xl">Esplora Premium</button>
+    <button onclick="window.location.href='{{ route('homepage') }}?tab=premium'" class="hidden md:block btn bg-white text-black rounded-3xl">{{ __('ui.explore_premium') }}</button>
 
-    <a href="{{route('homepage')}}?tab=install" class="hidden md:block"><span class="text-gray-400"><i class="fa-solid fa-circle-down text-gray-400"></i> Installa app</span></a>
+    <a href="{{route('homepage')}}?tab=install" class="hidden md:block"><span class="text-gray-400"><i class="fa-solid fa-circle-down text-gray-400"></i> {{ __('ui.install_app') }}</span></a>
     <a href="{{route('homepage')}}?tab=news" class=""><i class="fa-solid fa-bell text-white"></i></a>
     <div class="dropdown hidden md:block">
       <button tabindex="0"><i class="fa-solid fa-people-line text-white"></i></button>
       <div tabindex="-1" class="menu menu-sm dropdown-content  bg-slate-700/80 rounded-box z-1 w-55 p-2 space-y-5 mt-3 shadow translate-x-[-50%]">
         <div class="flex flex-col items-center">
-          <h4 class="text-white font-bold text-lg text-center p-5">Controlla cosa stanno riproducendo i tuoi amici con l'app Windows</h4>
-          <p class="text-gray-300 text-center">Esplora le tracce che i tuoi amici stanno ascoltando e lasciati ispirare.</p>
+          <h4 class="text-white font-bold text-lg text-center p-5">{{ __('ui.friends_activity_title') }}</h4>
+          <p class="text-gray-300 text-center">{{ __('ui.friends_activity_description') }}</p>
         </div>
         <div class="flex flex-col items-center gap-3">
           <button class="cursor-pointer">
             <div class="flex max-w-36 h-12 px-3 gap-2 rounded-xl items-center justify-center bg-black text-white dark:text-black dark:bg-white sm:h-14">
               <i class="fa-brands fa-microsoft text-blue-700 fa-2x"></i>
               <div>
-                <div class="text-[.5rem] sm:text-xs text-left">Scarica da</div>
+                <div class="text-[.5rem] sm:text-xs text-left">{{ __('ui.download_from') }}</div>
                 <div class="text-sm font-semibold font-sans -mt-1 sm:text-xl">
                   Microsoft
                 </div>
@@ -61,7 +61,7 @@
             </div>
           </button>
         </div>
-        <a href="{{ route('download') }}" class=" text-center text-white text-sm hover:underline">Scarica direttamente da BeatFlow</a>
+        <a href="{{ route('download') }}" class=" text-center text-white text-sm hover:underline">{{ __('ui.download_direct') }}</a>
       </div>
     </div>
 
@@ -76,34 +76,34 @@
       <ul tabindex="-1" class="menu menu-sm dropdown-content bg-slate-700/80 rounded-box z-1 mt-3 w-90 p-2 space-y-3 shadow translate-x-[-50%]">
         <li>
           <a href="{{ route('accountOverview') }}" class="flex justify-between items-center text-white text-base">
-            <span>Account</span>
+            <span>{{ __('ui.account') }}</span>
             <i class="fa-solid fa-up-right-from-square"></i>
           </a>
         </li>
-        <li><a href="{{ route('homepage') }}?tab=profilo" class="cursor-pointer text-white text-base">Profilo</a></li>
+        <li><a href="{{ route('homepage') }}?tab=profilo" class="cursor-pointer text-white text-base">{{ __('ui.profile') }}</a></li>
         <li>
           <a href="{{ route('premium') }}" class="flex justify-between items-center text-white text-base">
-            <span>Effettua l'upgrade a Premium</span>
+            <span>{{ __('ui.upgrade_premium') }}</span>
             <i class="fa-solid fa-up-right-from-square"></i>
           </a>
         </li>
         <li>
           <a href="{{ route('support') }}" class="flex justify-between items-center text-white text-base">
-            <span>Assistenza</span>
+            <span>{{ __('ui.support') }}</span>
             <i class="fa-solid fa-up-right-from-square"></i>
           </a>
         </li>
         <li>
           <a href="{{ route('download') }}" class="flex justify-between items-center text-white text-base">
-            <span>Scarica</span>
+            <span>{{ __('ui.download') }}</span>
             <i class="fa-solid fa-up-right-from-square"></i>
           </a>
         </li>
-        <li><a href="{{route('homepage')}}?tab=settings" class="text-white text-base">Settings</a></li>
+        <li><a href="{{route('homepage')}}?tab=settings" class="text-white text-base">{{ __('ui.settings') }}</a></li>
         <li>
           <form action="{{route('logout')}}" method="POST" class="">
             @csrf
-            <button class="text-white text-base" type="submit">Logout</button>
+            <button class="text-white text-base" type="submit">{{ __('ui.logout') }}</button>
           </form>
         </li>
       </ul>
@@ -120,27 +120,27 @@
         <ul tabindex="-1" class="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 space-y-3 shadow translate-x-[-70%]">
           <li>
             <a href="{{ route('premium') }}" class="text-base font-bold">
-              <span>Premium</span>
+              <span>{{ __('ui.premium') }}</span>
             </a>
           </li>
           <li>
             <a href="{{ route('support') }}" class="text-base font-bold">
-              <span>Assistenza</span>
+              <span>{{ __('ui.support') }}</span>
             </a>
           </li>
           <li>
             <a href="{{ route('download') }}" class="text-base font-bold">
-              <span>Scarica </span>
+              <span>{{ __('ui.download') }}</span>
             </a>
           </li>
           <li>
-            <a href="{{route('homepage')}}?tab=install" class="text-base text-gray-400">Installa app</a>
+            <a href="{{route('homepage')}}?tab=install" class="text-base text-gray-400">{{ __('ui.install_app') }}</a>
           </li>
           <li>
-            <a href="{{route('register')}}" class="text-base font-bold">Iscriviti</a>
+            <a href="{{route('register')}}" class="text-base font-bold">{{ __('ui.sign_up') }}</a>
           </li>
           <li>
-            <a href="{{route('login')}}" class="btn rounded-2xl w-25 bg-amber-50 text-black">Accedi</a>
+            <a href="{{route('login')}}" class="btn rounded-2xl w-25 bg-amber-50 text-black">{{ __('ui.login') }}</a>
           </li>
         </ul>
       </div>
@@ -148,23 +148,23 @@
 
     <div class="hidden md:flex items-center gap-6">
       <a href="{{ route('premium') }}">
-        <span>Premium</span>
+        <span>{{ __('ui.premium') }}</span>
       </a>
       <a href="{{ route('support') }}">
-        <span>Assistenza</span>
+        <span>{{ __('ui.support') }}</span>
       </a>
       <a href="{{ route('download') }}">
-        <span>Scarica</span>
+        <span>{{ __('ui.download') }}</span>
       </a>
       <a href="{{ route('download') }}" class=" text-gray-400 flex items-center gap-1">
         <i class="fa-solid fa-circle-down"></i>
-        <span>Installa app</span>
+        <span>{{ __('ui.install_app') }}</span>
       </a>
 
       <div class="w-px h-5 bg-gray-500"></div>
 
-      <a href="{{ route('register') }}" class="text-lg font-bold">Iscriviti</a>
-      <a href="{{ route('login') }}" class="btn rounded-2xl w-25 bg-amber-50 text-black">Accedi</a>
+      <a href="{{ route('register') }}" class="text-lg font-bold">{{ __('ui.sign_up') }}</a>
+      <a href="{{ route('login') }}" class="btn rounded-2xl w-25 bg-amber-50 text-black">{{ __('ui.login') }}</a>
     </div>
     @endauth
 

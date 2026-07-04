@@ -69,7 +69,7 @@
     </button>
   </div>
 
-  <div class="time">
+  <div class="time ">
     <div class="elapsed" id="player-progress"></div>
   </div>
   <p class="timetext time_now" id="player-current-time">0:00</p>

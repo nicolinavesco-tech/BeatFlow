@@ -1,18 +1,18 @@
 <x-layout>
-    <main class="bg-zinc-900">
+    <main class="bg-zinc-900 ">
         {{-- Hero Section --}}
         <section class="pt-24 md:pt-40 bg-[linear-gradient(to_top,transparent_40%,#15803d_70%,#4ade80)]">
-            <div class="flex flex-col md:flex-row items-center justify-center gap-6 md:gap-10 w-full px-6 md:px-20 pb-10">
-                <div class="flex flex-col gap-5 md:gap-7 w-full md:w-200 text-center md:text-left">
-                    <h1 class="text-3xl md:text-5xl text-white font-bold">0 € per 3 mesi di Premium Individual</h1>
-                    <span class="text-white font-bold">Goditi musica senza pubblicità, riproduzione in modalità offline e molto altro ancora. Annulla quando vuoi.</span>
+            <div class="flex flex-col md:flex-row items-center justify-center gap-6 md:gap-10 w-full px-4 sm:px-8 md:px-16 pb-10">
+                <div class="flex flex-col gap-5 md:gap-7 w-full md:max-w-xl text-center md:text-left">
+                    <h1 class="text-2xl sm:text-3xl md:text-5xl text-white font-bold">0 € per 3 mesi di Premium Individual</h1>
+                    <span class="text-white font-bold text-sm sm:text-base">Goditi musica senza pubblicità, riproduzione in modalità offline e molto altro ancora. Annulla quando vuoi.</span>
                     <div class="flex flex-col sm:flex-row gap-3 justify-center md:justify-start">
-                        <button class="btn bg-[#1DB954] text-black rounded-3xl px-8 py-4 text-lg hover:scale-110">Prova 3 mesi a 0 €</button>
-                        <button class="btn bg-black text-white border border-gray-400 rounded-3xl px-8 py-4 text-lg hover:scale-110">Visualizza tutti i piani</button>
+                        <button class="btn bg-[#1DB954] text-black rounded-3xl px-6 py-3 text-base sm:text-lg hover:scale-110">Prova 3 mesi a 0 €</button>
+                        <button class="btn bg-black text-white border border-gray-400 rounded-3xl px-6 py-3 text-base sm:text-lg hover:scale-110">Visualizza tutti i piani</button>
                     </div>
-                    <p class="text-sm text-gray-300">Solo per Premium Individual. 0 € per 3 mesi, poi 11,99 € al mese. Offerta disponibile solo se non hai ancora provato Premium. Si applicano termini e condizioni. L'offerta termina il giorno 22 giugno 2026.</p>
+                    <p class="text-xs sm:text-sm text-gray-300">Solo per Premium Individual. 0 € per 3 mesi, poi 11,99 € al mese. Offerta disponibile solo se non hai ancora provato Premium. Si applicano termini e condizioni. L'offerta termina il giorno 22 giugno 2026.</p>
                 </div>
-                <div class="w-48 md:w-70">
+                <div class="w-40 sm:w-56 md:w-72 shrink-0">
                     <img src="media/premiumsection.png" alt="Immagine promozionale di BeatFlow Premium" class="w-full">
                 </div>
             </div>

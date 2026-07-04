@@ -176,7 +176,7 @@
 
                 </aside>
 
-                <div class="flex rounded-xl border border-base-100 w-full flex-col gap-6 p-5 md:p-8 bg-base-100 bg-[linear-gradient(to_top,transparent_50%,#15803d_70%,#4ade80)]">
+                <div class="flex rounded-xl border border-base-100 w-full flex-col gap-6 p-5 md:p-8 mt-20 md:mt-0 bg-base-100 bg-[linear-gradient(to_top,transparent_50%,#15803d_70%,#4ade80)]">
 
                     <a href="{{ route('homepage') }}" class="flex items-center gap-2 text-white px-4 py-2 bg-black/40 backdrop-blur-md rounded-full hover:bg-black/60 transition w-fit">
                         <i class="fa-solid fa-chevron-left"></i>
@@ -272,7 +272,7 @@
                                     <button
                                         type="button"
                                         onclick="event.stopPropagation(); playSong('audio-other-{{ $otherSong->id }}')"
-                                        class="absolute bottom-16 right-4 z-10 opacity-0 translate-y-4 group-hover/card:opacity-100 group-hover/card:translate-y-0 transition duration-300">
+                                        class="absolute bottom-16 right-4 z-10 opacity-100 md:opacity-0 translate-y-0 md:translate-y-4 md:group-hover/card:opacity-100 md:group-hover/card:translate-y-0 transition duration-300">
                                         <i class="fa-solid fa-circle-play fa-3x" style="color: rgb(0, 182, 27);"></i>
                                     </button>
 

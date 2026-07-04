@@ -5,11 +5,11 @@
         <form method="POST" action="{{ route('login') }}" class="login_form flex justify-center pt-5">
             @csrf
             <fieldset class="fieldset bg-base-100 border-gray-700 rounded-2xl w-75 md:w-100 border mt-2.5 text-center p-4 space-y-3">
-                <h2 class="text-3xl font-bold text-white mb-2">Login</h2>
+                <h2 class="text-3xl font-bold text-white mb-2">{{ __('ui.login_title') }}</h2>
                 <div>
 
                     <label class="label" for="email"></label>
-                    <input type="email" class="input" id="email" placeholder="mario@rossi.com" required name="email">
+                    <input type="email" class="input" id="email" placeholder="{{ __('ui.email_placeholder') }}" required name="email">
 
 
                 </div>
@@ -17,7 +17,7 @@
                 <div>
 
                     <label class="label" for="password"></label>
-                    <input type="password" class="input" id="password" name="password" required placeholder="Password" />
+                    <input type="password" class="input" id="password" name="password" required placeholder="{{ __('ui.password') }}" />
 
                 </div>
                 @if ($errors->any())
@@ -29,12 +29,12 @@
                     </ul>
                 </div>
                 @endif
-                <button type="submit" class="btn bg-green-500 hover:bg-green-600 mt-4 text-l">Login</button>
+                <button type="submit" class="btn bg-green-500 hover:bg-green-600 mt-4 text-l">{{ __('ui.login') }}</button>
             </fieldset>
 
         </form>
         <div class="mt-2 text-center px-15">
-            <span>Non hai un account BeatFlow? <a href="{{ route('register') }}" class="text-white underline hover:text-green-400 font-extrabold">Crea un nuovo account</a></span>
+            <span>{{ __('ui.no_account') }} <a href="{{ route('register') }}" class="text-white underline hover:text-green-400 font-extrabold">{{ __('ui.create_account') }}</a></span>
         </div>
     </main>
 </x-layout>

@@ -49,4 +49,10 @@ class HomeController extends Controller
     {
         return view('profiles.accountOverview');
     }
+
+    public function setLanguage($lang)
+    {
+        session()->put('locale', $lang);
+        return redirect()->back();
+    }
 }
