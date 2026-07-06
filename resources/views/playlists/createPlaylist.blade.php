@@ -105,7 +105,7 @@
                         <i class="fa-solid fa-chevron-left"></i>
                         <span>Torna indietro</span>
                     </a>
-                    <form action="{{ route('playlists.store') }}" method="POST" enctype="multipart/form-data" class="flex gap-6 w-full pt-5">
+                    <form action="{{ route('playlists.store') }}" method="POST" enctype="multipart/form-data" class="flex flex-col md:flex-row gap-6 w-full pt-5">
                         @csrf
                         <div class="relative group cursor-pointer w-80 h-70"
                             onclick="document.querySelector('#new-playlist-image').click()">
@@ -126,7 +126,7 @@
                         <div class="flex flex-col gap-3 justify-center">
 
                             <input type="text" name="name" value="La mia playlist" required
-                                class="input bg-slate-800/70 text-white w-80 h-15 text-3xl text-center border-none focus:outline-none focus:ring-2 focus:ring-[#1DB954] rounded-xl p-3">
+                                class="input bg-slate-800/70 text-white w-full md:w-80 h-15 text-3xl text-center border-none focus:outline-none focus:ring-2 focus:ring-[#1DB954] rounded-xl p-3">
 
                             <div class="flex gap-3 justify-center">
                                 <button type="button" @click="tab = 'home'" class="btn bg-slate-700 text-white">Annulla</button>
@@ -134,7 +134,7 @@
                             </div>
                         </div>
                     </form>
-                    <div class="pt-5 flex items-center gap-5">
+                    <div class="pt-5 flex justify-center md:justify-start items-center gap-5">
                         <i class="fa-solid fa-user-plus fa-2x text-gray-400 hover:text-white"></i>
 
                         <button popovertarget="popover-1" style="anchor-name:--anchor-1">
@@ -152,7 +152,7 @@
                     </div>
                 </div>
 
-                <div class="flex items-center ps-13 p-3 pt-4">
+                <div class="hidden lg:flex items-center ps-13 p-3 pt-4">
                     <span class="text-gray-400 text-xs w-10">#</span>
                     <span class="text-gray-400 text-xs flex-1">Titolo</span>
                     <span class="text-gray-400 text-xs w-45">Album</span>

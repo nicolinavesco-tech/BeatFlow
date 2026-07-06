@@ -238,7 +238,7 @@
                 </div>
                 <div class="flex flex-col items-start border border-slate-700/80 bg-slate-800/50 rounded-xl p-4 gap-4">
                     <h2 class="text-white text-2xl font-bold">Ottimizza l'audio con l'app Windows</h2>
-                    <div class="flex justify-between w-full">
+                    <div class="flex items-center justify-between w-full">
                         <p class="text-base  text-gray-400">Migliora la qualità dell'ascolto, regola l'equalizzatore per adattarlo al meglio ai tuoi altoparlanti e approfitta di un volume coerente per tutte le tracce.</p>
                         <button class="btn bg-[#1DB954] text-black rounded-3xl font-bold">Scarica l'app gratuita</button>
                     </div>

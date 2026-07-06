@@ -1,5 +1,5 @@
 <div class="navbar fixed top-0 left-0 right-0 h-20 z-50 flex justify-between bg-black shadow-sm">
-  <div class="w-100 ms-3">
+  <div class="w-auto ms-3">
     <a href="{{ route('homepage') }}" class="">
       <img src="/logo/logo.png" class="w-15" alt="Logo di BeatFlow" />
     </a>
@@ -66,14 +66,14 @@
     </div>
 
 
-    <div class="dropdown">
+    <div class="dropdown dropdown-end">
       <div tabindex="0" role="button" class="btn btn-ghost avatar h-15 rounded-full gap-3">
         <span class="text-white">{{ auth()->user()->name }}</span>
         <div class="w-15 rounded-full">
           <img alt="Tailwind CSS Navbar component" src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp" />
         </div>
       </div>
-      <ul tabindex="-1" class="menu menu-sm dropdown-content bg-slate-700/80 rounded-box z-1 mt-3 w-90 p-2 space-y-3 shadow translate-x-[-50%]">
+      <ul tabindex="-1" class="menu menu-sm dropdown-content bg-slate-700/80 rounded-box z-1 mt-3 w-64 sm:w-90 p-2 space-y-3 shadow ">
         <li>
           <a href="{{ route('accountOverview') }}" class="flex justify-between items-center text-white text-base">
             <span>{{ __('ui.account') }}</span>

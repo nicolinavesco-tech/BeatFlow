@@ -1,5 +1,8 @@
-* {
+/* * {
   outline: 1px solid red !important;
+} */
+:root {
+  --page-overflow: auto;
 }
 
 /* Section: Download */
@@ -435,12 +438,12 @@
   .volume-wrapper {
     position: absolute;
     left: 15px;
-    bottom:30px;
+    bottom: 30px;
   }
 
   .time_full {
     padding-right: 40px;
-    
+
   }
 
   /* Songs Detail */

@@ -155,7 +155,7 @@
                         <span class="text-gray-400 text-xs w-30"><i class="fa-solid fa-clock"></i></span>
                     </div>
                     <div class="pt-6 border-t border-slate-700 p-5">
-                        <ul class="hidden md:block list bg-base-100 rounded-box shadow-md w-full">
+                        <ul class=" list bg-base-100 rounded-box shadow-md w-full">
                             <li class="p-4 pb-2 text-xs opacity-60 tracking-wide">Tracklist</li>
                             @auth
                             @foreach($playlist->songs as $index => $song)
@@ -183,9 +183,8 @@
                                     </div>
                                 </div>
                                 <div class="flex gap-2">
-
-                                    <p class="text-white font-bold w-55 truncate">{{ $song->album->title ?? 'Singolo' }}</p>
-                                    <p class="text-gray-400 text-sm w-36">{{ $song->pivot->created_at?->format('d/m/Y') ?? 'N/D' }}</p>
+                                    <p class="text-white hidden md:block font-bold w-55 truncate">{{ $song->album->title ?? 'Singolo' }}</p>
+                                    <p class="text-gray-400 hidden md:block text-sm w-36">{{ $song->pivot->created_at?->format('d/m/Y') ?? 'N/D' }}</p>
                                     <span class="text-gray-400 text-sm w-16 text-left">{{ $song->duration_formatted }}</span>
                                     <div class="dropdown dropdown-end">
                                         <button tabindex="0" role="button">

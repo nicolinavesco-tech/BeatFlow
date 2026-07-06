@@ -1,9 +1,9 @@
 <x-layout>
-    <main class="bg-zinc-900 ">
+    <main class="bg-zinc-900 w-full">
         {{-- Hero Section --}}
-        <section class="pt-24 md:pt-40 bg-[linear-gradient(to_top,transparent_40%,#15803d_70%,#4ade80)]">
-            <div class="flex flex-col md:flex-row items-center justify-center gap-6 md:gap-10 w-full px-4 sm:px-8 md:px-16 pb-10">
-                <div class="flex flex-col gap-5 md:gap-7 w-full md:max-w-xl text-center md:text-left">
+        <section class="w-full pt-28 md:pt-40 bg-[linear-gradient(to_top,transparent_40%,#15803d_70%,#4ade80)]">
+            <div class="flex flex-col md:flex-row justify-center gap-6 md:gap-10 w-full px-4 sm:px-8 md:px-16 pb-10">
+                <div class="flex flex-col gap-5 md:gap-7 w-full md:max-w-xl max-w-full text-center md:text-left">
                     <h1 class="text-2xl sm:text-3xl md:text-5xl text-white font-bold">0 € per 3 mesi di Premium Individual</h1>
                     <span class="text-white font-bold text-sm sm:text-base">Goditi musica senza pubblicità, riproduzione in modalità offline e molto altro ancora. Annulla quando vuoi.</span>
                     <div class="flex flex-col sm:flex-row gap-3 justify-center md:justify-start">
@@ -12,8 +12,8 @@
                     </div>
                     <p class="text-xs sm:text-sm text-gray-300">Solo per Premium Individual. 0 € per 3 mesi, poi 11,99 € al mese. Offerta disponibile solo se non hai ancora provato Premium. Si applicano termini e condizioni. L'offerta termina il giorno 22 giugno 2026.</p>
                 </div>
-                <div class="w-40 sm:w-56 md:w-72 shrink-0">
-                    <img src="media/premiumsection.png" alt="Immagine promozionale di BeatFlow Premium" class="w-full">
+                <div class="w-full max-w-55 hidden md:block">
+                    <img src="media/premiumsection.png" class="w-full h-auto">
                 </div>
             </div>
         </section>
@@ -25,9 +25,9 @@
 
             <div class="flex flex-col justify-center w-full max-w-2xl">
                 <div class="flex justify-between items-center border-b pb-5">
-                    <span class="text-white w-40 md:w-50 font-bold flex pt-5 md:pt-20">Cosa otterrai</span>
+                    <span class="text-white w-28 sm:w-32 md:w-40 font-bold flex pt-5 md:pt-20">Cosa otterrai</span>
                     <span class="w-20 font-bold text-sm md:text-base text-center">Piano gratuito</span>
-                    <div class="flex items-center gap-1">
+                    <div class="flex items-center gap-1 ">
                         <img src="logo/logo.png" alt="Logo BeatFlow" class="w-5 h-5 md:w-7 md:h-7">
                         <span class="w-20 font-bold text-sm md:text-base text-center">Piano Premium</span>
                     </div>
@@ -35,24 +35,24 @@
 
                 @php
                 $features = [
-                    ['label' => 'Musica senza pubblicità', 'tip' => 'Ascolta la musica senza interruzioni pubblicitarie.'],
-                    ['label' => 'Download per ascoltare offline', 'tip' => 'Scarica i tuoi brani preferiti e ascoltali anche senza connessione.'],
-                    ['label' => 'Riproduzione in qualsiasi ordine', 'tip' => 'Scegli l\'ordine di ascolto dei tuoi brani preferiti senza limitazioni.'],
-                    ['label' => 'Qualità audio lossless', 'tip' => 'Ascolta la musica alla massima qualità audio disponibile.'],
-                    ['label' => 'Ascolto con gli amici', 'tip' => 'Condividi l\'ascolto con i tuoi amici in tempo reale.'],
-                    ['label' => 'Organizzazione coda di ascolto', 'tip' => 'Organizza e gestisci la coda di riproduzione come preferisci.'],
+                ['label' => 'Musica senza pubblicità', 'tip' => 'Ascolta la musica senza interruzioni pubblicitarie.'],
+                ['label' => 'Download per ascoltare offline', 'tip' => 'Scarica i tuoi brani preferiti e ascoltali anche senza connessione.'],
+                ['label' => 'Riproduzione in qualsiasi ordine', 'tip' => 'Scegli l\'ordine di ascolto dei tuoi brani preferiti senza limitazioni.'],
+                ['label' => 'Qualità audio lossless', 'tip' => 'Ascolta la musica alla massima qualità audio disponibile.'],
+                ['label' => 'Ascolto con gli amici', 'tip' => 'Condividi l\'ascolto con i tuoi amici in tempo reale.'],
+                ['label' => 'Organizzazione coda di ascolto', 'tip' => 'Organizza e gestisci la coda di riproduzione come preferisci.'],
                 ];
                 @endphp
 
                 @foreach($features as $feature)
                 <div class="flex justify-between items-center border-b pb-5 pt-5 p-2 hover:bg-[#383737]">
-                    <div class="tooltip tooltip-right w-40 md:w-50" data-tip="{{ $feature['tip'] }}">
+                    <div class="tooltip tooltip-bottom w-32 sm:w-40" data-tip="{{ $feature['tip'] }}">
                         <span class="text-white underline decoration-dashed underline-offset-4 text-sm md:text-base">{{ $feature['label'] }}</span>
                     </div>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="80" height="10" viewBox="0 0 100 10">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 10" class="w-12 h-2 md:w-20 md:h-3 me-12 md:me-0">
                         <rect x="10" y="4" width="20" height="4" fill="gray" />
                     </svg>
-                    <i class="fa-regular fa-circle-check text-xl md:text-2xl pe-8 md:pe-15 text-white"></i>
+                    <i class="fa-regular fa-circle-check text-xl md:text-2xl pe-2 md:pe-4 text-white"></i>
                 </div>
                 @endforeach
             </div>
@@ -71,7 +71,7 @@
                 <img src="https://paymentsdk.spotifycdn.com/svg/providers/paypal.svg" alt="PayPal" class="w-12 md:w-15 bg-white p-1 rounded">
             </div>
 
-            <div class="flex flex-col md:flex-row gap-6 md:gap-10 items-start md:items-center pt-10 w-full max-w-3xl">
+            <div class="flex flex-col md:flex-row gap-4 md:gap-10 items-start md:items-center pt-10 w-full max-w-3xl">
                 <h2 class="text-2xl md:text-3xl text-white font-bold text-center md:text-left">Tutti i piani premium includono</h2>
                 <div class="flex flex-col gap-2">
                     @foreach(['Musica senza pubblicità', 'Download per ascoltare in modalità offline', 'Riproduzione dei brani in qualsiasi ordine', 'Qualità audio lossless', 'Ascolto con gli amici in tempo reale', 'Organizzazione della coda di ascolto'] as $item)
@@ -89,7 +89,7 @@
 
             {{-- Individual --}}
             <div class="card w-full sm:w-80 md:w-96 shadow-sm bg-gray-700/50">
-                <span class="text-black font-bold bg-[#ffc9db] px-2 py-1 rounded w-40">0 € per 3 mesi</span>
+                <span class="text-black font-bold bg-[#ffc9db] px-2 py-1 rounded w-fit max-w-full">0 € per 3 mesi</span>
                 <div class="card-body">
                     <div class="flex gap-2 items-center">
                         <img src="logo/logo.png" alt="Logo BeatFlow" class="w-10">
@@ -110,9 +110,9 @@
                 </div>
             </div>
 
-            
+
             <div class="card w-full sm:w-80 md:w-96 shadow-sm bg-gray-700/50">
-                <span class="text-black font-bold bg-[#ecb8fb] px-2 py-1 rounded w-40">0 € per 1 mese</span>
+                <span class="text-black font-bold bg-[#ecb8fb] px-2 py-1 rounded w-fit max-w-full">0 € per 1 mese</span>
                 <div class="card-body">
                     <div class="flex gap-2 items-center">
                         <img src="logo/logo.png" alt="Logo BeatFlow" class="w-10">
@@ -134,7 +134,7 @@
                 </div>
             </div>
 
-            
+
             <div class="card w-full sm:w-80 md:w-96 shadow-sm bg-gray-700/50">
                 <div class="card-body">
                     <div class="flex gap-2 items-center">
@@ -155,7 +155,7 @@
                 </div>
             </div>
 
-            
+
             <div class="card w-full sm:w-80 md:w-96 shadow-sm bg-gray-700/50">
                 <div class="card-body">
                     <div class="flex gap-2 items-center">
@@ -192,12 +192,12 @@
 
                 @php
                 $faqs = [
-                    ['q' => 'Come funziona il periodo di prova di BeatFlow Premium?', 'a' => 'Se non hai mai avuto Premium prima d\'ora, potresti avere diritto a un periodo di prova gratuito (o a una tariffa ridotta). Per i periodi di prova, devi comunque inserire un metodo di pagamento valido per iscriverti. Lo utilizzeremo per confermare il tuo Paese o la tua regione ed effettuare i pagamenti qualora decidessi di tenere Premium al termine dell\'offerta. Ti invieremo un promemoria 7 giorni prima del termine del periodo di prova. Si applicano termini e condizioni e restrizioni in base al Paese.'],
-                    ['q' => 'Come posso annullare il mio piano Premium?', 'a' => 'Puoi annullare il piano Premium quando vuoi sulla pagina del tuo account. Una volta annullato, l\'abbonamento Premium proseguirà fino alla prossima data di fatturazione, quindi il tuo account passerà al servizio gratuito. Se annulli durante il periodo di prova gratuito, perderai immediatamente l\'accesso ai vantaggi Premium. Con il servizio gratuito, manterrai tutte le tue playlist e la musica salvata e potrai ascoltarle con gli annunci.'],
-                    ['q' => 'Come funziona il piano Premium Duo?', 'a' => 'Premium Duo è un piano per coppie che vivono insieme. È più conveniente rispetto a due account Premium Individual a prezzo pieno. Ti chiederemo l\'indirizzo per assicurarci che risiediate nello stesso luogo. Ogni membro dispone di un account Premium separato e può ascoltare musica contemporaneamente.'],
-                    ['q' => 'Come funziona il piano Premium Family?', 'a' => 'Premium Family è un piano per un massimo di 6 persone che vivono insieme. Ogni membro dispone di un account Premium separato. I membri della famiglia di età inferiore a 13 anni possono essere invitati tramite account gestiti con controllo parentale.'],
-                    ['q' => 'Come funziona il piano Premium Student?', 'a' => 'Se hai effettuato l\'iscrizione a un\'università accreditata idonea all\'offerta e hai più di 18 anni, puoi passare a Premium Student per un massimo di 4 anni.'],
-                    ['q' => 'Quanto costa BeatFlow Premium in Italia?', 'a' => 'I prezzi in Italia: Individual 11,99 € al mese, Duo 16,99 € al mese, Family 20,99 € al mese, Student 6,49 € al mese. Se non hai mai avuto un piano Premium prima d\'ora, potresti avere diritto a un periodo di prova gratuito. Si applicano termini e condizioni.'],
+                ['q' => 'Come funziona il periodo di prova di BeatFlow Premium?', 'a' => 'Se non hai mai avuto Premium prima d\'ora, potresti avere diritto a un periodo di prova gratuito (o a una tariffa ridotta). Per i periodi di prova, devi comunque inserire un metodo di pagamento valido per iscriverti. Lo utilizzeremo per confermare il tuo Paese o la tua regione ed effettuare i pagamenti qualora decidessi di tenere Premium al termine dell\'offerta. Ti invieremo un promemoria 7 giorni prima del termine del periodo di prova. Si applicano termini e condizioni e restrizioni in base al Paese.'],
+                ['q' => 'Come posso annullare il mio piano Premium?', 'a' => 'Puoi annullare il piano Premium quando vuoi sulla pagina del tuo account. Una volta annullato, l\'abbonamento Premium proseguirà fino alla prossima data di fatturazione, quindi il tuo account passerà al servizio gratuito. Se annulli durante il periodo di prova gratuito, perderai immediatamente l\'accesso ai vantaggi Premium. Con il servizio gratuito, manterrai tutte le tue playlist e la musica salvata e potrai ascoltarle con gli annunci.'],
+                ['q' => 'Come funziona il piano Premium Duo?', 'a' => 'Premium Duo è un piano per coppie che vivono insieme. È più conveniente rispetto a due account Premium Individual a prezzo pieno. Ti chiederemo l\'indirizzo per assicurarci che risiediate nello stesso luogo. Ogni membro dispone di un account Premium separato e può ascoltare musica contemporaneamente.'],
+                ['q' => 'Come funziona il piano Premium Family?', 'a' => 'Premium Family è un piano per un massimo di 6 persone che vivono insieme. Ogni membro dispone di un account Premium separato. I membri della famiglia di età inferiore a 13 anni possono essere invitati tramite account gestiti con controllo parentale.'],
+                ['q' => 'Come funziona il piano Premium Student?', 'a' => 'Se hai effettuato l\'iscrizione a un\'università accreditata idonea all\'offerta e hai più di 18 anni, puoi passare a Premium Student per un massimo di 4 anni.'],
+                ['q' => 'Quanto costa BeatFlow Premium in Italia?', 'a' => 'I prezzi in Italia: Individual 11,99 € al mese, Duo 16,99 € al mese, Family 20,99 € al mese, Student 6,49 € al mese. Se non hai mai avuto un piano Premium prima d\'ora, potresti avere diritto a un periodo di prova gratuito. Si applicano termini e condizioni.'],
                 ];
                 @endphp
 

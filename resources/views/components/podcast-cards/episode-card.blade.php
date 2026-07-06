@@ -1,8 +1,8 @@
 @props(['image', 'title', 'description'])
 
-<div class="group shrink-0 w-52 flex flex-col relative hover:bg-slate-700/55 p-2 transition">
+<div class="group shrink-0 w-36 sm:w-40 md:w-44 xl:w-52 flex flex-col relative hover:bg-slate-700/55 p-2 transition">
     <a href="" class="block">
-        <img src="{{ $image }}" alt="{{ $title }}" class="w-48 h-48  object-cover">
+        <img src="{{ $image }}" alt="{{ $title }}" class="w-full aspect-square object-cover">
         <h3 class="font-bold pt-2 truncate">{{ $title }}</h3>
         <p class="text-sm text-gray-400 truncate">{{ $description }}</p>
     </a>

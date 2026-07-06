@@ -1,10 +1,10 @@
 <x-layout>
-    <main class="flex gap-2 bg-black">
-        <section class="min-h-screen flex flex-col md:flex-row justify-center pt-20 gap-2 ">
-            <div class="border rounded-xl border-base-100 bg-base-100 w-100 space-y-5">
+    <main class=" bg-black">
+        <section class="min-h-screen flex flex-col md:flex-row pt-20 gap-2 px-2 md:px-4">
+            <div class="border rounded-xl border-base-100 bg-base-100 w-full md:w-90 space-y-5 shrink-0">
                 <div class="flex justify-between">
                     <p class="text-xl font-bold mb-4 p-5">La tua libreria</p>
-                    <div class="dropdown dropdown-start p-4">
+                    <div class="dropdown dropdown-end md:dropdown-start p-4">
                         <label tabindex="0" class="btn flex items-center rounded-2xl gap-2 px-4 bg-slate-700/55">
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
@@ -22,7 +22,7 @@
                             <span>Crea</span>
                         </label>
                         @auth
-                        <ul tabindex="0" class="dropdown-content menu bg-base-100 rounded-box z-1 w-84 p-2 shadow border border-slate-700/80 mt-2">
+                        <ul tabindex="0" class="dropdown-content menu bg-base-100 rounded-box z-1 w-64 sm:w-84 p-2 shadow border border-slate-700/80 mt-2">
                             <li>
                                 <div class="dropdown dropdown-right flex">
                                     <div class="flex items-center justify-center w-14 h-14 border border-gray-600 bg-gray-300/40 rounded-full shrink-0">
@@ -62,21 +62,25 @@
 
                         </ul>
                         @else
-                        <ul tabindex="0" class="dropdown-content menu bg-base-100 rounded-box z-1 w-84 p-2 shadow border border-slate-700/80 mt-2">
+                        <ul tabindex="0" class="dropdown-content menu bg-base-100 rounded-box z-1 w-64 sm:w-84 p-2 shadow border border-slate-700/80 mt-2">
                             <li>
                                 <div class="dropdown dropdown-right flex">
-                                    <div class="flex items-center justify-center w-14 h-14 border border-gray-600 bg-gray-300/40 rounded-full shrink-0">
+                                    <div class="hidden md:flex items-center justify-center w-14 h-14 border border-gray-600 bg-gray-300/40 rounded-full shrink-0">
                                         <button tabindex="0"><i class="fa-brands fa-itunes-note fa-2x hover:text-[#1DB954] hover:scale-110 hover:rotate-12 transition-transform duration-300"></i></button>
-                                        <div tabindex="0" class="dropdown-content bg-blue-600 text-white rounded-xl p-4 w-84 shadow-xl translate-x-[5%] translate-y-[-30%]">
+                                        <div tabindex="0" class=" dropdown-content bg-blue-600 text-white rounded-xl p-4 w-64 md:w-84 shadow-xl translate-x-[5%] translate-y-[-30%]">
                                             <i class="absolute fa-solid fa-caret-left fa-2x text-blue-600 left-0 top-1/2 -translate-x-[50%] -translate-y-1/2"></i>
-                                            <h3 class="font-bold text-lg ">Crea una playlist</h3>
-                                            <p class="py-4 text-sm">Accedi per creare e condividere playlist.</p>
+                                            <h3 class="font-bold text-lg ">{{ __('ui.create_playlist') }}</h3>
+                                            <p class="py-4 text-sm">{{ __('ui.login_create_playlist') }}</p>
                                             <div class="flex gap-4 justify-end">
-                                                <button onclick="this.closest('.dropdown-content').classList.add('hidden')" class=" text-white font-bold">Non ora</button>
-                                                <a href="{{ route('login') }}" class="btn bg-white border-none text-black rounded-3xl font-bold">Accedi</a>
+                                                <button onclick="this.closest('.dropdown-content').classList.add('hidden')" class=" text-white font-bold">{{ __('ui.not_now') }}</button>
+                                                <a href="{{ route('login') }}" class="btn bg-white border-none text-black rounded-3xl font-bold">{{ __('ui.login') }}</a>
                                             </div>
                                         </div>
                                     </div>
+                                    {{-- Mobile --}}
+                                    <a href="{{ route('login') }}" class="flex md:hidden items-center justify-center w-14 h-14 border border-gray-600 bg-gray-300/40 rounded-full shrink-0">
+                                        <i class="fa-brands fa-itunes-note fa-2x hover:text-[#1DB954] hover:scale-110 hover:rotate-12 transition-transform duration-300"></i>
+                                    </a>
                                     <div class="flex flex-col items-start ">
                                         <span class="font-bold text-base">Playlist</span>
                                         <p class="text-gray-400 text-xs">Riunisci i tuoi brani preferiti</p>
@@ -147,14 +151,19 @@
                 <div class="border border-slate-700 rounded-xl p-5 space-y-4 bg-slate-700/55 me-2 ms-2">
                     <h3 class="text-white font-bold">Crea la tua prima playlist</h3>
                     <p class="text-white text-sm">E' facile, ti aiuteremo</p>
-                    <div class="dropdown dropdown-right">
-                        <button tabindex="0" class="btn bg-white text-black rounded-3xl">Crea playlist</button>
+
+                    {{-- Mobile: link diretto al login --}}
+                    <a href="{{ route('login') }}" class="md:hidden btn bg-white text-black rounded-3xl">Crea una playlist</a>
+
+                    {{-- Desktop: dropdown con finestra blu --}}
+                    <div class="hidden md:block dropdown dropdown-right">
+                        <button tabindex="0" class="btn bg-white text-black rounded-3xl">Crea una playlist</button>
                         <div tabindex="0" class="dropdown-content bg-blue-600 text-white rounded-xl p-4 w-84 shadow-xl translate-x-[65%] translate-y-[-60%]">
                             <i class="absolute fa-solid fa-caret-left fa-2x text-blue-600 left-0 top-1/2 -translate-x-[50%] -translate-y-1/2"></i>
-                            <h3 class="font-bold text-lg ">Crea una playlist</h3>
+                            <h3 class="font-bold text-lg">Crea una playlist</h3>
                             <p class="py-4 text-sm">Accedi per creare e condividere playlist.</p>
                             <div class="flex gap-4 justify-end">
-                                <button class=" text-white font-bold">Non ora</button>
+                                <button class="text-white font-bold">Non ora</button>
                                 <a href="{{ route('login') }}" class="btn bg-white border-none text-black rounded-3xl font-bold">Accedi</a>
                             </div>
                         </div>
@@ -175,20 +184,29 @@
                 </a>
 
 
-                <h1 class="text-9xl font-bold p-8">Podcast</h1>
+                <h1 class="text-4xl sm:text-5xl md:text-6xl lg:text-8xl xl:text-9xl font-bold px-5 py-8">Podcast</h1>
 
                 <div class="flex border-base-100  flex-col gap-2 p-5 ">
                     <a href="" class="text-2xl font-bold">Radar Creators Italia</a>
 
                     <div class=" w-full">
 
-                        <div class="flex w-full gap-4 pt-2">
-                            <x-podcast-cards.radars-card image="https://imgs.search.brave.com/TiFnlXYcbZLp9DAoxIDiw38YP6Y6d8wY27_dBuj54P4/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9pbWcu/bWFnbmlmaWMuY29t/L3ByZW1pdW0tcHNk/L3BvZGNhc3QtdGFs/ay1zaG93LXByb21v/dGlvbmFsLXNvY2lh/bC1tZWRpYS1wb3N0/XzU4NDE5Ny0yNzI3/LmpwZz9zZW10PWFp/c19oeWJyaWQmdz03/NDAmcT04MA" title="Radars Creators Italia" description="Podcast dedicato ai creatori di contenuti in Italia" />
-                            <x-podcast-cards.radars-card image="https://imgs.search.brave.com/HsB44VL-50dgYA0mp11rAQS7ENFa3R9vUPTdSQI39vU/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9jZG4u/cGl4YWJheS5jb20v/cGhvdG8vMjAyMy8w/MS8xNS8xMy8wNS9w/b2RjYXN0LTc3MjAx/MDZfMTI4MC5qcGc" title="Capiamo" description="Gioelle Arreghini e Thomas Asueni" />
-                            <x-podcast-cards.radars-card image="https://imgs.search.brave.com/p2Aaie31gvY2ADSukVw_KpbQHHMsnIGo8ri7segyVSI/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9tZWRp/YS5nZXR0eWltYWdl/cy5jb20vaWQvMTYz/NTc5ODIzNS9pdC9m/b3RvL3ByaW1vLXBp/YW5vLWRpLXVuLWdp/b3ZhbmUtdW9tby1z/b3JyaWRlbnRlLWNo/ZS1yZWdpc3RyYS1w/b2RjYXN0LWUtZmEt/c3RyZWFtaW5nLWxp/dmUtdXNhbmRvLmpw/Zz9zPTYxMng2MTIm/dz0wJms9MjAmYz1L/OUh0Nm5NTHlUdzR4/R1d5c2k5a3dpUkhW/WHRFTVI0bnNQalps/RENNOVJBPQ" title="Hypersimposio" description="Hypersimposio" />
-                            <x-podcast-cards.radars-card image="https://imgs.search.brave.com/xbQIpuo0WA6PaNS48qcEeYCaV2LH-N_cBqi9UJKxEq4/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9wb2Rz/dGFyLml0L3dwLWNv/bnRlbnQvdXBsb2Fk/cy8yMDIyLzA4L3Bv/ZGNhc3QtbWFya2V0/aW5nLmpwZw" title="Made IT-Storie Italiane di successo" description="Ines Makula e Camilla Scassellati" />
-                            <x-podcast-cards.radars-card image="https://imgs.search.brave.com/Hu4Gf8r2aC06YdTYH2EIoe0nd9vmqd7ScHaBNrQCamQ/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly93d3cu/c2h1dHRlcnN0b2Nr/LmNvbS9ibG9nL3dw/LWNvbnRlbnQvdXBs/b2Fkcy9zaXRlcy81/LzIwMjIvMDIvUG9k/Y2FzdC1jb3Zlci1h/cnRfZmVhdHVyZWQu/anBn" title="Streetsmart" description="Streetsmart-Corax" />
-                            <x-podcast-cards.radars-card image="https://imgs.search.brave.com/o3NosAIgMwMPuJgx_k849WCVh4-Egrw-GOiIRjpT-fk/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9pLnBp/bmltZy5jb20vb3Jp/Z2luYWxzLzk2Lzgy/L2RlLzk2ODJkZTAy/MzhjZjhjNTcyMjIw/NDdmMGI1ODA4Y2Mw/LmpwZw" title="Generazione sospesa" description="Factanza Media" />
+                        <div class="relative w-full group/carousel">
+                            <button type="button" onclick="scrollCarousel('radarCarousel', -350)" class="btn btn-circle absolute left-0 top-17 md:top-23 z-20 bg-black/20 border-none text-white opacity-100 lg:opacity-0 lg:group-hover/carousel:opacity-100">
+                                ❮
+                            </button>
+                            <div id="radarCarousel" class="flex gap-2 md:gap-4 overflow-x-auto scroll-smooth pt-2 pb-4" style="scrollbar-width: none;">
+
+                                <x-podcast-cards.radars-card image="https://imgs.search.brave.com/TiFnlXYcbZLp9DAoxIDiw38YP6Y6d8wY27_dBuj54P4/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9pbWcu/bWFnbmlmaWMuY29t/L3ByZW1pdW0tcHNk/L3BvZGNhc3QtdGFs/ay1zaG93LXByb21v/dGlvbmFsLXNvY2lh/bC1tZWRpYS1wb3N0/XzU4NDE5Ny0yNzI3/LmpwZz9zZW10PWFp/c19oeWJyaWQmdz03/NDAmcT04MA" title="Radars Creators Italia" description="Podcast dedicato ai creatori di contenuti in Italia" />
+                                <x-podcast-cards.radars-card image="https://imgs.search.brave.com/HsB44VL-50dgYA0mp11rAQS7ENFa3R9vUPTdSQI39vU/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9jZG4u/cGl4YWJheS5jb20v/cGhvdG8vMjAyMy8w/MS8xNS8xMy8wNS9w/b2RjYXN0LTc3MjAx/MDZfMTI4MC5qcGc" title="Capiamo" description="Gioelle Arreghini e Thomas Asueni" />
+                                <x-podcast-cards.radars-card image="https://imgs.search.brave.com/p2Aaie31gvY2ADSukVw_KpbQHHMsnIGo8ri7segyVSI/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9tZWRp/YS5nZXR0eWltYWdl/cy5jb20vaWQvMTYz/NTc5ODIzNS9pdC9m/b3RvL3ByaW1vLXBp/YW5vLWRpLXVuLWdp/b3ZhbmUtdW9tby1z/b3JyaWRlbnRlLWNo/ZS1yZWdpc3RyYS1w/b2RjYXN0LWUtZmEt/c3RyZWFtaW5nLWxp/dmUtdXNhbmRvLmpw/Zz9zPTYxMng2MTIm/dz0wJms9MjAmYz1L/OUh0Nm5NTHlUdzR4/R1d5c2k5a3dpUkhW/WHRFTVI0bnNQalps/RENNOVJBPQ" title="Hypersimposio" description="Hypersimposio" />
+                                <x-podcast-cards.radars-card image="https://imgs.search.brave.com/xbQIpuo0WA6PaNS48qcEeYCaV2LH-N_cBqi9UJKxEq4/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9wb2Rz/dGFyLml0L3dwLWNv/bnRlbnQvdXBsb2Fk/cy8yMDIyLzA4L3Bv/ZGNhc3QtbWFya2V0/aW5nLmpwZw" title="Made IT-Storie Italiane di successo" description="Ines Makula e Camilla Scassellati" />
+                                <x-podcast-cards.radars-card image="https://imgs.search.brave.com/Hu4Gf8r2aC06YdTYH2EIoe0nd9vmqd7ScHaBNrQCamQ/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly93d3cu/c2h1dHRlcnN0b2Nr/LmNvbS9ibG9nL3dw/LWNvbnRlbnQvdXBs/b2Fkcy9zaXRlcy81/LzIwMjIvMDIvUG9k/Y2FzdC1jb3Zlci1h/cnRfZmVhdHVyZWQu/anBn" title="Streetsmart" description="Streetsmart-Corax" />
+                                <x-podcast-cards.radars-card image="https://imgs.search.brave.com/o3NosAIgMwMPuJgx_k849WCVh4-Egrw-GOiIRjpT-fk/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9pLnBp/bmltZy5jb20vb3Jp/Z2luYWxzLzk2Lzgy/L2RlLzk2ODJkZTAy/MzhjZjhjNTcyMjIw/NDdmMGI1ODA4Y2Mw/LmpwZw" title="Generazione sospesa" description="Factanza Media" />
+                            </div>
+                            <button type="button" onclick="scrollCarousel('radarCarousel', 350)" class="btn btn-circle absolute right-0 top-17 md:top-23 z-20 bg-black/20 border-none text-white opacity-100 lg:opacity-0 lg:group-hover/carousel:opacity-100">
+                                ❯
+                            </button>
 
 
                         </div>
@@ -196,14 +214,22 @@
 
                     <a href="" class="text-2xl font-bold pt-15">Gli episodi del giorno</a>
 
-                    <div class="flex w-full gap-4 pt-2">
+                    <div class="relative w-full group/carousel">
+                        <button type="button" onclick="scrollCarousel('radarCarousel', -350)" class="btn btn-circle absolute left-0 top-17 md:top-23 z-20 bg-black/20 border-none text-white opacity-100 lg:opacity-0 lg:group-hover/carousel:opacity-100">
+                            ❮
+                        </button>
+                        <div id="radarCarousel" class="flex gap-2 md:gap-4 overflow-x-auto scroll-smooth pt-2 pb-4" style="scrollbar-width: none;">
 
-                        <x-podcast-cards.episode-card image="https://imgs.search.brave.com/OOlJhTR-bdo3rfxUC7P7Rx5UKpSF_QHcuMc9L_USpnk/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9iaW9n/cmFmaWVvbmxpbmUu/aXQvaW1nL2Jpby9B/bGVzc2FuZHJvX0Nh/dHRlbGFuXzUuanBn" title="SUPERNOVA" description="Alessandro Cattelan" />
-                        <x-podcast-cards.episode-card image="https://imgs.search.brave.com/Zehsp6KI_6XMT3IDlqi4vkhx02xUh9IXNBYkXQmqo3Y/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9pMC53/cC5jb20vY2luZW1h/bmRvLmJsb2cvd3At/Y29udGVudC91cGxv/YWRzLzIwMjAvMTAv/NS00LWUxNjA0MDg1/OTA5MjU0LmpwZz9m/aXQ9MTI4MCw3MjAm/c3NsPTE" title="Non aprite quella Podcast" description="Non aprite quella Podcast" />
-                        <x-podcast-cards.episode-card image="https://imgs.search.brave.com/FlasRfLoIBhWdhq9g00-7Yqus_k0KL4XNRrcJtnfeP8/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9tZWRp/YS5nZXR0eWltYWdl/cy5jb20vaWQvMTE2/OTQ3NzA0OC9waG90/by9pLXdpbGwtdGVs/bC1hLWpva2Utbm93/LmpwZz9zPTYxMng2/MTImdz0wJms9MjAm/Yz0xUDNFdXVKazkt/ajJjYURXZGFreWta/R1pzbGthNUc2R2F2/OXRjUUxTZkNNPQ" title="Passa dal BSMT" description="Gianluca Gazzoli" />
-                        <x-podcast-cards.episode-card image="https://imgs.search.brave.com/KOZNM0EnpXexvI-GFYISrXtmdgqkCFI7imQ6cUjzko8/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9pbWFn/ZXMtcGxhdGZvcm0u/OTlzdGF0aWMuY29t/Ly93elBhdzVuVGV6/UkphcUxyZ0t1cWRw/a1JGUm89LzYzeDYz/Ojg5OXg4OTkvZml0/LWluLzUwMHg1MDAv/OTlkZXNpZ25zLWNv/bnRlc3RzLWF0dGFj/aG1lbnRzLzEyNy8x/MjcyOTkvYXR0YWNo/bWVudF8xMjcyOTk1/MDA" title="The Bull" description="Il tuo podcast di finanza personale" />
-                        <x-podcast-cards.episode-card image="https://imgs.search.brave.com/f_ALCMe0Prge9KOPmcUSGJ7loicyQSkgpFY26Daz3OM/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9tZWRp/YS5nZXR0eWltYWdl/cy5jb20vaWQvMTQ2/NTU1ODQyNy9waG90/by9wZW9wbGUtaW4t/dGhlLXBvZGNhc3Qt/c3R1ZGlvLXRhbGtp/bmctYW5kLXJlY29y/ZGluZy5qcGc_cz02/MTJ4NjEyJnc9MCZr/PTIwJmM9T09XeHVX/VnJZTUlyQ0N1X05f/VjlNdUc0VnRZVi00/NjJYbTZBeHh2WHJV/ND0" title="EST Radio" description="Est Radio" />
-                        <x-podcast-cards.episode-card image="https://imgs.search.brave.com/TNceTd0ffyDnlvEVjICAsASr1EAUz4jrIcrgL53A-ss/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9tZWRp/YS5nZXR0eWltYWdl/cy5jb20vaWQvOTA0/MjQ4MTkvcGhvdG8v/bWljaGFlbC1qYWNr/c29uLXBlcmZvcm1z/LW9uLXN0YWdlLW9u/LWhpcy1oaXN0b3J5/LXRvdXItaW4tZGVj/ZW1iZXItMTk5Ni5q/cGc_cz02MTJ4NjEy/Jnc9MCZrPTIwJmM9/bFo4NGMtM2k1QmJR/V2c0N0ZmZVg1RHdD/ZmhjNmpBMWVyVFJq/RDN3X3JoQT0" title="Danni Riversibile" description="Il caso di Michael Jackson" />
+                            <x-podcast-cards.episode-card image="https://imgs.search.brave.com/OOlJhTR-bdo3rfxUC7P7Rx5UKpSF_QHcuMc9L_USpnk/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9iaW9n/cmFmaWVvbmxpbmUu/aXQvaW1nL2Jpby9B/bGVzc2FuZHJvX0Nh/dHRlbGFuXzUuanBn" title="SUPERNOVA" description="Alessandro Cattelan" />
+                            <x-podcast-cards.episode-card image="https://imgs.search.brave.com/Zehsp6KI_6XMT3IDlqi4vkhx02xUh9IXNBYkXQmqo3Y/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9pMC53/cC5jb20vY2luZW1h/bmRvLmJsb2cvd3At/Y29udGVudC91cGxv/YWRzLzIwMjAvMTAv/NS00LWUxNjA0MDg1/OTA5MjU0LmpwZz9m/aXQ9MTI4MCw3MjAm/c3NsPTE" title="Non aprite quella Podcast" description="Non aprite quella Podcast" />
+                            <x-podcast-cards.episode-card image="https://imgs.search.brave.com/FlasRfLoIBhWdhq9g00-7Yqus_k0KL4XNRrcJtnfeP8/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9tZWRp/YS5nZXR0eWltYWdl/cy5jb20vaWQvMTE2/OTQ3NzA0OC9waG90/by9pLXdpbGwtdGVs/bC1hLWpva2Utbm93/LmpwZz9zPTYxMng2/MTImdz0wJms9MjAm/Yz0xUDNFdXVKazkt/ajJjYURXZGFreWta/R1pzbGthNUc2R2F2/OXRjUUxTZkNNPQ" title="Passa dal BSMT" description="Gianluca Gazzoli" />
+                            <x-podcast-cards.episode-card image="https://imgs.search.brave.com/KOZNM0EnpXexvI-GFYISrXtmdgqkCFI7imQ6cUjzko8/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9pbWFn/ZXMtcGxhdGZvcm0u/OTlzdGF0aWMuY29t/Ly93elBhdzVuVGV6/UkphcUxyZ0t1cWRw/a1JGUm89LzYzeDYz/Ojg5OXg4OTkvZml0/LWluLzUwMHg1MDAv/OTlkZXNpZ25zLWNv/bnRlc3RzLWF0dGFj/aG1lbnRzLzEyNy8x/MjcyOTkvYXR0YWNo/bWVudF8xMjcyOTk1/MDA" title="The Bull" description="Il tuo podcast di finanza personale" />
+                            <x-podcast-cards.episode-card image="https://imgs.search.brave.com/f_ALCMe0Prge9KOPmcUSGJ7loicyQSkgpFY26Daz3OM/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9tZWRp/YS5nZXR0eWltYWdl/cy5jb20vaWQvMTQ2/NTU1ODQyNy9waG90/by9wZW9wbGUtaW4t/dGhlLXBvZGNhc3Qt/c3R1ZGlvLXRhbGtp/bmctYW5kLXJlY29y/ZGluZy5qcGc_cz02/MTJ4NjEyJnc9MCZr/PTIwJmM9T09XeHVX/VnJZTUlyQ0N1X05f/VjlNdUc0VnRZVi00/NjJYbTZBeHh2WHJV/ND0" title="EST Radio" description="Est Radio" />
+                            <x-podcast-cards.episode-card image="https://imgs.search.brave.com/TNceTd0ffyDnlvEVjICAsASr1EAUz4jrIcrgL53A-ss/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9tZWRp/YS5nZXR0eWltYWdl/cy5jb20vaWQvOTA0/MjQ4MTkvcGhvdG8v/bWljaGFlbC1qYWNr/c29uLXBlcmZvcm1z/LW9uLXN0YWdlLW9u/LWhpcy1oaXN0b3J5/LXRvdXItaW4tZGVj/ZW1iZXItMTk5Ni5q/cGc_cz02MTJ4NjEy/Jnc9MCZrPTIwJmM9/bFo4NGMtM2k1QmJR/V2c0N0ZmZVg1RHdD/ZmhjNmpBMWVyVFJq/RDN3X3JoQT0" title="Danni Riversibile" description="Il caso di Michael Jackson" />
+                        </div>
+                        <button type="button" onclick="scrollCarousel('radarCarousel', 350)" class="btn btn-circle absolute right-0 top-17 md:top-23 z-20 bg-black/20 border-none text-white opacity-100 lg:opacity-0 lg:group-hover/carousel:opacity-100">
+                            ❯
+                        </button>
 
 
                     </div>

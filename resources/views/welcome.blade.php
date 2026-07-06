@@ -5,7 +5,7 @@
                 <div class="border mt-20 md:mt-0 rounded-xl border-base-100 bg-base-100 w-full md:w-80 lg:w-90 shrink-0 space-y-5 aside-bar">
                     <div class="flex justify-between">
                         <p class="text-xl font-bold mb-4 p-5">{{ __('ui.your_library') }}</p>
-                        <div class="dropdown dropdown-start p-4">
+                        <div class="dropdown dropdown-end md:dropdown-start p-4">
                             <label tabindex="0" class="btn flex items-center rounded-2xl gap-2 px-4 bg-slate-700/55">
                                 <svg
                                     xmlns="http://www.w3.org/2000/svg"
@@ -25,7 +25,7 @@
                             @auth
                             <ul tabindex="0" class="dropdown-content menu bg-base-100 rounded-box z-1 w-84 p-2 shadow border border-slate-700/80 mt-2">
                                 <li>
-                                    <div class="dropdown dropdown-right flex">
+                                    <div class="dropdown  dropdown-right flex">
                                         <div class="flex items-center justify-center w-14 h-14 border border-gray-600 bg-gray-300/40 rounded-full shrink-0">
                                             <button @click.prevent="tab = 'createPlaylist'" tabindex="0"><i class="fa-brands fa-itunes-note fa-2x hover:text-[#1DB954] hover:scale-110 hover:rotate-12 transition-transform duration-300"></i></button>
                                         </div>
@@ -65,9 +65,9 @@
                             <ul tabindex="0" class="dropdown-content menu bg-base-100 rounded-box z-1 w-84 p-2 shadow border border-slate-700/80 mt-2">
                                 <li>
                                     <div class="dropdown dropdown-right flex">
-                                        <div class="flex items-center justify-center w-14 h-14 border border-gray-600 bg-gray-300/40 rounded-full shrink-0">
+                                        <div class="hidden md:flex items-center justify-center w-14 h-14 border border-gray-600 bg-gray-300/40 rounded-full shrink-0">
                                             <button tabindex="0"><i class="fa-brands fa-itunes-note fa-2x hover:text-[#1DB954] hover:scale-110 hover:rotate-12 transition-transform duration-300"></i></button>
-                                            <div tabindex="0" class="dropdown-content bg-blue-600 text-white rounded-xl p-4 w-84 shadow-xl translate-x-[5%] translate-y-[-30%]">
+                                            <div tabindex="0" class=" dropdown-content bg-blue-600 text-white rounded-xl p-4 w-84 shadow-xl translate-x-[5%] translate-y-[-30%]">
                                                 <i class="absolute fa-solid fa-caret-left fa-2x text-blue-600 left-0 top-1/2 -translate-x-[50%] -translate-y-1/2"></i>
                                                 <h3 class="font-bold text-lg ">{{ __('ui.create_playlist') }}</h3>
                                                 <p class="py-4 text-sm">{{ __('ui.login_create_playlist') }}</p>
@@ -77,10 +77,15 @@
                                                 </div>
                                             </div>
                                         </div>
+                                        {{-- Mobile --}}
+                                        <a href="{{ route('login') }}" class="flex md:hidden items-center justify-center w-14 h-14 border border-gray-600 bg-gray-300/40 rounded-full shrink-0">
+                                            <i class="fa-brands fa-itunes-note fa-2x hover:text-[#1DB954] hover:scale-110 hover:rotate-12 transition-transform duration-300"></i>
+                                        </a>
                                         <div class="flex flex-col items-start ">
                                             <span class="font-bold text-base">{{ __('ui.playlist') }}</span>
                                             <p class="text-gray-400 text-xs">{{ __('ui.playlist_description') }}</p>
                                         </div>
+
                                     </div>
 
                                 </li>
@@ -151,17 +156,24 @@
 
                     @else
                     <div class="border border-slate-700 rounded-xl p-5 space-y-4 bg-slate-700/55 me-2 ms-2">
-                        <h3 class="text-white font-bold">{{ __('ui.first_playlist') }}</h3>
-                        <p class="text-white text-sm">{{ __('ui.first_playlist_description') }}</p>
-                        <div class="dropdown dropdown-right">
-                            <button tabindex="0" class="btn bg-white text-black rounded-3xl">{{ __('ui.create_playlist') }}</button>
+                        <h3 class="text-white font-bold">Crea la tua prima playlist</h3>
+                        <p class="text-white text-sm">E' facile, ti aiuteremo</p>
+
+                        {{-- Mobile: link diretto al login --}}
+                        <a href="{{ route('login') }}" class="md:hidden btn bg-white text-black rounded-3xl">
+                            Crea una playlist
+                        </a>
+
+                        {{-- Desktop: dropdown con finestra blu --}}
+                        <div class="hidden md:block dropdown dropdown-right">
+                            <button tabindex="0" class="btn bg-white text-black rounded-3xl">Crea una playlist</button>
                             <div tabindex="0" class="dropdown-content bg-blue-600 text-white rounded-xl p-4 w-84 shadow-xl translate-x-[65%] translate-y-[-60%]">
                                 <i class="absolute fa-solid fa-caret-left fa-2x text-blue-600 left-0 top-1/2 -translate-x-[50%] -translate-y-1/2"></i>
-                                <h3 class="font-bold text-lg ">{{ __('ui.create_playlist') }}</h3>
-                                <p class="py-4 text-sm">{{ __('ui.login_create_playlist') }}</p>
+                                <h3 class="font-bold text-lg">Crea una playlist</h3>
+                                <p class="py-4 text-sm">Accedi per creare e condividere playlist.</p>
                                 <div class="flex gap-4 justify-end">
-                                    <button class=" text-white font-bold">{{ __('ui.not_now') }}</button>
-                                    <a href="{{ route('login') }}" class="btn bg-white border-none text-black rounded-3xl font-bold">{{ __('ui.login') }}</a>
+                                    <button class="text-white font-bold">Non ora</button>
+                                    <a href="{{ route('login') }}" class="btn bg-white border-none text-black rounded-3xl font-bold">Accedi</a>
                                 </div>
                             </div>
                         </div>

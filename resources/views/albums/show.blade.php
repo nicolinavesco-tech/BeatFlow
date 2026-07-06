@@ -221,12 +221,15 @@
                     <section class="px-5 md:px-8 pb-6 border-t border-slate-700 bg-base-100">
                         <div class="pt-6">
                             <h2 class="text-2xl font-bold mb-4 text-white">{{ __('ui.album_tracks') }}</h2>
-                            <ul class="hidden md:block list bg-base-100 rounded-box shadow-md w-full">
+                            <ul class="list bg-base-100 rounded-box shadow-md w-full">
                                 <li class="p-4 pb-2 text-xs opacity-60 tracking-wide">{{ __('ui.tracklist') }}</li>
 
                                 @foreach ($album->songs as $index => $song)
                                 @php $songAudioId = 'audio-song-' . $song->id; @endphp
-                                <li class="list-row">
+                                <li class="list-row"
+                                    data-song-title="{{ $song->title }}"
+                                    data-song-artist="{{ $album->artist->name }}"
+                                    data-song-id="{{ $song->id }}">
                                     <div class="text-4xl font-thin opacity-30 tabular-nums">
                                         {{ str_pad($index + 1, 2, '0', STR_PAD_LEFT) }}
                                     </div>
@@ -250,40 +253,41 @@
                                 </li>
                                 @endforeach
                             </ul>
-
-                            {{-- Mobile: carosello --}}
-                            <div class="relative w-full group/carousel md:hidden">
-                                <button type="button" onclick="scrollCarousel('songsCarousel', -350)"
-                                    class="btn btn-circle absolute left-0 top-16 z-20 bg-black/20 border-none text-white opacity-0 group-hover/carousel:opacity-100 transition-opacity duration-300">
-                                    ❮
-                                </button>
-
-                                <div id="songsCarousel" class="flex gap-4 overflow-x-auto scroll-smooth pt-2 pb-4 px-2" style="scrollbar-width: none;">
-                                    @foreach ($album->songs as $index => $song)
-                                    @php $songMobileId = 'audio-song-mobile-' . $song->id; @endphp
-                                    <div class="group/card shrink-0 w-44 relative hover:bg-slate-700/55 rounded-lg p-2 transition">
-                                        <a href="#" class="block">
-                                            <img src="{{ asset($song->image_path ?? $album->cover_image) }}" alt="{{ $song->title }}" class="w-40 h-40 rounded-lg object-cover">
-                                            <h3 class="font-bold pt-2 text-white truncate">{{ $song->title }}</h3>
-                                            <p class="text-sm text-gray-400 truncate">{{ $album->artist->name }}</p>
-                                        </a>
-                                        <button type="button" onclick="event.stopPropagation(); playSong('{{ $songMobileId }}')"
-                                            class="absolute bottom-16 right-4 z-10 opacity-0 translate-y-4 group-hover/card:opacity-100 group-hover/card:translate-y-0 transition duration-300">
-                                            <i class="fa-solid fa-circle-play fa-3x" style="color: rgb(0, 182, 27);"></i>
-                                        </button>
-                                        <audio id="{{ $songMobileId }}">
-                                            <source src="{{ asset($song->file_path) }}" type="audio/mpeg">
-                                        </audio>
-                                    </div>
-                                    @endforeach
-                                </div>
-
-                                <button type="button" onclick="scrollCarousel('songsCarousel', 350)"
-                                    class="btn btn-circle absolute right-0 top-16 z-20 bg-black/20 border-none text-white opacity-0 group-hover/carousel:opacity-100 transition-opacity duration-300">
-                                    ❯
-                                </button>
-                            </div>
                         </div>
+
+                        {{-- Mobile: carosello --}}
+                        <div class="relative w-full group/carousel">
+                            <button type="button" onclick="scrollCarousel('songsCarousel', -350)"
+                                class="btn btn-circle absolute left-0 top-16 z-20 bg-black/20 border-none text-white opacity-0 group-hover/carousel:opacity-100 transition-opacity duration-300">
+                                ❮
+                            </button>
+
+                            <div id="songsCarousel" class="flex gap-4 overflow-x-auto scroll-smooth pt-2 pb-4 px-2" style="scrollbar-width: none;">
+                                @foreach ($album->songs as $index => $song)
+                                @php $songMobileId = 'audio-song-mobile-' . $song->id; @endphp
+                                <div class="group/card shrink-0 w-44 relative hover:bg-slate-700/55 rounded-lg p-2 transition">
+                                    <a href="#" class="block">
+                                        <img src="{{ asset($song->image_path ?? $album->cover_image) }}" alt="{{ $song->title }}" class="w-40 h-40 rounded-lg object-cover">
+                                        <h3 class="font-bold pt-2 text-white truncate">{{ $song->title }}</h3>
+                                        <p class="text-sm text-gray-400 truncate">{{ $album->artist->name }}</p>
+                                    </a>
+                                    <button type="button" onclick="event.stopPropagation(); playSong('{{ $songMobileId }}')"
+                                        class="absolute bottom-16 right-4 z-10 opacity-0 translate-y-4 group-hover/card:opacity-100 group-hover/card:translate-y-0 transition duration-300">
+                                        <i class="fa-solid fa-circle-play fa-3x" style="color: rgb(0, 182, 27);"></i>
+                                    </button>
+                                    <audio id="{{ $songMobileId }}">
+                                        <source src="{{ asset($song->file_path) }}" type="audio/mpeg">
+                                    </audio>
+                                </div>
+                                @endforeach
+                            </div>
+
+                            <button type="button" onclick="scrollCarousel('songsCarousel', 350)"
+                                class="btn btn-circle absolute right-0 top-16 z-20 bg-black/20 border-none text-white opacity-0 group-hover/carousel:opacity-100 transition-opacity duration-300">
+                                ❯
+                            </button>
+                        </div>
+
                     </section>
 
                     {{-- Album con carosello --}}
