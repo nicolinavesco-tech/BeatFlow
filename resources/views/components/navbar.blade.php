@@ -64,6 +64,20 @@
         <a href="{{ route('download') }}" class=" text-center text-white text-sm hover:underline">{{ __('ui.download_direct') }}</a>
       </div>
     </div>
+    <div class="flex justify-end items-end">
+      <div class="dropdown dropdown-end">
+        <div tabindex="0" role="button"><i class="fa-solid fa-globe"></i></div>
+        <ul tabindex="0" class="dropdown-content menu bg-base-100 rounded-box w-40 p-2 shadow mt-3">
+          <li class="">
+            <x-_locale lang="it">Italiano </x-_locale> 
+          </li>
+          <li class="flex">
+            <x-_locale lang="uk">English</x-_locale>
+          </li>
+
+        </ul>
+      </div>
+    </div>
 
 
     <div class="dropdown dropdown-end">

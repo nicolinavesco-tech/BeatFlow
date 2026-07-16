@@ -176,7 +176,37 @@
 
                 </aside>
 
-                <div class="flex rounded-xl border border-base-100 w-full flex-col gap-6 p-5 md:p-8 mt-20 md:mt-0 bg-base-100 bg-[linear-gradient(to_top,transparent_50%,#15803d_70%,#4ade80)]">
+                <div class=" flex justify-center md:hidden pt-20 left-0 right-0 gap-1 bg-black z-40 px-4 py-2">
+                    <a href="{{ route('homepage') }}" class="btn rounded-full"><i class="fa-regular fa-house text-white"></i></a>
+                    <form action="{{ route('global.search') }}" method="GET">
+                        <label class="input w-70 flex items-center gap-2">
+
+                            <svg class="h-[1em] opacity-50" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <g
+                                    stroke-linejoin="round"
+                                    stroke-linecap="round"
+                                    stroke-width="2.5"
+                                    fill="none"
+                                    stroke="currentColor">
+                                    <circle cx="11" cy="11" r="8"></circle>
+                                    <path d="m21 21-4.3-4.3"></path>
+                                </g>
+                            </svg>
+
+                            <input type="search" name="q" value="{{ request('q') }}" required placeholder="{{ __('ui.search_placeholder') }}" class="flex-1" />
+                            <select name="source" class="bg-slate-800/70 text-white text-sm outline-none ">
+                                <option value="local" @selected(request('source')==='local' )>
+                                    {{ __('ui.library') }}
+                                </option>
+                                <option value="jamendo" @selected(request('source')==='jamendo' )>
+                                    {{ __('ui.explore') }}
+                                </option>
+                            </select>
+                        </label>
+                    </form>
+                </div>
+
+                <div class="flex rounded-xl border border-base-100 w-full flex-col gap-6 p-5 md:p-8 bg-base-100 bg-[linear-gradient(to_top,transparent_50%,#15803d_70%,#4ade80)]">
 
                     <a href="{{ route('homepage') }}" class="flex items-center gap-2 text-white px-4 py-2 bg-black/40 backdrop-blur-md rounded-full hover:bg-black/60 transition w-fit">
                         <i class="fa-solid fa-chevron-left"></i>

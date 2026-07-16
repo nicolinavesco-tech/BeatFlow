@@ -3,6 +3,35 @@
         <main class="px-2 sm:px-4 lg:px-6">
             <section class="min-h-screen flex flex-col md:flex-row gap-2 pt-20 bg-black homepage-section">
                 <div class="border mt-20 md:mt-0 rounded-xl border-base-100 bg-base-100 w-full md:w-80 lg:w-90 shrink-0 space-y-5 aside-bar">
+                    <div class="flex gap-2 pt-5 justify-center md:hidden">
+                        <a href="{{ route('homepage') }}" class="btn rounded-full"><i class="fa-regular fa-house text-white"></i></a>
+                        <form action="{{ route('global.search') }}" method="GET">
+                            <label class="input w-70 flex items-center gap-2">
+    
+                                <svg class="h-[1em] opacity-50" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                    <g
+                                        stroke-linejoin="round"
+                                        stroke-linecap="round"
+                                        stroke-width="2.5"
+                                        fill="none"
+                                        stroke="currentColor">
+                                        <circle cx="11" cy="11" r="8"></circle>
+                                        <path d="m21 21-4.3-4.3"></path>
+                                    </g>
+                                </svg>
+    
+                                <input type="search" name="q" value="{{ request('q') }}" required placeholder="{{ __('ui.search_placeholder') }}" class="flex-1" />
+                                <select name="source" class="bg-slate-800/70 text-white text-sm outline-none ">
+                                    <option value="local" @selected(request('source')==='local' )>
+                                        {{ __('ui.library') }}
+                                    </option>
+                                    <option value="jamendo" @selected(request('source')==='jamendo' )>
+                                        {{ __('ui.explore') }}
+                                    </option>
+                                </select>
+                            </label>
+                        </form>
+                    </div>
                     <div class="flex justify-between">
                         <p class="text-xl font-bold mb-4 p-5">{{ __('ui.your_library') }}</p>
                         <div class="dropdown dropdown-end md:dropdown-start p-4">
@@ -25,7 +54,7 @@
                             @auth
                             <ul tabindex="0" class="dropdown-content menu bg-base-100 rounded-box z-1 w-84 p-2 shadow border border-slate-700/80 mt-2">
                                 <li>
-                                    <div class="dropdown  dropdown-right flex">
+                                    <div class="dropdown dropdown-right flex">
                                         <div class="flex items-center justify-center w-14 h-14 border border-gray-600 bg-gray-300/40 rounded-full shrink-0">
                                             <button @click.prevent="tab = 'createPlaylist'" tabindex="0"><i class="fa-brands fa-itunes-note fa-2x hover:text-[#1DB954] hover:scale-110 hover:rotate-12 transition-transform duration-300"></i></button>
                                         </div>
@@ -153,7 +182,6 @@
                         <p class="text-white text-sm">{{ __('ui.podcast_description') }}</p>
                         <a href="{{ route('podcast') }}" class="btn bg-white text-black rounded-3xl">{{ __('ui.browse_podcast') }}</a>
                     </div>
-
                     @else
                     <div class="border border-slate-700 rounded-xl p-5 space-y-4 bg-slate-700/55 me-2 ms-2">
                         <h3 class="text-white font-bold">Crea la tua prima playlist</h3>
@@ -184,8 +212,6 @@
                         <p class="text-white text-sm">{{ __('ui.podcast_description') }}</p>
                         <a href="{{ route('podcast') }}" class="btn bg-white text-black rounded-3xl">{{ __('ui.browse_podcast') }}</a>
                     </div>
-                    <x-_locale lang="it" />
-                    <x-_locale lang="uk" />
                     @endauth
                 </div>
 

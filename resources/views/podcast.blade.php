@@ -26,14 +26,13 @@
                             <li>
                                 <div class="dropdown dropdown-right flex">
                                     <div class="flex items-center justify-center w-14 h-14 border border-gray-600 bg-gray-300/40 rounded-full shrink-0">
-                                        <a href="{{ route('homepage') }}?tab=createPlaylist">
-                                            <i class="fa-brands fa-itunes-note fa-2x hover:text-[#1DB954] hover:scale-110 hover:rotate-12 transition-transform duration-300"></i>
-                                        </a>
-                                        <div class="flex flex-col items-start ">
-                                            <span class="font-bold text-base">Playlist</span>
-                                            <p class="text-gray-400 text-xs">Riunisci i tuoi brani preferiti</p>
-                                        </div>
+                                        <button @click.prevent="tab = 'createPlaylist'" tabindex="0"><i class="fa-brands fa-itunes-note fa-2x hover:text-[#1DB954] hover:scale-110 hover:rotate-12 transition-transform duration-300"></i></button>
                                     </div>
+                                    <div class="flex flex-col items-start ">
+                                        <span class="font-bold text-base">{{ __('ui.playlist') }}</span>
+                                        <p class="text-gray-400 text-xs">{{ __('ui.playlist_description') }}</p>
+                                    </div>
+                                </div>
 
                             </li>
                             <li>
