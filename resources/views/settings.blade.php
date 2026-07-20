@@ -3,7 +3,7 @@
     <section class="min-h-screen flex bg-black justify-center items-start pt-20 gap-2">
 
         {{-- Sidebar nascosta su mobile--}}
-        <aside class="hidden lg:flex w-90 bg-base-100 rounded-xl flex-col h-screen sticky top-20 space-y-6 shrink-0 z-9999">
+        <aside class="hidden lg:flex w-90 bg-base-100 rounded-xl flex-col min-h-screen sticky top-20 space-y-6 shrink-0 z-40">
             <div class="flex justify-between">
                 <p class="text-xl font-bold mb-4 p-5">La tua libreria</p>
                 <div class="dropdown dropdown-start p-4">
@@ -171,6 +171,7 @@
             </div>
             @endauth
         </aside>
+        <!-- Main Content -->
         <div class="min-h-screen flex rounded-xl border border-base-100 w-full items-center min-w-0 bg-base-100 flex-col gap-4 pt-5">
 
             <div class="w-full max-w-4xl mx-auto px-8 py-10 space-y-6 mb-6">

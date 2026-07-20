@@ -1,37 +1,37 @@
 <x-layout>
     <div x-show="tab === 'home'">
-        <main class="px-2 sm:px-4 lg:px-6">
-            <section class="min-h-screen flex flex-col md:flex-row gap-2 pt-20 bg-black homepage-section">
-                <div class="border mt-20 md:mt-0 rounded-xl border-base-100 bg-base-100 w-full md:w-80 lg:w-90 shrink-0 space-y-5 aside-bar">
-                    <div class="flex gap-2 pt-5 justify-center md:hidden">
-                        <a href="{{ route('homepage') }}" class="btn rounded-full"><i class="fa-regular fa-house text-white"></i></a>
-                        <form action="{{ route('global.search') }}" method="GET">
-                            <label class="input w-70 flex items-center gap-2">
-    
-                                <svg class="h-[1em] opacity-50" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                                    <g
-                                        stroke-linejoin="round"
-                                        stroke-linecap="round"
-                                        stroke-width="2.5"
-                                        fill="none"
-                                        stroke="currentColor">
-                                        <circle cx="11" cy="11" r="8"></circle>
-                                        <path d="m21 21-4.3-4.3"></path>
-                                    </g>
-                                </svg>
-    
-                                <input type="search" name="q" value="{{ request('q') }}" required placeholder="{{ __('ui.search_placeholder') }}" class="flex-1" />
-                                <select name="source" class="bg-slate-800/70 text-white text-sm outline-none ">
-                                    <option value="local" @selected(request('source')==='local' )>
-                                        {{ __('ui.library') }}
-                                    </option>
-                                    <option value="jamendo" @selected(request('source')==='jamendo' )>
-                                        {{ __('ui.explore') }}
-                                    </option>
-                                </select>
-                            </label>
-                        </form>
-                    </div>
+        <main>
+            <div class="flex gap-2 pt-20 justify-center lg:hidden bg-black">
+                <a href="{{ route('homepage') }}" class="btn rounded-full"><i class="fa-regular fa-house text-white"></i></a>
+                <form action="{{ route('global.search') }}" method="GET">
+                    <label class="input w-65 md:w-100 flex items-center gap-2">
+
+                        <svg class="h-[1em] opacity-50" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                            <g
+                                stroke-linejoin="round"
+                                stroke-linecap="round"
+                                stroke-width="2.5"
+                                fill="none"
+                                stroke="currentColor">
+                                <circle cx="11" cy="11" r="8"></circle>
+                                <path d="m21 21-4.3-4.3"></path>
+                            </g>
+                        </svg>
+
+                        <input type="search" name="q" value="{{ request('q') }}" required placeholder="{{ __('ui.search_placeholder') }}" class="flex-1" />
+                        <select name="source" class="bg-slate-800/70 text-white text-sm outline-none ">
+                            <option value="local" @selected(request('source')==='local' )>
+                                {{ __('ui.library') }}
+                            </option>
+                            <option value="jamendo" @selected(request('source')==='jamendo' )>
+                                {{ __('ui.explore') }}
+                            </option>
+                        </select>
+                    </label>
+                </form>
+            </div>
+            <section class="min-h-screen flex flex-col md:flex-row gap-2 lg:pt-20 bg-black homepage-section">
+                <div class="border rounded-xl border-base-100 bg-base-100 w-full lg:w-80 xl:w-90 shrink-0 space-y-5 aside-bar">
                     <div class="flex justify-between">
                         <p class="text-xl font-bold mb-4 p-5">{{ __('ui.your_library') }}</p>
                         <div class="dropdown dropdown-end md:dropdown-start p-4">
@@ -52,7 +52,7 @@
                                 <span>{{ __('ui.create') }}</span>
                             </label>
                             @auth
-                            <ul tabindex="0" class="dropdown-content menu bg-base-100 rounded-box z-1 w-84 p-2 shadow border border-slate-700/80 mt-2">
+                            <ul tabindex="0" class="dropdown-content menu bg-base-100 rounded-box z-50 w-84 p-2 shadow border border-slate-700/80 mt-2">
                                 <li>
                                     <div class="dropdown dropdown-right flex">
                                         <div class="flex items-center justify-center w-14 h-14 border border-gray-600 bg-gray-300/40 rounded-full shrink-0">
@@ -91,7 +91,7 @@
 
                             </ul>
                             @else
-                            <ul tabindex="0" class="dropdown-content menu bg-base-100 rounded-box z-1 w-84 p-2 shadow border border-slate-700/80 mt-2">
+                            <ul tabindex="0" class="dropdown-content menu bg-base-100 rounded-box z-50 w-84 p-2 shadow border border-slate-700/80 mt-2">
                                 <li>
                                     <div class="dropdown dropdown-right flex">
                                         <div class="hidden md:flex items-center justify-center w-14 h-14 border border-gray-600 bg-gray-300/40 rounded-full shrink-0">
@@ -250,10 +250,8 @@
                                     <h3 class="font-bold pt-2 truncate">{{ $song->title }}</h3>
                                     <p class="text-sm text-gray-400 truncate">{{ $song->artist }}</p>
                                 </a>
-                                <button
-                                    type="button"
-                                    onclick="event.stopPropagation(); playSong('audio-{{ $song->id }}')"
-                                    class="absolute bottom-16 right-4 z-10 opacity-0 translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 transition duration-300">
+                                <button type="button" onclick="event.stopPropagation(); playSong('audio-{{ $song->id }}')"
+                                    class="absolute bottom-16 right-4 z-10 opacity-100 xl:opacity-0 translate-y-0 xl:translate-y-4 xl:group-hover:opacity-100 xl:group-hover:translate-y-0 transition duration-300">
                                     <i class="fa-solid fa-circle-play fa-3x" style="color: rgb(0, 182, 27);"></i>
                                 </button>
                                 <audio id="audio-{{ $song->id }}">
@@ -289,7 +287,7 @@
                                 <button
                                     type="button"
                                     onclick='event.stopPropagation(); playSong("audio-{{ $artistSongId }}")'
-                                    class="absolute bottom-16 right-4 z-10 opacity-0 translate-y-5 group-hover:opacity-100 transition duration-300">
+                                    class="absolute bottom-16 right-4 z-10 opacity-100 xl:opacity-0 translate-y-0 xl:translate-y-4 xl:group-hover:opacity-100 xl:group-hover:translate-y-0 transition duration-300">
                                     <i class="fa-solid fa-circle-play fa-3x" style="color: rgb(0, 182, 27);"></i>
                                 </button>
                                 <audio id="audio-{{ $artistSongId }}">
@@ -324,7 +322,7 @@
                                 <button
                                     type="button"
                                     onclick="event.stopPropagation(); playSong('audio-{{ $album->songs->first()?->id ?? ''}}')"
-                                    class="absolute bottom-16 right-4 z-10 opacity-0 translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 transition duration-300">
+                                    class="absolute bottom-16 right-4 z-10 opacity-100 xl:opacity-0 translate-y-0 xl:translate-y-4 xl:group-hover:opacity-100 xl:group-hover:translate-y-0 transition duration-300">
                                     <i class="fa-solid fa-circle-play fa-3x" style="color: rgb(0, 182, 27);"></i>
                                 </button>
                                 <audio id="audio-{{ $album->songs->first()?->id ?? '' }}">

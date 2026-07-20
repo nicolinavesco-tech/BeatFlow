@@ -1,9 +1,38 @@
 <x-layout>
     <div x-show="tab === 'home'">
-        <main class="container-fluid">
-            <section class="min-h-screen flex bg-black justify-center items-start pt-20 gap-2">
+        <main>
+            <div class="flex gap-2 pt-20 justify-center lg:hidden bg-black">
+                <a href="{{ route('homepage') }}" class="btn rounded-full"><i class="fa-regular fa-house text-white"></i></a>
+                <form action="{{ route('global.search') }}" method="GET">
+                    <label class="input w-65 md:w-100 flex items-center gap-2">
+
+                        <svg class="h-[1em] opacity-50" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                            <g
+                                stroke-linejoin="round"
+                                stroke-linecap="round"
+                                stroke-width="2.5"
+                                fill="none"
+                                stroke="currentColor">
+                                <circle cx="11" cy="11" r="8"></circle>
+                                <path d="m21 21-4.3-4.3"></path>
+                            </g>
+                        </svg>
+
+                        <input type="search" name="q" value="{{ request('q') }}" required placeholder="{{ __('ui.search_placeholder') }}" class="flex-1" />
+                        <select name="source" class="bg-slate-800/70 text-white text-sm outline-none ">
+                            <option value="local" @selected(request('source')==='local' )>
+                                {{ __('ui.library') }}
+                            </option>
+                            <option value="jamendo" @selected(request('source')==='jamendo' )>
+                                {{ __('ui.explore') }}
+                            </option>
+                        </select>
+                    </label>
+                </form>
+            </div>
+            <section class="min-h-screen flex bg-black justify-center items-start pt-10 lg:pt-20 gap-2">
                 {{-- Sidebar nascosta su mobile --}}
-                <aside class="hidden lg:flex w-90 bg-base-100 rounded-xl flex-col h-screen sticky top-20 space-y-6 shrink-0 z-9999">
+                <aside class="hidden lg:flex w-90 bg-base-100 rounded-xl flex-col min-h-screen sticky top-20 space-y-6 shrink-0 z-40">
                     <div class="flex justify-between">
                         <p class="text-xl font-bold mb-4 p-5">{{ __('ui.library') }}</p>
                         <div class="dropdown dropdown-start p-4">
@@ -176,39 +205,8 @@
                 </aside>
 
                 {{-- Main Content --}}
-                
-                
-                <div class="flex p-3 rounded-xl border border-base-100 w-full bg-base-100 flex-col gap-6">
-                    <div class=" flex justify-center md:hidden  left-0 right-0 gap-1 z-40 px-4 py-2">
-                    <a href="{{ route('homepage') }}" class="btn rounded-full"><i class="fa-regular fa-house text-white"></i></a>
-                    <form action="{{ route('global.search') }}" method="GET">
-                        <label class="input w-70 flex items-center gap-2">
-
-                            <svg class="h-[1em] opacity-50" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                                <g
-                                    stroke-linejoin="round"
-                                    stroke-linecap="round"
-                                    stroke-width="2.5"
-                                    fill="none"
-                                    stroke="currentColor">
-                                    <circle cx="11" cy="11" r="8"></circle>
-                                    <path d="m21 21-4.3-4.3"></path>
-                                </g>
-                            </svg>
-
-                            <input type="search" name="q" value="{{ request('q') }}" required placeholder="{{ __('ui.search_placeholder') }}" class="flex-1" />
-                            <select name="source" class="bg-slate-800/70 text-white text-sm outline-none ">
-                                <option value="local" @selected(request('source')==='local' )>
-                                    {{ __('ui.library') }}
-                                </option>
-                                <option value="jamendo" @selected(request('source')==='jamendo' )>
-                                    {{ __('ui.explore') }}
-                                </option>
-                            </select>
-                        </label>
-                    </form>
-                </div>
-                    <header class="min-h-64 md:h-100 bg-cover bg-center flex flex-col p-5 md:p-8 rounded-t-xl bg-[linear-gradient(to_top,transparent_0%,#15803d_70%,#4ade80)]">
+                <div class="flex p-3 rounded-xl border border-base-100 w-full min-h-screen min-w-0 bg-base-100 flex-col gap-6 bg-[linear-gradient(to_top,transparent_60%,#15803d_70%,#4ade80)]">
+                    <header class="min-h-64 md:h-100 bg-cover bg-center flex flex-col p-5 md:p-8 rounded-t-xl ">
                         <a href="{{ route('homepage') }}" class="flex items-center gap-2 text-white px-4 py-2 bg-black/40 backdrop-blur-md rounded-full hover:bg-black/60 transition w-fit">
                             <i class="fa-solid fa-chevron-left"></i>
                             <span>{{ __('ui.back') }}</span>
@@ -225,7 +223,7 @@
                         </div>
                     </header>
 
-                    <section class="px-5 md:px-8 pt-4 flex items-center gap-5 bg-base-100">
+                    <section class="px-5 md:px-8 pt-4 flex items-center gap-5 ">
                         <button type="button" onclick="playSong('album-preview')" class="rounded-full">
                             <i class="fa-solid fa-circle-play fa-4x" style="color: rgb(0, 182, 27);"></i>
                         </button>
@@ -249,10 +247,10 @@
                     </section>
 
                     {{-- Tracce Album con carosello --}}
-                    <section class="px-5 md:px-8 pb-6 border-t border-slate-700 bg-base-100">
+                    <section class="px-5 md:px-8 pb-6 border-t border-slate-700 ">
                         <div class="pt-6">
                             <h2 class="text-2xl font-bold mb-4 text-white">{{ __('ui.album_tracks') }}</h2>
-                            <ul class="list bg-base-100 rounded-box shadow-md w-full">
+                            <ul class="list rounded-box shadow-md w-full">
                                 <li class="p-4 pb-2 text-xs opacity-60 tracking-wide">{{ __('ui.tracklist') }}</li>
 
                                 @foreach ($album->songs as $index => $song)
@@ -285,69 +283,36 @@
                                 @endforeach
                             </ul>
                         </div>
-
-                        {{-- Mobile: carosello --}}
-                        <div class="relative w-full group/carousel">
-                            <button type="button" onclick="scrollCarousel('songsCarousel', -350)"
-                                class="btn btn-circle absolute left-0 top-16 z-20 bg-black/20 border-none text-white opacity-0 group-hover/carousel:opacity-100 transition-opacity duration-300">
-                                ❮
-                            </button>
-
-                            <div id="songsCarousel" class="flex gap-4 overflow-x-auto scroll-smooth pt-2 pb-4 px-2" style="scrollbar-width: none;">
-                                @foreach ($album->songs as $index => $song)
-                                @php $songMobileId = 'audio-song-mobile-' . $song->id; @endphp
-                                <div class="group/card shrink-0 w-44 relative hover:bg-slate-700/55 rounded-lg p-2 transition">
-                                    <a href="#" class="block">
-                                        <img src="{{ asset($song->image_path ?? $album->cover_image) }}" alt="{{ $song->title }}" class="w-40 h-40 rounded-lg object-cover">
-                                        <h3 class="font-bold pt-2 text-white truncate">{{ $song->title }}</h3>
-                                        <p class="text-sm text-gray-400 truncate">{{ $album->artist->name }}</p>
-                                    </a>
-                                    <button type="button" onclick="event.stopPropagation(); playSong('{{ $songMobileId }}')"
-                                        class="absolute bottom-16 right-4 z-10 opacity-0 translate-y-4 group-hover/card:opacity-100 group-hover/card:translate-y-0 transition duration-300">
-                                        <i class="fa-solid fa-circle-play fa-3x" style="color: rgb(0, 182, 27);"></i>
-                                    </button>
-                                    <audio id="{{ $songMobileId }}">
-                                        <source src="{{ asset($song->file_path) }}" type="audio/mpeg">
-                                    </audio>
-                                </div>
-                                @endforeach
-                            </div>
-
-                            <button type="button" onclick="scrollCarousel('songsCarousel', 350)"
-                                class="btn btn-circle absolute right-0 top-16 z-20 bg-black/20 border-none text-white opacity-0 group-hover/carousel:opacity-100 transition-opacity duration-300">
-                                ❯
-                            </button>
-                        </div>
-
                     </section>
 
-                    {{-- Album con carosello --}}
                     <section class="px-5 md:px-8 pb-10 flex flex-col">
                         <h2 class="font-bold text-white text-3xl mb-2">{{ __('ui.other_albums') }} {{ $album->artist->name }}</h2>
 
                         <div class="relative w-full group/carousel">
                             <button type="button" onclick="scrollCarousel('otherAlbumsCarousel', -350)"
-                                class="btn btn-circle absolute left-0 top-16 z-20 bg-black/20 border-none text-white opacity-0 group-hover/carousel:opacity-100 transition-opacity duration-300">
+                                class="btn btn-circle absolute left-0 top-17 lg:top-20 xl:top-23 z-20 bg-black/20 border-none text-white opacity-100 xl:opacity-0 xl:group-hover/carousel:opacity-100 transition-opacity duration-300">
                                 ❮
                             </button>
 
-                            <div id="otherAlbumsCarousel" class="flex gap-4 overflow-x-auto scroll-smooth pt-2 pb-4 px-2" style="scrollbar-width: none;">
+                            <div id="otherAlbumsCarousel" class="flex gap-2 md:gap-4 overflow-x-auto scroll-smooth pt-2 pb-4" style="scrollbar-width: none;">
                                 @foreach ($album->artist->albums->where('id', '!=', $album->id) as $otherAlbum)
-                                <article class="group/card shrink-0 w-44 relative hover:bg-slate-700/55 rounded-lg p-2 transition">
+                                <article class="group shrink-0 w-36 sm:w-40 md:w-44 lg:w-48 xl:w-52 flex flex-col relative hover:bg-slate-700/55 rounded-lg p-2 transition">
                                     <a href="{{ route('albums.show', $otherAlbum) }}" class="block">
-                                        <img src="{{ asset($otherAlbum->cover_image) }}" alt="{{ $otherAlbum->title }}" class="w-40 h-40 rounded-lg object-cover">
+                                        <img src="{{ asset($otherAlbum->cover_image) }}" alt="{{ $otherAlbum->title }}" class="w-full aspect-square rounded-lg object-cover">
                                         <h3 class="font-bold pt-2 text-white truncate">{{ $otherAlbum->title }}</h3>
                                         <p class="text-sm text-gray-400">Album • {{ $otherAlbum->release_year }}</p>
                                     </a>
                                 </article>
                                 @endforeach
                             </div>
+
                             <button type="button" onclick="scrollCarousel('otherAlbumsCarousel', 350)"
-                                class="btn btn-circle absolute right-0 top-16 z-20 bg-black/20 border-none text-white opacity-0 group-hover/carousel:opacity-100 transition-opacity duration-300">
+                                class="btn btn-circle absolute right-0 top-17 lg:top-20 xl:top-23 z-20 bg-black/20 border-none text-white opacity-100 xl:opacity-0 xl:group-hover/carousel:opacity-100 transition-opacity duration-300">
                                 ❯
                             </button>
                         </div>
                     </section>
+
                 </div>
             </section>
         </main>

@@ -1,7 +1,36 @@
-<main class="container-fluid">
-    <section class="min-h-screen flex bg-black  pt-20 gap-2">
+<main>
+    <div class="flex gap-2 pt-20 justify-center lg:hidden bg-black">
+        <a href="{{ route('homepage') }}" class="btn rounded-full"><i class="fa-regular fa-house text-white"></i></a>
+        <form action="{{ route('global.search') }}" method="GET">
+            <label class="input w-65 md:w-100 flex items-center gap-2">
+
+                <svg class="h-[1em] opacity-50" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <g
+                        stroke-linejoin="round"
+                        stroke-linecap="round"
+                        stroke-width="2.5"
+                        fill="none"
+                        stroke="currentColor">
+                        <circle cx="11" cy="11" r="8"></circle>
+                        <path d="m21 21-4.3-4.3"></path>
+                    </g>
+                </svg>
+
+                <input type="search" name="q" value="{{ request('q') }}" required placeholder="{{ __('ui.search_placeholder') }}" class="flex-1" />
+                <select name="source" class="bg-slate-800/70 text-white text-sm outline-none ">
+                    <option value="local" @selected(request('source')==='local' )>
+                        {{ __('ui.library') }}
+                    </option>
+                    <option value="jamendo" @selected(request('source')==='jamendo' )>
+                        {{ __('ui.explore') }}
+                    </option>
+                </select>
+            </label>
+        </form>
+    </div>
+    <section class="min-h-screen flex bg-black pt-10 lg:pt-20 gap-2">
         {{-- Sidebar nascosta su mobile --}}
-        <aside class="hidden lg:flex w-90 bg-base-100 rounded-xl flex-col h-screen sticky top-20 space-y-6 shrink-0 z-9999">
+        <aside class="hidden lg:flex w-90 bg-base-100 rounded-xl flex-col min-h-screen sticky top-20 space-y-6 shrink-0 z-40">
             <div class="flex justify-between">
                 <p class="text-xl font-bold mb-4 p-5">La tua libreria</p>
                 <div class="dropdown dropdown-start p-4">
@@ -107,7 +136,7 @@
                     </a>
                     <form action="{{ route('playlists.store') }}" method="POST" enctype="multipart/form-data" class="flex flex-col md:flex-row gap-6 w-full pt-5">
                         @csrf
-                        <div class="relative group cursor-pointer w-80 h-70"
+                        <div class="relative group cursor-pointer w-full max-w-80 h-64 md:h-70 mx-auto"
                             onclick="document.querySelector('#new-playlist-image').click()">
 
                             <img id="new-playlist-preview" src="" class="w-full h-full rounded-xl object-cover shadow-lg hidden">
@@ -153,14 +182,15 @@
                 </div>
 
                 <div class="hidden lg:flex items-center ps-13 p-3 pt-4">
-                    <span class="text-gray-400 text-xs w-10">#</span>
-                    <span class="text-gray-400 text-xs flex-1">Titolo</span>
-                    <span class="text-gray-400 text-xs w-45">Album</span>
-                    <span class="text-gray-400 text-xs w-50">Aggiunto il giorno</span>
-                    <span class="text-gray-400 text-xs w-30"><i class="fa-solid fa-clock"></i></span>
+                    <span class="text-gray-400 text-xs w-10 shrink-0">#</span>
+                    <span class="text-gray-400 text-xs w-2/5 min-w-0 px-2">Titolo</span>
+                    <span class="text-gray-400 text-xs w-1/4 min-w-0 px-2">Album</span>
+                    <span class="text-gray-400 text-xs w-1/5 min-w-0 px-2">Aggiunto il giorno</span>
+                    <span class="text-gray-400 text-xs w-16 text-left shrink-0 ml-auto"><i class="fa-solid fa-clock"></i></span>
+                    <span class="w-6 shrink-0"></span>
                 </div>
                 <div class="pt-6 border-t border-slate-700 p-5">
-                    <ul class="hidden md:block list bg-base-100 rounded-box shadow-md w-full">
+                    <ul class="hidden lg:block list bg-base-100 rounded-box shadow-md w-full">
                         <li class="p-4 pb-2 text-xs opacity-60 tracking-wide">Aggiunte di recente</li>
                         @auth
                         @php $recentSongs = auth()->user()->addSongs()->latest('pivot_created_at')->take(5)->get(); @endphp
@@ -172,10 +202,13 @@
                             data-song-id="{{ $song->id }}">
 
                             {{-- Numero + play --}}
-                            <div class="relative w-6 h-6 flex items-center justify-center shrink-0 mr-3">
-                                <span class="text-sm leading-none font-thin opacity-30 tabular-nums group-hover:hidden">{{ str_pad($index + 1, 2, '0', STR_PAD_LEFT) }}</span>
-                                <button class="absolute inset-0 hidden group-hover:flex items-center justify-center text-white" onclick="playSong('audio-recent-{{ $song->id }}')">
-                                    <svg class="size-[1.2em]" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                            <div class="relative w-10 flex items-center justify-center shrink-0">
+                                <span class="text-sm leading-none font-thin opacity-30 tabular-nums hidden [@media(hover:hover)]:block [@media(hover:hover)]:group-hover:hidden">
+                                    {{ str_pad($index + 1, 2, '0', STR_PAD_LEFT) }}
+                                </span>
+                                <button class="absolute inset-0 flex items-center justify-center text-white [@media(hover:hover)]:hidden [@media(hover:hover)]:group-hover:flex"
+                                    onclick="playSong('audio-add-{{$song->id}}')">
+                                    <svg class="size-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                                         <g stroke-linejoin="round" stroke-linecap="round" stroke-width="2" fill="none" stroke="currentColor">
                                             <path d="M6 3L20 12 6 21 6 3z"></path>
                                         </g>
@@ -184,21 +217,21 @@
                             </div>
 
                             {{-- Immagine + titolo --}}
-                            <div class="flex gap-3 items-center flex-1 min-w-0">
+                            <div class="flex gap-3 items-center w-2/5 min-w-0 pr-4">
                                 <img class="size-10 rounded-lg object-cover shrink-0" src="{{ asset($song->image_path) }}" alt="{{ $song->title }}">
                                 <div class="flex flex-col justify-center min-w-0">
                                     <a href="{{ route('songs.show', $song) }}" class="text-white font-bold hover:underline truncate">{{ $song->title }}</a>
-                                    <a href="{{ route('artists.show', $song->artistModel) }}" class="text-xs uppercase font-semibold opacity-60 hover:underline">{{ $song->artist }}</a>
+                                    <a href="{{ route('artists.show', $song->artistModel) }}" class="text-xs uppercase font-semibold opacity-60 hover:underline truncate">{{ $song->artist }}</a>
                                 </div>
                             </div>
 
-                            {{-- Durata --}}
-                            <span class="text-white font-bold w-50 truncate">{{ $song->album->title ?? 'Singolo' }}</span>
-                            <span class="text-gray-400 text-sm w-50">{{ $song->pivot->created_at?->format('d/m/Y') ?? 'N/D' }}</span>
+
+                            <span class="text-white font-bold w-1/4 min-w-0 px-2 truncate">{{ $song->album->title ?? '-' }}</span>
+                            <span class="text-gray-400 text-sm lg:w-1/5 min-w-0 px-2 truncate">{{ $song->pivot->created_at?->format('d/m/Y') ?? 'N/D' }}</span>
                             <span class="text-gray-400 text-sm w-16 text-left shrink-0">{{ $song->duration_formatted }}</span>
 
 
-                            <div class="dropdown dropdown-end">
+                            <div class="dropdown dropdown-end shrink-0 w-6 flex justify-end">
                                 <button tabindex="0" role="button">
                                     <i class="fa-solid fa-ellipsis text-gray-400 hover:text-white"></i>
                                 </button>

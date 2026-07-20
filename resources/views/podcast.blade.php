@@ -1,6 +1,35 @@
 <x-layout>
     <main class=" bg-black">
         <section class="min-h-screen flex flex-col md:flex-row pt-20 gap-2 px-2 md:px-4">
+            <div class=" flex justify-center md:hidden left-0 right-0 gap-1 bg-black z-40 px-4 py-2">
+                <a href="{{ route('homepage') }}" class="btn rounded-full"><i class="fa-regular fa-house text-white"></i></a>
+                <form action="{{ route('global.search') }}" method="GET">
+                    <label class="input w-70 flex items-center gap-2">
+
+                        <svg class="h-[1em] opacity-50" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                            <g
+                                stroke-linejoin="round"
+                                stroke-linecap="round"
+                                stroke-width="2.5"
+                                fill="none"
+                                stroke="currentColor">
+                                <circle cx="11" cy="11" r="8"></circle>
+                                <path d="m21 21-4.3-4.3"></path>
+                            </g>
+                        </svg>
+
+                        <input type="search" name="q" value="{{ request('q') }}" required placeholder="{{ __('ui.search_placeholder') }}" class="flex-1" />
+                        <select name="source" class="bg-slate-800/70 text-white text-sm outline-none ">
+                            <option value="local" @selected(request('source')==='local' )>
+                                {{ __('ui.library') }}
+                            </option>
+                            <option value="jamendo" @selected(request('source')==='jamendo' )>
+                                {{ __('ui.explore') }}
+                            </option>
+                        </select>
+                    </label>
+                </form>
+            </div>
             <div class="border rounded-xl border-base-100 bg-base-100 w-full md:w-90 space-y-5 shrink-0">
                 <div class="flex justify-between">
                     <p class="text-xl font-bold mb-4 p-5">La tua libreria</p>

@@ -55,6 +55,8 @@ class AlbumSeeder extends Seeder
             ['artist_id' => $tarkan->id, 'title' => 'Karma Kapak', 'cover_image' => 'media/tarkan/karma_kapak.jpg', 'release_year' => 2018],
             ['artist_id' => $tarkan->id, 'title' => 'Quantum 51', 'cover_image' => 'media/tarkan/kuantum-51.jpg', 'release_year' => 2021],
             ['artist_id' => $tarkan->id, 'title' => 'Metamorfoz', 'cover_image' => 'media/tarkan/metamorfoz.jpg', 'release_year' => 2023],
+            ['artist_id' => $tarkan->id, 'title' => 'Yolla', 'cover_image' => 'media/tarkan1.jpg', 'release_year' => 2024],
+
 
             ['artist_id' => $tashsultana->id, 'title' => 'Flow State', 'cover_image' => 'media/tashsultana/flowstate.webp', 'release_year' => 2018],
 

@@ -1,9 +1,38 @@
 <x-layout>
-    <main class="container-fluid">
-        <section class="min-h-screen flex flex-col lg:flex-row bg-black items-start pt-20 gap-2 search-page">
+    <main>
+        <div class="flex gap-2 pt-20 justify-center lg:hidden bg-black">
+            <a href="{{ route('homepage') }}" class="btn rounded-full"><i class="fa-regular fa-house text-white"></i></a>
+            <form action="{{ route('global.search') }}" method="GET">
+                <label class="input w-65 md:w-100 flex items-center gap-2">
+
+                    <svg class="h-[1em] opacity-50" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <g
+                            stroke-linejoin="round"
+                            stroke-linecap="round"
+                            stroke-width="2.5"
+                            fill="none"
+                            stroke="currentColor">
+                            <circle cx="11" cy="11" r="8"></circle>
+                            <path d="m21 21-4.3-4.3"></path>
+                        </g>
+                    </svg>
+
+                    <input type="search" name="q" value="{{ request('q') }}" required placeholder="{{ __('ui.search_placeholder') }}" class="flex-1" />
+                    <select name="source" class="bg-slate-800/70 text-white text-sm outline-none ">
+                        <option value="local" @selected(request('source')==='local' )>
+                            {{ __('ui.library') }}
+                        </option>
+                        <option value="jamendo" @selected(request('source')==='jamendo' )>
+                            {{ __('ui.explore') }}
+                        </option>
+                    </select>
+                </label>
+            </form>
+        </div>
+        <section class="min-h-screen flex flex-col lg:flex-row bg-black items-start pt-10 lg:pt-20 gap-2 search-page">
 
             {{-- Sidebar desktop --}}
-            <aside class="hidden lg:flex w-90 bg-base-100 rounded-xl flex-col h-screen sticky top-20 space-y-6 shrink-0 z-9999">
+            <aside class="hidden lg:flex w-90 bg-base-100 rounded-xl min-h-screen flex-col sticky top-20 space-y-6 shrink-0 z-40">
                 <div class="flex justify-between">
                     <p class="text-xl font-bold mb-4 p-5">La tua libreria</p>
                     <div class="dropdown dropdown-start p-4">
@@ -169,7 +198,7 @@
             </aside>
 
             {{-- Main Content --}}
-            <div class="flex rounded-xl border border-base-100 w-full min-w-0 bg-base-100 flex-col gap-6 p-5 pt-20 md:p-8">
+            <div class="flex rounded-xl border border-base-100 w-full min-w-0 bg-base-100 flex-col gap-6 p-5 min-h-screen md:p-8">
                 <h1 class="text-xl md:text-2xl font-bold mb-2 text-white truncate">
                     Risultati per: "{{ $search }}"
                 </h1>
@@ -247,8 +276,8 @@
                                 @endif
                             </button>
                         </form>
-                        @endauth
                     </div>
+                    @endauth
                 </div>
                 @empty
                 <p class="text-white">Nessun risultato trovato.</p>

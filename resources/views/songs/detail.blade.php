@@ -1,9 +1,38 @@
 <x-layout>
     <div x-show="tab === 'home'">
-        <main class="container-fluid">
-            <section class="min-h-screen flex bg-black justify-center align-items-center pt-20 gap-2 details-section">
+        <main>
+            <div class="flex gap-2 pt-20 justify-center lg:hidden bg-black">
+                <a href="{{ route('homepage') }}" class="btn rounded-full"><i class="fa-regular fa-house text-white"></i></a>
+                <form action="{{ route('global.search') }}" method="GET">
+                    <label class="input w-65 md:w-100 flex items-center gap-2">
+
+                        <svg class="h-[1em] opacity-50" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                            <g
+                                stroke-linejoin="round"
+                                stroke-linecap="round"
+                                stroke-width="2.5"
+                                fill="none"
+                                stroke="currentColor">
+                                <circle cx="11" cy="11" r="8"></circle>
+                                <path d="m21 21-4.3-4.3"></path>
+                            </g>
+                        </svg>
+
+                        <input type="search" name="q" value="{{ request('q') }}" required placeholder="{{ __('ui.search_placeholder') }}" class="flex-1" />
+                        <select name="source" class="bg-slate-800/70 text-white text-sm outline-none ">
+                            <option value="local" @selected(request('source')==='local' )>
+                                {{ __('ui.library') }}
+                            </option>
+                            <option value="jamendo" @selected(request('source')==='jamendo' )>
+                                {{ __('ui.explore') }}
+                            </option>
+                        </select>
+                    </label>
+                </form>
+            </div>
+            <section class="min-h-screen flex bg-black justify-center align-items-center pt-10 lg:pt-20 gap-2 details-section">
                 {{-- Sidebar nascosta su mobile --}}
-                <aside class="hidden lg:flex w-90 bg-base-100 rounded-xl flex-col h-screen sticky top-20 space-y-6 shrink-0 z-9999">
+                <aside class="hidden lg:flex w-full lg:w-80 xl:w-90 bg-base-100 rounded-xl flex-col min-h-screen sticky top-20 space-y-6 shrink-0 z-40">
                     <div class="flex justify-between">
                         <p class="text-xl font-bold mb-4 p-5">La tua libreria</p>
                         <div class="dropdown dropdown-start p-4">
@@ -175,38 +204,8 @@
                     @endauth
 
                 </aside>
-
-                <div class=" flex justify-center md:hidden pt-20 left-0 right-0 gap-1 bg-black z-40 px-4 py-2">
-                    <a href="{{ route('homepage') }}" class="btn rounded-full"><i class="fa-regular fa-house text-white"></i></a>
-                    <form action="{{ route('global.search') }}" method="GET">
-                        <label class="input w-70 flex items-center gap-2">
-
-                            <svg class="h-[1em] opacity-50" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                                <g
-                                    stroke-linejoin="round"
-                                    stroke-linecap="round"
-                                    stroke-width="2.5"
-                                    fill="none"
-                                    stroke="currentColor">
-                                    <circle cx="11" cy="11" r="8"></circle>
-                                    <path d="m21 21-4.3-4.3"></path>
-                                </g>
-                            </svg>
-
-                            <input type="search" name="q" value="{{ request('q') }}" required placeholder="{{ __('ui.search_placeholder') }}" class="flex-1" />
-                            <select name="source" class="bg-slate-800/70 text-white text-sm outline-none ">
-                                <option value="local" @selected(request('source')==='local' )>
-                                    {{ __('ui.library') }}
-                                </option>
-                                <option value="jamendo" @selected(request('source')==='jamendo' )>
-                                    {{ __('ui.explore') }}
-                                </option>
-                            </select>
-                        </label>
-                    </form>
-                </div>
-
-                <div class="flex rounded-xl border border-base-100 w-full flex-col gap-6 p-5 md:p-8 bg-base-100 bg-[linear-gradient(to_top,transparent_50%,#15803d_70%,#4ade80)]">
+                {{-- Main Content --}}
+                <div class="flex rounded-xl border border-base-100 w-full min-w-0 flex-col gap-6 p-5 md:p-8 bg-base-100 bg-[linear-gradient(to_top,transparent_50%,#15803d_70%,#4ade80)]">
 
                     <a href="{{ route('homepage') }}" class="flex items-center gap-2 text-white px-4 py-2 bg-black/40 backdrop-blur-md rounded-full hover:bg-black/60 transition w-fit">
                         <i class="fa-solid fa-chevron-left"></i>
@@ -283,7 +282,7 @@
 
                         <div class="relative w-full group/carousel">
                             <button type="button" onclick="scrollCarousel('otherSongsCarousel', -350)"
-                                class="btn btn-circle absolute left-0 top-16 z-20 bg-black/20 border-none text-white opacity-0 group-hover/carousel:opacity-100 transition-opacity duration-300">
+                                class="btn btn-circle absolute left-0 top-17 lg:top-20 xl:top-23 z-20 bg-black/20 border-none text-white opacity-100 xl:opacity-0 xl:group-hover/carousel:opacity-100 transition-opacity duration-300">
                                 ❮
                             </button>
 
@@ -302,7 +301,7 @@
                                     <button
                                         type="button"
                                         onclick="event.stopPropagation(); playSong('audio-other-{{ $otherSong->id }}')"
-                                        class="absolute bottom-16 right-4 z-10 opacity-100 md:opacity-0 translate-y-0 md:translate-y-4 md:group-hover/card:opacity-100 md:group-hover/card:translate-y-0 transition duration-300">
+                                        class="absolute bottom-16 right-4 z-10 opacity-100 xl:opacity-0 translate-y-0 xl:translate-y-4 xl:group-hover/card:opacity-100 xl:group-hover/card:translate-y-0 transition duration-300">
                                         <i class="fa-solid fa-circle-play fa-3x" style="color: rgb(0, 182, 27);"></i>
                                     </button>
 
@@ -318,7 +317,7 @@
                             <button
                                 type="button"
                                 onclick="scrollCarousel('otherSongsCarousel', 350)"
-                                class="btn btn-circle absolute right-0 top-16 z-20 bg-black/20 border-none text-white opacity-0 group-hover/carousel:opacity-100 transition-opacity duration-300">
+                                class="btn btn-circle absolute right-0 top-17 lg:top-20 xl:top-23 z-20 bg-black/20 border-none text-white opacity-100 xl:opacity-0 xl:group-hover/carousel:opacity-100 transition-opacity duration-300">
                                 ❯
                             </button>
                         </div>

@@ -461,11 +461,19 @@
 
 @media (min-width:768px) and (max-width:1023px) {
 
-  .aside-bar {
-
-    width: 260px;
-
+  .homepage-section {
+    padding-top: 50px;
   }
+
+  .aside-bar {
+    width: 220px;
+  }
+
+  .search-page {
+    padding-top: 80px;
+  }
+
+
 
 }
 

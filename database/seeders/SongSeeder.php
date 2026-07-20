@@ -36,7 +36,20 @@ class SongSeeder extends Seeder
         $top = Artist::where('name', 'Twenty One Pilots')->first();
 
         // Albums
+        // Irina Rimes
         $cosmos = Album::where('title', 'Cosmos')->first();
+        $despreel = Album::where('title', 'Despre el')->first();
+        $acasa = Album::where('title', 'Acasa')->first();
+
+        // Tarkan
+        $metamorfoz = Album::where('title', 'Metamorfoz')->first();
+        $yolla = Album::where('title', 'Yolla')->first();
+
+
+
+
+
+
 
         $songs = [
             // Hatikoali
@@ -50,11 +63,11 @@ class SongSeeder extends Seeder
             ['title' => 'Alyp Kepte', 'artist' => 'Hatikoali', 'artist_id' => $hatikoali?->id, 'file_path' => 'songs/hatikoali/hatikoali-alypkepte.mp3', 'image_path' => 'media/hatikoali7.jpg', 'duration' => 198, 'genre_id' => $rap?->id],
 
             // Tarkan
-            ['title' => 'Gitte Bizden', 'artist' => 'Tarkan', 'artist_id' => $tarkan?->id, 'file_path' => 'songs/tarkan.mp3', 'image_path' => 'media/tarkan.jpg', 'duration' => 234, 'genre_id' => $pop?->id],
-            ['title' => 'Yolla', 'artist' => 'Tarkan', 'artist_id' => $tarkan?->id, 'file_path' => 'songs/tarkan/tarkan-yolla.mp3', 'image_path' => 'media/tarkan1.jpg', 'duration' => 207, 'genre_id' => $pop?->id],
+            ['title' => 'Gitte Bizden', 'artist' => 'Tarkan', 'artist_id' => $tarkan?->id, 'album_id' => $metamorfoz->id, 'file_path' => 'songs/tarkan.mp3', 'image_path' => 'media/tarkan.jpg', 'duration' => 234, 'genre_id' => $pop?->id],
+            ['title' => 'Yolla', 'artist' => 'Tarkan', 'artist_id' => $tarkan?->id, 'album_id' => $yolla->id, 'file_path' => 'songs/tarkan/tarkan-yolla.mp3', 'image_path' => 'media/tarkan1.jpg', 'duration' => 207, 'genre_id' => $pop?->id],
             ['title' => 'Kuzu Kuzu', 'artist' => 'Tarkan', 'artist_id' => $tarkan?->id, 'file_path' => 'songs/tarkan/tarkan-kuzu.mp3', 'image_path' => 'media/tarkan2.jpg', 'duration' => 219, 'genre_id' => $pop?->id],
             ['title' => 'Dedikodu', 'artist' => 'Tarkan', 'artist_id' => $tarkan?->id, 'file_path' => 'songs/tarkan/tarkan-dedikodu.mp3', 'image_path' => 'media/tarkan3.jpg', 'duration' => 192, 'genre_id' => $pop?->id],
-            ['title' => 'Gun gibi', 'artist' => 'Tarkan', 'artist_id' => $tarkan?->id, 'file_path' => 'songs/tarkan/tarkan-gungibi.mp3', 'image_path' => 'media/tarkan4.jpg', 'duration' => 245, 'genre_id' => $pop?->id],
+            ['title' => 'Gun gibi', 'artist' => 'Tarkan', 'artist_id' => $tarkan?->id, 'album_id' => $metamorfoz->id, 'file_path' => 'songs/tarkan/tarkan-gungibi.mp3', 'image_path' => 'media/tarkan4.jpg', 'duration' => 245, 'genre_id' => $pop?->id],
             ['title' => 'Ay', 'artist' => 'Tarkan', 'artist_id' => $tarkan?->id, 'file_path' => 'songs/tarkan.mp3', 'image_path' => 'media/tarkan5.jpg', 'duration' => 201, 'genre_id' => $pop?->id],
             ['title' => 'Dilli Duduk', 'artist' => 'Tarkan', 'artist_id' => $tarkan?->id, 'file_path' => 'songs/tarkan.mp3', 'image_path' => 'media/tarkan6.jpg', 'duration' => 228, 'genre_id' => $pop?->id],
             ['title' => 'Simarik', 'artist' => 'Tarkan', 'artist_id' => $tarkan?->id, 'file_path' => 'songs/tarkan.mp3', 'image_path' => 'media/tarkan7.jpg', 'duration' => 213, 'genre_id' => $pop?->id],
@@ -111,12 +124,12 @@ class SongSeeder extends Seeder
 
             // Irina Rimes
             ['title' => 'Visele', 'artist' => 'Irina Rimes', 'artist_id' => $irina?->id, 'album_id' => $cosmos->id, 'file_path' => 'songs/irina/IrinaRimes-Visele.mp3', 'image_path' => 'media/irina/irina(12).jpg', 'duration' => 218, 'genre_id' => $pop?->id],
-            ['title' => 'N-avem timp', 'artist' => 'Irina Rimes', 'artist_id' => $irina?->id, 'file_path' => 'songs/irina/IrinaRimes-N-avemtimp.mp3', 'image_path' => 'media/irina/irina(11).jpg', 'duration' => 195, 'genre_id' => $pop?->id],
+            ['title' => 'N-avem timp', 'artist' => 'Irina Rimes', 'artist_id' => $irina?->id, 'album_id' => $cosmos->id, 'file_path' => 'songs/irina/IrinaRimes-N-avemtimp.mp3', 'image_path' => 'media/irina/irina(11).jpg', 'duration' => 195, 'genre_id' => $pop?->id],
             ['title' => 'Changer', 'artist' => 'Irina Rimes', 'artist_id' => $irina?->id, 'file_path' => 'songs/irina/IrinaRimes-Changer.mp3', 'image_path' => 'media/irina/irina(10).jpg', 'duration' => 207, 'genre_id' => $pop?->id],
-            ['title' => 'Bolnavi amandoi', 'artist' => 'Irina Rimes', 'artist_id' => $irina?->id, 'file_path' => 'songs/irina/IrinaRimes-Bolnaviamandoi.mp3', 'image_path' => 'media/irina/irina(9).jpg', 'duration' => 189, 'genre_id' => $pop?->id],
-            ['title' => 'Ba ba ba', 'artist' => 'Irina Rimes', 'artist_id' => $irina?->id, 'file_path' => 'songs/irina/IrinaRimes-Bababa.mp3', 'image_path' => 'media/irina/irina(8).jpg', 'duration' => 176, 'genre_id' => $pop?->id],
-            ['title' => 'Cazane', 'artist' => 'Irina Rimes', 'artist_id' => $irina?->id, 'file_path' => 'songs/irina/IrinaRimes-Cazane.mp3', 'image_path' => 'media/irina/irina(7).jpg', 'duration' => 224, 'genre_id' => $pop?->id],
-            ['title' => 'Matahale', 'artist' => 'Irina Rimes', 'artist_id' => $irina?->id, 'file_path' => 'songs/irina/IrinaRimes-Matahale.mp3', 'image_path' => 'media/irina/irina(2).jpg', 'duration' => 211, 'genre_id' => $pop?->id],
+            ['title' => 'Bolnavi amandoi', 'artist' => 'Irina Rimes', 'artist_id' => $irina?->id, 'album_id' => $cosmos->id, 'file_path' => 'songs/irina/IrinaRimes-Bolnaviamandoi.mp3', 'image_path' => 'media/irina/irina(9).jpg', 'duration' => 189, 'genre_id' => $pop?->id],
+            ['title' => 'Ba ba ba', 'artist' => 'Irina Rimes', 'artist_id' => $irina?->id, 'album_id' => $despreel->id, 'file_path' => 'songs/irina/IrinaRimes-Bababa.mp3', 'image_path' => 'media/irina/irina(8).jpg', 'duration' => 176, 'genre_id' => $pop?->id],
+            ['title' => 'Cazane', 'artist' => 'Irina Rimes', 'artist_id' => $irina?->id, 'album_id' => $acasa->id, 'file_path' => 'songs/irina/IrinaRimes-Cazane.mp3', 'image_path' => 'media/irina/irina(7).jpg', 'duration' => 224, 'genre_id' => $pop?->id],
+            ['title' => 'Matahale', 'artist' => 'Irina Rimes', 'artist_id' => $irina?->id, 'album_id' => $acasa->id, 'file_path' => 'songs/irina/IrinaRimes-Matahale.mp3', 'image_path' => 'media/irina/irina(2).jpg', 'duration' => 211, 'genre_id' => $pop?->id],
 
             // Skai IsYourGod
             ['title' => 'Tokyo Drift', 'artist' => 'Skai IsYourGod', 'artist_id' => $skai?->id, 'file_path' => 'songs/skai/Skai-tokyoDrift.mp3', 'image_path' => 'media/skyisyourgod/tokyodrift.jpg', 'duration' => 192, 'genre_id' => $rap?->id],

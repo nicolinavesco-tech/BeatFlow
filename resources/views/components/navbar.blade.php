@@ -8,7 +8,7 @@
   <div class="navbar-center gap-2 hidden lg:flex justify-center flex-1 ">
     <a href="{{ route('homepage') }}" class="btn rounded-full"><i class="fa-regular fa-house text-white"></i></a>
     <form action="{{ route('global.search') }}" method="GET">
-      <label class="input w-100 flex items-center gap-2">
+      <label class="input w-60 md:w-70 lg:w-75 xl:w-100 flex items-center gap-2">
 
         <svg class="h-[1em] opacity-50" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
           <g
@@ -61,7 +61,7 @@
             </div>
           </button>
         </div>
-        <a href="{{ route('download') }}" class=" text-center text-white text-sm hover:underline">{{ __('ui.download_direct') }}</a>
+        <a href="{{ route('download') }}" class="text-center text-white text-sm hover:underline">{{ __('ui.download_direct') }}</a>
       </div>
     </div>
     <div class="flex justify-end items-end">
@@ -69,7 +69,7 @@
         <div tabindex="0" role="button"><i class="fa-solid fa-globe"></i></div>
         <ul tabindex="0" class="dropdown-content menu bg-base-100 rounded-box w-40 p-2 shadow mt-3">
           <li class="">
-            <x-_locale lang="it">Italiano </x-_locale> 
+            <x-_locale lang="it">Italiano </x-_locale>
           </li>
           <li class="flex">
             <x-_locale lang="uk">English</x-_locale>
@@ -148,7 +148,7 @@
             </a>
           </li>
           <li>
-            <a href="{{route('homepage')}}?tab=install" class="text-base text-gray-400">{{ __('ui.install_app') }}</a>
+            <a href="{{route('homepage')}}?tab=install" class="text-base text-gray-400 ">{{ __('ui.install_app') }}</a>
           </li>
           <li>
             <a href="{{route('register')}}" class="text-base font-bold">{{ __('ui.sign_up') }}</a>
@@ -170,10 +170,24 @@
       <a href="{{ route('download') }}">
         <span>{{ __('ui.download') }}</span>
       </a>
-      <a href="{{ route('download') }}" class=" text-gray-400 flex items-center gap-1">
+      <a href="{{ route('download') }}" class=" text-gray-400 items-center gap-1 hidden xl:block">
         <i class="fa-solid fa-circle-down"></i>
         <span>{{ __('ui.install_app') }}</span>
       </a>
+      <div class="flex justify-end items-end">
+        <div class="dropdown dropdown-end">
+          <div tabindex="0" role="button"><i class="fa-solid fa-globe"></i></div>
+          <ul tabindex="0" class="dropdown-content menu bg-base-100 rounded-box w-40 p-2 shadow mt-3">
+            <li class="">
+              <x-_locale lang="it">Italiano </x-_locale>
+            </li>
+            <li class="flex">
+              <x-_locale lang="uk">English</x-_locale>
+            </li>
+
+          </ul>
+        </div>
+      </div>
 
       <div class="w-px h-5 bg-gray-500"></div>
 

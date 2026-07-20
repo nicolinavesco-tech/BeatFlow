@@ -1,8 +1,37 @@
-<main class="container-fluid">
-    <section class="min-h-screen flex bg-black justify-center items-start pt-20 gap-2">
+<main>
+    <div class="flex justify-center pt-20 lg:hidden left-0 right-0 gap-1 bg-black z-40 px-4 py-2">
+        <a href="{{ route('homepage') }}" class="btn rounded-full"><i class="fa-regular fa-house text-white"></i></a>
+        <form action="{{ route('global.search') }}" method="GET">
+            <label class="input w-70 flex items-center gap-2">
+
+                <svg class="h-[1em] opacity-50" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <g
+                        stroke-linejoin="round"
+                        stroke-linecap="round"
+                        stroke-width="2.5"
+                        fill="none"
+                        stroke="currentColor">
+                        <circle cx="11" cy="11" r="8"></circle>
+                        <path d="m21 21-4.3-4.3"></path>
+                    </g>
+                </svg>
+
+                <input type="search" name="q" value="{{ request('q') }}" required placeholder="{{ __('ui.search_placeholder') }}" class="flex-1" />
+                <select name="source" class="bg-slate-800/70 text-white text-sm outline-none ">
+                    <option value="local" @selected(request('source')==='local' )>
+                        {{ __('ui.library') }}
+                    </option>
+                    <option value="jamendo" @selected(request('source')==='jamendo' )>
+                        {{ __('ui.explore') }}
+                    </option>
+                </select>
+            </label>
+        </form>
+    </div>
+    <section class="min-h-screen flex flex-col md:flex-row bg-black justify-center md:items-start pt-10 lg:pt-20 gap-2">
 
         {{-- Sidebar nascosta su mobile--}}
-        <aside class="hidden lg:flex w-90 bg-base-100 rounded-xl flex-col h-screen sticky top-20 space-y-6 shrink-0 z-9999">
+        <aside class="hidden lg:flex w-90 bg-base-100 rounded-xl flex-col min-h-screen sticky top-20 space-y-6 shrink-0 z-40">
             <div class="flex justify-between">
                 <p class="text-xl font-bold mb-4 p-5">La tua libreria</p>
                 <div class="dropdown dropdown-start p-4">
@@ -177,7 +206,7 @@
             @endauth
         </aside>
 
-        <div class="flex rounded-xl border border-base-100 w-full min-w-0 bg-base-100 flex-col gap-6">
+        <div class="flex rounded-xl border border-base-100 w-full min-h-screen min-w-0 bg-base-100 flex-col gap-6">
 
             {{-- Header profilo --}}
             <header class="h-64 md:h-100 bg-cover bg-center flex flex-col p-5 md:p-8 rounded-t-xl bg-[linear-gradient(to_top,#121212_0%,#1DB954_100%)]">
