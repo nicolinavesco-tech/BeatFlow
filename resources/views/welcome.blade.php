@@ -184,24 +184,24 @@
                     </div>
                     @else
                     <div class="border border-slate-700 rounded-xl p-5 space-y-4 bg-slate-700/55 me-2 ms-2">
-                        <h3 class="text-white font-bold">Crea la tua prima playlist</h3>
-                        <p class="text-white text-sm">E' facile, ti aiuteremo</p>
+                        <h3 class="text-white font-bold">{{ __('ui.create_playlist') }}</h3>
+                        <p class="text-white text-sm">{{ __('ui.first_playlist_description') }}</p>
 
                         {{-- Mobile: link diretto al login --}}
                         <a href="{{ route('login') }}" class="md:hidden btn bg-white text-black rounded-3xl">
-                            Crea una playlist
+                            {{ __('ui.create_playlist') }}
                         </a>
 
                         {{-- Desktop: dropdown con finestra blu --}}
                         <div class="hidden md:block dropdown dropdown-right">
-                            <button tabindex="0" class="btn bg-white text-black rounded-3xl">Crea una playlist</button>
+                            <button tabindex="0" class="btn bg-white text-black rounded-3xl">{{ __('ui.create_playlist') }}</button>
                             <div tabindex="0" class="dropdown-content bg-blue-600 text-white rounded-xl p-4 w-84 shadow-xl translate-x-[65%] translate-y-[-60%]">
                                 <i class="absolute fa-solid fa-caret-left fa-2x text-blue-600 left-0 top-1/2 -translate-x-[50%] -translate-y-1/2"></i>
-                                <h3 class="font-bold text-lg">Crea una playlist</h3>
-                                <p class="py-4 text-sm">Accedi per creare e condividere playlist.</p>
+                                <h3 class="font-bold text-lg">{{ __('ui.create_playlist') }}</h3>
+                                <p class="py-4 text-sm">{{ __('ui.login_create_playlist') }}</p>
                                 <div class="flex gap-4 justify-end">
-                                    <button class="text-white font-bold">Non ora</button>
-                                    <a href="{{ route('login') }}" class="btn bg-white border-none text-black rounded-3xl font-bold">Accedi</a>
+                                    <button class="text-white font-bold">{{ __('ui.not_now') }}</button>
+                                    <a href="{{ route('login') }}" class="btn bg-white border-none text-black rounded-3xl font-bold">{{ __('ui.login') }}</a>
                                 </div>
                             </div>
                         </div>

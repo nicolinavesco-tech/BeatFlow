@@ -57,7 +57,7 @@
             <h6 class="footer-title text-white">{{ __('ui.legal') }}</h6>
             <a href="" class="link link-hover text-gray-400 hover:text-white text-sm">{{ __('ui.terms') }}</a>
             <a href="" class="link link-hover text-gray-400 hover:text-white text-sm">{{ __('ui.privacy') }}</a>
-            <a href="" class="link link-hover text-gray-400 hover:text-white text-sm">{{ __('ui.cookies') }}</a>
+            <a href="" class="link link-hover text-gray-400 hover:text-white text-sm">{{ __('ui.cookie') }}</a>
             <a href="" class="link link-hover text-gray-400 hover:text-white text-sm">{{ __('ui.accessibility') }}</a>
         </nav>
 
@@ -67,7 +67,7 @@
         <p>© {{ date('Y') }} {{ __('ui.all_rights_reserved') }}</p>
         <div class="flex gap-4">
             <a href="" class="hover:text-white transition-colors">{{ __('ui.privacy') }}</a>
-            <a href="" class="hover:text-white transition-colors">{{ __('ui.cookies') }}</a>
+            <a href="" class="hover:text-white transition-colors">{{ __('ui.cookie') }}</a>
             <a href="" class="hover:text-white transition-colors">{{ __('ui.terms') }}</a>
         </div>
     </div>

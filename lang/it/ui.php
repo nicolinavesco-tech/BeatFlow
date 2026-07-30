@@ -67,7 +67,6 @@ return [
 
     'premium' => 'Premium',
     'sign_up' => 'Iscriviti',
-    'login' => 'Accedi',
 
     // Footer
     'footer_slogan' => 'BeatFlow — Musica senza confini.',
