@@ -161,7 +161,7 @@
                             <img src="{{$userPlaylist->image_path ? Storage::url($userPlaylist->image_path) : 'https://placehold.co/80x80/282828/ffffff?text=♪'}}" alt="{{$userPlaylist->name}}" class="w-20 h-20 rounded-md object-cover shrink-0">
                             <div class="flex flex-col justify-center">
                                 <p class="text-white font-bold">{{$userPlaylist->name}}</p>
-                                <p class="text-sm text-gray-400">{{ __('ui.playlist') }}</p>
+                                <p class="text-sm text-gray-400">{{ __('ui.playlist_description') }}</p>
                             </div>
                         </a>
                         <form action="{{route('playlists.destroy', $userPlaylist)}}" method="POST">
@@ -218,7 +218,7 @@
                             class="w-48 h-48 md:w-72 md:h-72 rounded-xl shadow-lg object-cover hover:scale-105 transition duration-300">
 
                         <div class="flex flex-col gap-3 text-center md:text-left">
-                            <p class="text-sm uppercase tracking-wide text-white">Singolo</p>
+                            <p class="text-sm uppercase tracking-wide text-white">{{ __('ui.single') }}</p>
                             <h1 class="text-4xl sm:text-6xl md:text-9xl font-bold">{{ $song->title }}</h1>
                             <p class="text-xl text-white">{{ $song->genre->name }}</p>
                         </div>
@@ -260,25 +260,25 @@
 
                         <ul class="dropdown menu w-52 rounded-box bg-base-100 shadow-sm"
                             popover id="popover-1" style="position-anchor:--anchor-1">
-                            <li><a><i class="fa-solid fa-circle-plus text-gray-400 hover:text-white"></i> Aggiungi alla libreria</a></li>
-                            <li><a><i class="fa-solid fa-podcast text-gray-400 hover:text-white"></i> Vai a radio dell'artista</a></li>
-                            <li class="border-t border-gray-400"><a><i class="fa-solid fa-plus text-gray-400 hover:text-white"></i> Aggiungi alla playlist</a></li>
-                            <li><a><i class="fa-solid fa-arrow-up-from-bracket text-gray-400 hover:text-white"></i> Condividi</a></li>
-                            <li class="border-t border-gray-400"><a><i class="fa-solid fa-desktop text-gray-400 hover:text-white"></i> Apri con l'app del desktop</a></li>
+                            <li><a><i class="fa-solid fa-circle-plus text-gray-400 hover:text-white"></i> {{ __('ui.add_to_library') }}</a></li>
+                            <li><a><i class="fa-solid fa-podcast text-gray-400 hover:text-white"></i> {{ __('ui.artist_radio') }}</a></li>
+                            <li class="border-t border-gray-400"><a><i class="fa-solid fa-plus text-gray-400 hover:text-white"></i> {{ __('ui.add_to_playlist') }}</a></li>
+                            <li><a><i class="fa-solid fa-arrow-up-from-bracket text-gray-400 hover:text-white"></i> {{ __('ui.share') }}</a></li>
+                            <li class="border-t border-gray-400"><a><i class="fa-solid fa-desktop text-gray-400 hover:text-white"></i> {{ __('ui.open_desktop') }}</a></li>
                         </ul>
                     </div>
 
                     {{-- Dettagli --}}
                     <div class="pt-6 border-t border-slate-700">
-                        <h2 class="text-2xl font-bold mb-4">Dettagli del brano</h2>
-                        <p class="text-lg"><span class="font-bold">Titolo:</span> {{ $song->title }}</p>
-                        <p class="text-lg"><span class="font-bold">Artista:</span> {{ $song->artist }}</p>
-                        <p class="text-lg"><span class="font-bold">Genere:</span> {{ $song->genre->name }}</p>
+                        <h2 class="text-2xl font-bold mb-4">{{ __('ui.track_details') }}</h2>
+                        <p class="text-lg"><span class="font-bold">{{ __('ui.title') }}:</span> {{ $song->title }}</p>
+                        <p class="text-lg"><span class="font-bold">{{ __('ui.artist') }}:</span> {{ $song->artist }}</p>
+                        <p class="text-lg"><span class="font-bold">{{ __('ui.genre') }}:</span> {{ $song->genre->name }}</p>
                     </div>
 
                     {{-- Altro di ... con carosello --}}
                     <div class="flex flex-col pt-10">
-                        <h2 class="font-bold text-white text-3xl mb-2">Altro di {{ $song->artist }}</h2>
+                        <h2 class="font-bold text-white text-3xl mb-2">{{ __('ui.more_from') }} {{ $song->artist }}</h2>
 
                         <div class="relative w-full group/carousel">
                             <button type="button" onclick="scrollCarousel('otherSongsCarousel', -350)"
@@ -310,7 +310,7 @@
                                     </audio>
                                 </div>
                                 @empty
-                                <p class="text-white pt-4">Nessun altro brano di questo artista.</p>
+                                <p class="text-white pt-4">{{ __('ui.no_other_tracks') }}</p>
                                 @endforelse
                             </div>
 

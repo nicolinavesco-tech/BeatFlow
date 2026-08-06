@@ -32,7 +32,7 @@
         {{-- Sidebar nascosta su mobile --}}
         <aside class="hidden lg:flex w-90 bg-base-100 rounded-xl flex-col min-h-screen sticky top-20 space-y-6 shrink-0 z-40">
             <div class="flex justify-between">
-                <p class="text-xl font-bold mb-4 p-5">La tua libreria</p>
+                <p class="text-xl font-bold mb-4 p-5">{{ __('ui.your_library') }}</p>
                 <div class="dropdown dropdown-start p-4">
                     <label tabindex="0" class="btn flex items-center rounded-2xl gap-2 px-4 bg-slate-700/55">
                         <svg
@@ -48,7 +48,7 @@
                             <line x1="12" y1="5" x2="12" y2="19"></line>
                             <line x1="5" y1="12" x2="19" y2="12"></line>
                         </svg>
-                        <span>Crea</span>
+                        <span>{{ __('ui.create') }}</span>
                     </label>
                     <ul tabindex="0" class="dropdown-content menu bg-base-100 rounded-box w-84 p-2 shadow border border-slate-700/80 mt-2">
                         <li>
@@ -59,8 +59,8 @@
                                     </a>
                                 </div>
                                 <div class="flex flex-col items-start ">
-                                    <span class="font-bold text-base">Playlist</span>
-                                    <p class="text-gray-400 text-xs">Riunisci i tuoi brani preferiti</p>
+                                    <span class="font-bold text-base">{{ __('ui.playlist') }}</span>
+                                    <p class="text-gray-400 text-xs">{{ __('ui.playlist_description') }}</p>
                                 </div>
                             </div>
                         </li>
@@ -70,8 +70,8 @@
                                     <i class="fa-solid fa-chart-pie fa-2x hover:text-[#1DB954] hover:scale-110 hover:rotate-12 transition-transform duration-300"></i>
                                 </div>
                                 <div class="flex flex-col items-start">
-                                    <span class="font-bold text-base">Blend</span>
-                                    <p class="text-gray-400 text-xs">Fondi i gusti dei tuoi amici in una playlist</p>
+                                    <span class="font-bold text-base">{{ __('ui.blend') }}</span>
+                                    <p class="text-gray-400 text-xs">{{ __('ui.blend_description') }}</p>
                                 </div>
                             </a>
                         </li>
@@ -82,8 +82,8 @@
                                     <i class="fa-regular fa-folder-closed fa-2x hover:text-[#1DB954] hover:scale-110 hover:rotate-12 transition-transform duration-300"></i>
                                 </div>
                                 <div class="flex flex-col items-start ">
-                                    <span class="font-bold text-base">Cartella</span>
-                                    <p class="text-gray-400 text-xs">Organizza le tue playlist</p>
+                                    <span class="font-bold text-base">{{ __('ui.folder') }}</span>
+                                    <p class="text-gray-400 text-xs">{{ __('ui.folder_description') }}</p>
                                 </div>
                             </a>
                         </li>
@@ -99,7 +99,7 @@
                 <img src="/media/{{ $favoriteArtist->image }}" alt="{{ $favoriteArtist->name }}" class="cover w-20 h-20 rounded-full {{ in_array($favoriteArtist->name, ['Skai IsYourGod', 'Blackpink', 'Twenty One Pilots']) ? 'object-cover' : '' }}">
                 <div class="flex flex-col justify-center">
                     <p class="text-white font-bold">{{ $favoriteArtist->name }}</p>
-                    <p class="text-sm text-gray-400">Artista</p>
+                    <p class="text-sm text-gray-400">{{ __('ui.artist') }}</p>
                 </div>
             </a>
             @endforeach
@@ -111,7 +111,7 @@
                     <img src="{{$playlist->image_path ? Storage::url($playlist->image_path) : 'https://placehold.co/80x80/282828/ffffff?text=♪'}}" alt="{{$playlist->name}}" class="w-20 h-20 rounded-md object-cover shrink-0">
                     <div class="flex flex-col justify-center">
                         <p class="text-white font-bold">{{$playlist->name}}</p>
-                        <p class="text-sm text-gray-400">Playlist</p>
+                        <p class="text-sm text-gray-400">{{ __('ui.playlist') }}</p>
                     </div>
                 </a>
                 <form action="{{route('playlists.destroy', $playlist)}}" method="POST">
@@ -127,16 +127,16 @@
 
         </aside>
 
-        <div x-show="tab === 'createPlaylist'" class="flex rounded-xl border border-base-100 w-full flex-col gap-6 bg-base-100 p-8">
-            <div class="flex rounded-xl border border-base-100 w-full flex-col gap-6 bg-base-100">
-                <div class="min-h-80 p-5 md:p-8 rounded-t-xl  bg-[linear-gradient(to_top,transparent_0%,#15803d_70%,#4ade80)]">
+        <div x-show="tab === 'createPlaylist'" class="flex rounded-xl border border-base-100 w-full flex-col gap-6 bg-base-100 p-8 bg-[linear-gradient(to_top,transparent_60%,#15803d_70%,#4ade80)]">
+            <div class="flex rounded-xl w-full flex-col gap-6 ">
+                <div class="min-h-0 p-4 md:p-6 rounded-t-xl  ">
                     <a href="{{ route('homepage') }}" class="flex items-center gap-2 text-white px-4 py-2 bg-black/40 backdrop-blur-md rounded-full hover:bg-black/60 transition w-fit">
                         <i class="fa-solid fa-chevron-left"></i>
-                        <span>Torna indietro</span>
+                        <span>{{ __('ui.back') }}</span>
                     </a>
-                    <form action="{{ route('playlists.store') }}" method="POST" enctype="multipart/form-data" class="flex flex-col md:flex-row gap-6 w-full pt-5">
+                    <form action="{{ route('playlists.store') }}" method="POST" enctype="multipart/form-data" class="flex flex-col md:flex-row gap-6 pt-5">
                         @csrf
-                        <div class="relative group cursor-pointer w-full max-w-80 h-64 md:h-70 mx-auto"
+                        <div class="relative group cursor-pointer w-full max-w-80 h-64 md:h-64 lg:h-56 mx-auto lg:mx-0"
                             onclick="document.querySelector('#new-playlist-image').click()">
 
                             <img id="new-playlist-preview" src="" class="w-full h-full rounded-xl object-cover shadow-lg hidden">
@@ -146,7 +146,7 @@
 
                             <div class="absolute inset-0 rounded-xl bg-black/50 opacity-0 group-hover:opacity-100 flex flex-col items-center justify-center transition duration-300">
                                 <i class="fa-solid fa-pen fa-2x text-white"></i>
-                                <span class="text-white text-sm mt-2">Scegli foto</span>
+                                <span class="text-white text-sm mt-2">{{ __('ui.choose_image') }}</span>
                             </div>
 
                             <input type="file" id="new-playlist-image" name="image" accept="image/*" class="hidden"
@@ -154,12 +154,12 @@
                         </div>
                         <div class="flex flex-col gap-3 justify-center">
 
-                            <input type="text" name="name" value="La mia playlist" required
+                            <input type="text" name="name" value="{{ __('ui.my_playlist') }}" required
                                 class="input bg-slate-800/70 text-white w-full md:w-80 h-15 text-3xl text-center border-none focus:outline-none focus:ring-2 focus:ring-[#1DB954] rounded-xl p-3">
 
                             <div class="flex gap-3 justify-center">
-                                <button type="button" @click="tab = 'home'" class="btn bg-slate-700 text-white">Annulla</button>
-                                <button type="submit" class="btn bg-[#1DB954] text-black font-bold">Crea</button>
+                                <button type="button" @click="tab = 'home'" class="btn bg-slate-700 text-white">{{ __('ui.cancel') }}</button>
+                                <button type="submit" class="btn bg-[#1DB954] text-black font-bold">{{ __('ui.create') }}</button>
                             </div>
                         </div>
                     </form>
@@ -172,26 +172,26 @@
 
                         <ul class="dropdown menu w-52 rounded-box bg-base-100 shadow-sm"
                             popover id="popover-1" style="position-anchor:--anchor-1">
-                            <li><a><i class="fa-solid fa-circle-plus text-gray-400 hover:text-white"></i> Aggiungi alla libreria</a></li>
-                            <li><a><i class="fa-solid fa-podcast text-gray-400 hover:text-white"></i> Vai a radio dell'artista</a></li>
-                            <li class="border-t border-gray-400"><a><i class="fa-solid fa-plus text-gray-400 hover:text-white"></i> Aggiungi alla playlist</a></li>
-                            <li><a><i class="fa-solid fa-arrow-up-from-bracket text-gray-400 hover:text-white"></i> Condividi</a></li>
-                            <li class="border-t border-gray-400"><a><i class="fa-solid fa-desktop text-gray-400 hover:text-white"></i> Apri con l'app del desktop</a></li>
+                            <li><a><i class="fa-solid fa-circle-plus text-gray-400 hover:text-white"></i> {{ __('ui.add_to_library') }}</a></li>
+                            <li><a><i class="fa-solid fa-podcast text-gray-400 hover:text-white"></i> {{ __('ui.go_to_artist_radio') }}</a></li>
+                            <li class="border-t border-gray-400"><a><i class="fa-solid fa-plus text-gray-400 hover:text-white"></i> {{ __('ui.add_to_playlist') }}</a></li>
+                            <li><a><i class="fa-solid fa-arrow-up-from-bracket text-gray-400 hover:text-white"></i> {{ __('ui.share') }}</a></li>
+                            <li class="border-t border-gray-400"><a><i class="fa-solid fa-desktop text-gray-400 hover:text-white"></i> {{ __('ui.open_with_desktop_app') }}</a></li>
                         </ul>
                     </div>
                 </div>
 
                 <div class="hidden lg:flex items-center ps-13 p-3 pt-4">
-                    <span class="text-gray-400 text-xs w-10 shrink-0">#</span>
-                    <span class="text-gray-400 text-xs w-2/5 min-w-0 px-2">Titolo</span>
-                    <span class="text-gray-400 text-xs w-1/4 min-w-0 px-2">Album</span>
-                    <span class="text-gray-400 text-xs w-1/5 min-w-0 px-2">Aggiunto il giorno</span>
-                    <span class="text-gray-400 text-xs w-16 text-left shrink-0 ml-auto"><i class="fa-solid fa-clock"></i></span>
+                    <span class="text-white text-xs w-10 shrink-0">#</span>
+                    <span class="text-white text-xs w-2/5 min-w-0 px-2">{{ __('ui.title') }}</span>
+                    <span class="text-white text-xs w-1/4 min-w-0 px-2">{{ __('ui.album') }}</span>
+                    <span class="text-white text-xs w-1/5 min-w-0 px-2">{{ __('ui.added_on') }}</span>
+                    <span class="text-white text-xs w-16 text-left shrink-0 ml-auto"><i class="fa-solid fa-clock"></i></span>
                     <span class="w-6 shrink-0"></span>
                 </div>
                 <div class="pt-6 border-t border-slate-700 p-5">
-                    <ul class="hidden lg:block list bg-base-100 rounded-box shadow-md w-full">
-                        <li class="p-4 pb-2 text-xs opacity-60 tracking-wide">Aggiunte di recente</li>
+                    <ul class="hidden lg:block list w-full">
+                        <li class="p-4 pb-2 text-xs opacity-60 tracking-wide">{{ __('ui.recently_added') }}</li>
                         @auth
                         @php $recentSongs = auth()->user()->addSongs()->latest('pivot_created_at')->take(5)->get(); @endphp
                         @if($recentSongs->count() > 0)
@@ -236,13 +236,13 @@
                                     <i class="fa-solid fa-ellipsis text-gray-400 hover:text-white"></i>
                                 </button>
                                 <ul tabindex="0" class="dropdown-content menu bg-base-100 rounded-box z-10 w-52 p-2 shadow-sm border border-slate-700">
-                                    <li><a><i class="fa-solid fa-circle-plus text-gray-400 hover:text-white"></i> Aggiungi alla playlist</a></li>
-                                    <li><a href="{{ route('songs.show', $song) }}"><i class="fa-solid fa-music text-gray-400 hover:text-white"></i> Vai alla canzone</a></li>
-                                    <li><a href="{{ route('artists.show', $song->artistModel) }}"><i class="fa-solid fa-user text-gray-400 hover:text-white"></i> Vai all'artista</a></li>
+                                    <li><a><i class="fa-solid fa-circle-plus text-gray-400 hover:text-white"></i> {{ __('ui.add_to_playlist') }}</a></li>
+                                    <li><a href="{{ route('songs.show', $song) }}"><i class="fa-solid fa-music text-gray-400 hover:text-white"></i> {{ __('ui.go_to_song') }}</a></li>
+                                    <li><a href="{{ route('artists.show', $song->artistModel) }}"><i class="fa-solid fa-user text-gray-400 hover:text-white"></i> {{ __('ui.go_to_artist') }}</a></li>
                                     @if($song->album)
-                                    <li><a href="{{ route('albums.show', $song->album) }}"><i class="fa-solid fa-record-vinyl text-gray-400 hover:text-white"></i> Vai all'album</a></li>
+                                    <li><a href="{{ route('albums.show', $song->album) }}"><i class="fa-solid fa-record-vinyl text-gray-400 hover:text-white"></i> {{ __('ui.go_to_album') }}</a></li>
                                     @endif
-                                    <li class="border-t border-gray-600"><a><i class="fa-solid fa-arrow-up-from-bracket text-gray-400 hover:text-white"></i> Condividi</a></li>
+                                    <li class="border-t border-gray-600"><a><i class="fa-solid fa-arrow-up-from-bracket text-gray-400 hover:text-white"></i> {{ __('ui.share') }}</a></li>
                                 </ul>
                             </div>
 
@@ -254,7 +254,7 @@
                         @else
                         <div class="flex flex-col items-center justify-center gap-2 py-10 text-gray-400">
                             <i class="fa-solid fa-music fa-2x opacity-30"></i>
-                            <p class="text-sm">Nessuna canzone aggiunta ancora</p>
+                            <p class="text-sm">{{ __('ui.no_songs_added') }}</p>
                         </div>
                         @endif
                         @endauth
@@ -262,10 +262,10 @@
                 </div>
                 <div class="flex flex-col items-center justify-center gap-4 py-16 text-center">
                     <i class="fa-solid fa-music fa-4x text-gray-600"></i>
-                    <h3 class="text-white text-2xl font-bold">Trova qualcosa da ascoltare</h3>
-                    <p class="text-gray-400 max-w-sm">Esplora i tuoi artisti preferiti o cerca nuovi brani. Clicca "Crea" per salvare la playlist e iniziare ad aggiungere canzoni.</p>
+                    <h3 class="text-white text-2xl font-bold">{{ __('ui.find_something_to_listen') }}</h3>
+                    <p class="text-gray-400 max-w-sm">{{ __('ui.explore_your_favorite_artists') }}</p>
                     <a href="{{ route('homepage') }}" class="btn bg-white text-black rounded-full px-6 font-bold mt-2">
-                        Esplora musica
+                        {{ __('ui.explore_music') }}
                     </a>
                 </div>
             </div>

@@ -33,7 +33,7 @@
             <section class="min-h-screen flex bg-black justify-center items-start pt-10 lg:pt-20 gap-2">
                 <aside class="hidden lg:flex w-90 bg-base-100 rounded-xl flex-col min-h-screen sticky top-20 space-y-6 shrink-0 z-40">
                     <div class="flex justify-between">
-                        <p class="text-xl font-bold mb-4 p-5">La tua libreria</p>
+                        <p class="text-xl font-bold mb-4 p-5">{{ __('ui.library') }}</p>
                         <div class="dropdown dropdown-start p-4">
                             <label tabindex="0" class="btn flex items-center rounded-2xl gap-2 px-4 bg-slate-700/55">
                                 <svg
@@ -49,7 +49,7 @@
                                     <line x1="12" y1="5" x2="12" y2="19"></line>
                                     <line x1="5" y1="12" x2="19" y2="12"></line>
                                 </svg>
-                                <span>Crea</span>
+                                <span>{{ __('ui.create') }}</span>
                             </label>
                             @auth
                             <ul tabindex="0" class="dropdown-content menu bg-base-100 rounded-box z-1 w-84 p-2 shadow border border-slate-700/80 mt-2">
@@ -59,8 +59,8 @@
                                             <button @click.prevent="tab = 'createPlaylist'" tabindex="0"><i class="fa-brands fa-itunes-note fa-2x hover:text-[#1DB954] hover:scale-110 hover:rotate-12 transition-transform duration-300"></i></button>
                                         </div>
                                         <div class="flex flex-col items-start ">
-                                            <span class="font-bold text-base">Playlist</span>
-                                            <p class="text-gray-400 text-xs">Riunisci i tuoi brani preferiti</p>
+                                            <span class="font-bold text-base">{{ __('ui.playlist') }}</span>
+                                            <p class="text-gray-400 text-xs">{{ __('ui.playlist_description') }}</p>
                                         </div>
                                     </div>
 
@@ -71,8 +71,8 @@
                                             <i class="fa-solid fa-chart-pie fa-2x hover:text-[#1DB954] hover:scale-110 hover:rotate-12 transition-transform duration-300"></i>
                                         </div>
                                         <div class="flex flex-col items-start">
-                                            <span class="font-bold text-base">Blend</span>
-                                            <p class="text-gray-400 text-xs">Fondi i gusti dei tuoi amici in una playlist</p>
+                                            <span class="font-bold text-base">{{ __('ui.blend') }}</span>
+                                            <p class="text-gray-400 text-xs">{{ __('ui.blend_description') }}</p>
                                         </div>
                                     </a>
                                 </li>
@@ -83,8 +83,8 @@
                                             <i class="fa-regular fa-folder-closed fa-2x hover:text-[#1DB954] hover:scale-110 hover:rotate-12 transition-transform duration-300"></i>
                                         </div>
                                         <div class="flex flex-col items-start ">
-                                            <span class="font-bold text-base">Cartella</span>
-                                            <p class="text-gray-400 text-xs">Organizza le tue playlist</p>
+                                            <span class="font-bold text-base">{{ __('ui.folder') }}</span>
+                                            <p class="text-gray-400 text-xs">{{ __('ui.folder_description') }}</p>
                                         </div>
                                     </a>
                                 </li>
@@ -98,17 +98,17 @@
                                             <button tabindex="0"><i class="fa-brands fa-itunes-note fa-2x hover:text-[#1DB954] hover:scale-110 hover:rotate-12 transition-transform duration-300"></i></button>
                                             <div tabindex="0" class="dropdown-content bg-blue-600 text-white rounded-xl p-4 w-84 shadow-xl translate-x-[5%] translate-y-[-30%]">
                                                 <i class="absolute fa-solid fa-caret-left fa-2x text-blue-600 left-0 top-1/2 -translate-x-[50%] -translate-y-1/2"></i>
-                                                <h3 class="font-bold text-lg ">Crea una playlist</h3>
-                                                <p class="py-4 text-sm">Accedi per creare e condividere playlist.</p>
+                                                <h3 class="font-bold text-lg ">{{ __('ui.create_playlist') }}</h3>
+                                                <p class="py-4 text-sm">{{ __('ui.login_create_playlist') }}</p>
                                                 <div class="flex gap-4 justify-end">
-                                                    <button onclick="this.closest('.dropdown-content').classList.add('hidden')" class=" text-white font-bold">Non ora</button>
-                                                    <a href="{{ route('login') }}" class="btn bg-white border-none text-black rounded-3xl font-bold">Accedi</a>
+                                                    <button onclick="this.closest('.dropdown-content').classList.add('hidden')" class=" text-white font-bold">{{ __('ui.not_now') }}</button>
+                                                    <a href="{{ route('login') }}" class="btn bg-white border-none text-black rounded-3xl font-bold">{{ __('ui.login') }}</a>
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="flex flex-col items-start ">
-                                            <span class="font-bold text-base">Playlist</span>
-                                            <p class="text-gray-400 text-xs">Riunisci i tuoi brani preferiti</p>
+                                            <span class="font-bold text-base">{{ __('ui.playlist') }}</span>
+                                            <p class="text-gray-400 text-xs">{{ __('ui.playlist_description') }}</p>
                                         </div>
                                     </div>
 
@@ -119,8 +119,8 @@
                                             <i class="fa-solid fa-chart-pie fa-2x hover:text-[#1DB954] hover:scale-110 hover:rotate-12 transition-transform duration-300"></i>
                                         </div>
                                         <div class="flex flex-col items-start">
-                                            <span class="font-bold text-base">Blend</span>
-                                            <p class="text-gray-400 text-xs">Fondi i gusti dei tuoi amici in una playlist</p>
+                                            <span class="font-bold text-base">{{ __('ui.blend') }}</span>
+                                            <p class="text-gray-400 text-xs">{{ __('ui.blend_description') }}</p>
                                         </div>
                                     </a>
                                 </li>
@@ -131,8 +131,8 @@
                                             <i class="fa-regular fa-folder-closed fa-2x hover:text-[#1DB954] hover:scale-110 hover:rotate-12 transition-transform duration-300"></i>
                                         </div>
                                         <div class="flex flex-col items-start ">
-                                            <span class="font-bold text-base">Cartella</span>
-                                            <p class="text-gray-400 text-xs">Organizza le tue playlist</p>
+                                            <span class="font-bold text-base">{{ __('ui.folder') }}</span>
+                                            <p class="text-gray-400 text-xs">{{ __('ui.folder_description') }}</p>
                                         </div>
                                     </a>
                                 </li>
@@ -148,7 +148,7 @@
                         <img src="/media/{{ $favoriteArtist->image }}" alt="{{ $favoriteArtist->name }}" class="cover w-20 h-20 rounded-full {{ in_array($favoriteArtist->name, ['Skai IsYourGod', 'Blackpink', 'Twenty One Pilots']) ? 'object-cover' : '' }}">
                         <div class="flex flex-col justify-center">
                             <p class="text-white font-bold">{{ $favoriteArtist->name }}</p>
-                            <p class="text-sm text-gray-400">Artista</p>
+                            <p class="text-sm text-gray-400">{{ __('ui.artist') }}</p>
                         </div>
                     </a>
                     @endforeach
@@ -160,7 +160,7 @@
                             <img src="{{$userPlaylist->image_path ? Storage::url($userPlaylist->image_path) : 'https://placehold.co/80x80/282828/ffffff?text=♪'}}" alt="{{$userPlaylist->name}}" class="w-20 h-20 rounded-md object-cover shrink-0">
                             <div class="flex flex-col justify-center">
                                 <p class="text-white font-bold">{{$userPlaylist->name}}</p>
-                                <p class="text-sm text-gray-400">Playlist</p>
+                                <p class="text-sm text-gray-400">{{ __('ui.playlist') }}</p>
                             </div>
                         </a>
                         <form action="{{route('playlists.destroy', $userPlaylist)}}" method="POST">
@@ -173,32 +173,32 @@
                     </div>
                     @endforeach
                     <div class="border border-slate-700 rounded-xl p-5 space-y-4 bg-slate-700/55 me-2 ms-2">
-                        <h3 class="text-white font-bold">Cerca qualche podcast da seguire</h3>
-                        <p class="text-white text-sm">Ti aggiorneremo sui nuovi episodi</p>
-                        <a href="{{ route('podcast') }}" class="btn bg-white text-black rounded-3xl">Sfoglia i podcast</a>
+                        <h3 class="text-white font-bold">{{ __('ui.search_podcast') }}</h3>
+                        <p class="text-white text-sm">{{ __('ui.podcast_description') }}</p>
+                        <a href="{{ route('podcast') }}" class="btn bg-white text-black rounded-3xl">{{ __('ui.browse_podcast') }}</a>
                     </div>
                     @else
                     <div class="border border-slate-700 rounded-xl p-5 space-y-4 bg-slate-700/55 me-2 ms-2">
-                        <h3 class="text-white font-bold">Crea la tua prima playlist</h3>
-                        <p class="text-white text-sm">E' facile, ti aiuteremo</p>
+                        <h3 class="text-white font-bold">{{ __('ui.first_playlist') }}</h3>
+                        <p class="text-white text-sm">{{ __('ui.first_playlist_description') }}</p>
                         <div class="dropdown dropdown-right">
-                            <button tabindex="0" class="btn bg-white text-black rounded-3xl">Crea playlist</button>
+                            <button tabindex="0" class="btn bg-white text-black rounded-3xl">{{ __('ui.create_playlist') }}</button>
                             <div tabindex="0" class="dropdown-content bg-blue-600 text-white rounded-xl p-4 w-84 shadow-xl translate-x-[65%] translate-y-[-60%]">
                                 <i class="absolute fa-solid fa-caret-left fa-2x text-blue-600 left-0 top-1/2 -translate-x-[50%] -translate-y-1/2"></i>
-                                <h3 class="font-bold text-lg ">Crea una playlist</h3>
+                                <h3 class="font-bold text-lg ">{{ __('ui.create_playlist') }}</h3>
                                 <p class="py-4 text-sm">Accedi per creare e condividere playlist.</p>
                                 <div class="flex gap-4 justify-end">
-                                    <button class=" text-white font-bold">Non ora</button>
-                                    <a href="{{ route('login') }}" class="btn bg-white border-none text-black rounded-3xl font-bold">Accedi</a>
+                                    <button class=" text-white font-bold">{{ __('ui.not_now') }}</button>
+                                    <a href="{{ route('login') }}" class="btn bg-white border-none text-black rounded-3xl font-bold">{{ __('ui.login') }}</a>
                                 </div>
                             </div>
                         </div>
                     </div>
 
                     <div class="border border-slate-700 rounded-xl p-5 space-y-4 bg-slate-700/55 me-2 ms-2">
-                        <h3 class="text-white font-bold">Cerca qualche podcast da seguire</h3>
-                        <p class="text-white text-sm">Ti aggiorneremo sui nuovi episodi</p>
-                        <a href="{{ route('podcast') }}" class="btn bg-white text-black rounded-3xl">Sfoglia i podcast</a>
+                        <h3 class="text-white font-bold">{{ __('ui.search_podcast') }}</h3>
+                        <p class="text-white text-sm">{{ __('ui.podcast_description') }}</p>
+                        <a href="{{ route('podcast') }}" class="btn bg-white text-black rounded-3xl">{{ __('ui.browse_podcast') }}</a>
                     </div>
                     @endauth
                 </aside>
@@ -217,8 +217,8 @@
 
                         <div class="flex-1">
                             <h2 class="text-lg font-semibold">{{ $track['name'] }}</h2>
-                            <p class="text-gray-300">Artista: {{ $track['artist_name'] }}</p>
-                            <p class="text-gray-400 text-sm">Album: {{ $track['album_name'] ?? 'Nessun album' }}</p>
+                            <p class="text-gray-300">{{ __('ui.artist') }}: {{ $track['artist_name'] }}</p>
+                            <p class="text-gray-400 text-sm">{{ __('ui.album') }}: {{ $track['album_name'] ?? 'Nessun album' }}</p>
                             <audio controls class="mt-2 w-full">
                                 <source src="{{ $track['audio'] }}" type="audio/mpeg">
                                 Il tuo browser non supporta l'audio.
@@ -226,7 +226,7 @@
                         </div>
                     </div>
                     @empty
-                    <p class="text-white">Nessun risultato trovato.</p>
+                    <p class="text-white">{{ __('ui.no_results') }}</p>
                     @endforelse
                 </div>
             </section>
