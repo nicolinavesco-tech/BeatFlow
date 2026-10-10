@@ -109,10 +109,12 @@ class SongSeeder extends Seeder
             ['title' => 'Non Tornerò', 'artist' => 'NESLI', 'artist_id' => $nesli?->id, 'file_path' => 'songs/nesli.mp3', 'image_path' => 'media/nesli.jpg', 'duration' => 223, 'genre_id' => $rap?->id],
             ['title' => 'La Fine', 'artist' => 'NESLI', 'artist_id' => $nesli?->id, 'file_path' => 'songs/nesli/nesli-lafine.mp3', 'image_path' => 'media/nesli1.jpg', 'duration' => 222, 'genre_id' => $rap?->id],
             ['title' => 'La Verità', 'artist' => 'NESLI', 'artist_id' => $nesli?->id, 'file_path' => 'songs/nesli/nesli-verità.mp3', 'image_path' => 'media/nesli2.jpg', 'duration' => 170, 'genre_id' => $rap?->id],
-            ['title' => 'Amore è', 'artist' => 'NESLI', 'artist_id' => $nesli?->id, 'file_path' => 'songs/nesli/nesli-lamore.mp3', 'image_path' => 'media/nesli3.jpg', 'duration' => 183, 'genre_id' => $rap?->id],
+            // File mp3 corrotto (4 byte): riattivare dopo averlo riscaricato
+            // ['title' => 'Amore è', 'artist' => 'NESLI', 'artist_id' => $nesli?->id, 'file_path' => 'songs/nesli/nesli-lamore.mp3', 'image_path' => 'media/nesli3.jpg', 'duration' => 183, 'genre_id' => $rap?->id],
             ['title' => 'Il Mondo è Tondo', 'artist' => 'NESLI', 'artist_id' => $nesli?->id, 'file_path' => 'songs/nesli/nesli-ilmondo.mp3', 'image_path' => 'media/nesli4.jpg', 'duration' => 200, 'genre_id' => $rap?->id],
             ['title' => 'La Storia', 'artist' => 'NESLI', 'artist_id' => $nesli?->id, 'file_path' => 'songs/nesli/nesli-lastoria.mp3', 'image_path' => 'media/nesli5.jpg', 'duration' => 209, 'genre_id' => $rap?->id],
-            ['title' => 'Il Tempo', 'artist' => 'NESLI', 'artist_id' => $nesli?->id, 'file_path' => 'songs/nesli/Nesli-Iltempo.mp3', 'image_path' => 'media/nesli6.jpg', 'duration' => 199, 'genre_id' => $rap?->id],
+            // File mp3 corrotto (4 byte): riattivare dopo averlo riscaricato
+            // ['title' => 'Il Tempo', 'artist' => 'NESLI', 'artist_id' => $nesli?->id, 'file_path' => 'songs/nesli/Nesli-Iltempo.mp3', 'image_path' => 'media/nesli6.jpg', 'duration' => 199, 'genre_id' => $rap?->id],
             ['title' => 'Ultimo Giorno', 'artist' => 'NESLI', 'artist_id' => $nesli?->id, 'file_path' => 'songs/nesli/nesli-ultimo.mp3', 'image_path' => 'media/nesli7.jpg', 'duration' => 297, 'genre_id' => $rap?->id],
 
             // Harmony Secret
@@ -260,7 +262,7 @@ class SongSeeder extends Seeder
 
             // Mumford & Sons
             ['title' => "Awake My Soul", 'artist' => 'Mumford & Sons', 'artist_id' => $mumford?->id, 'album_id' => $babel->id, 'file_path' => "songs/mumford/awakemysoul.mp3", 'image_path' => "media/mumford/awakemysoul.webp", 'duration' => 253, 'genre_id' => $rock?->id],
-            ['title' => "Role Away Your Stone", 'artist' => 'Mumford & Sons', 'artist_id' => $mumford?->id, 'album_id' => $babel->id, 'file_path' => "songs/mumford/rollawayyourstone.mp3", 'image_path' => "media/mumford/roleawayyourstone.webp", 'duration' => 261, 'genre_id' => $rock?->id],
+            ['title' => "Roll Away Your Stone", 'artist' => 'Mumford & Sons', 'artist_id' => $mumford?->id, 'album_id' => $babel->id, 'file_path' => "songs/mumford/rollawayyourstone.mp3", 'image_path' => "media/mumford/roleawayyourstone.webp", 'duration' => 261, 'genre_id' => $rock?->id],
             ['title' => "The Wolf", 'artist' => 'Mumford & Sons', 'artist_id' => $mumford?->id, 'album_id' => $babel->id, 'file_path' => "songs/mumford/thewolf.mp3", 'image_path' => "media/mumford/thewolf.webp", 'duration' => 235, 'genre_id' => $rock?->id],
             ['title' => "Guiding Light", 'artist' => 'Mumford & Sons', 'artist_id' => $mumford?->id, 'album_id' => $delta->id, 'file_path' => "songs/mumford/guidinglight.mp3", 'image_path' => "media/mumford/guidinglight.webp", 'duration' => 219, 'genre_id' => $rock?->id],
             ['title' => "Delta", 'artist' => 'Mumford & Sons', 'artist_id' => $mumford?->id, 'album_id' => $delta->id, 'file_path' => "songs/mumford/delta.mp3", 'image_path' => "media/mumford/delta.webp", 'duration' => 376, 'genre_id' => $rock?->id],
