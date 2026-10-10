@@ -2,3 +2,8 @@
 @plugin "daisyui";
 @import './style.css';
 @import "@fortawesome/fontawesome-free/css/all.min.css";
+
+/* Nasconde gli elementi Alpine finché Alpine non è caricato (evita il lampeggio delle tab) */
+[x-cloak] {
+    display: none !important;
+}

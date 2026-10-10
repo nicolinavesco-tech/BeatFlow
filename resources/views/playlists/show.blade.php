@@ -4,99 +4,7 @@
         <section class="min-h-screen flex bg-black pt-20 gap-2">
             {{-- Sidebar nascosta su mobile --}}
             <aside class="hidden lg:flex w-90 bg-base-100 rounded-xl flex-col h-screen sticky top-20 space-y-6 shrink-0 z-40">
-                <div class="flex justify-between">
-                    <p class="text-xl font-bold mb-4 p-5">{{ __('ui.your_library') }}</p>
-                    <div class="dropdown dropdown-start p-4">
-                        <label tabindex="0" class="btn flex items-center rounded-2xl gap-2 px-4 bg-slate-700/55">
-                            <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                width="22"
-                                height="22"
-                                viewBox="0 0 24 24"
-                                fill="none"
-                                stroke="currentColor"
-                                stroke-width="2.5"
-                                stroke-linecap="round"
-                                stroke-linejoin="round">
-                                <line x1="12" y1="5" x2="12" y2="19"></line>
-                                <line x1="5" y1="12" x2="19" y2="12"></line>
-                            </svg>
-                            <span>{{ __('ui.create') }}</span>
-                        </label>
-                        <ul tabindex="0" class="dropdown-content menu bg-base-100 rounded-box z-1 w-84 p-2 shadow border border-slate-700/80 mt-2">
-                            <li>
-                                <div class="dropdown dropdown-right flex">
-                                    <div class="flex items-center justify-center w-14 h-14 border border-gray-600 bg-gray-300/40 rounded-full shrink-0">
-                                        <a href="{{ route('homepage') }}?tab=createPlaylist">
-                                            <i class="fa-brands fa-itunes-note fa-2x hover:text-[#1DB954] hover:scale-110 hover:rotate-12 transition-transform duration-300"></i>
-                                        </a>
-                                    </div>
-                                    <div class="flex flex-col items-start ">
-                                        <span class="font-bold text-base">{{ __('ui.playlist') }}</span>
-                                        <p class="text-gray-400 text-xs">{{ __('ui.playlist_description') }}</p>
-                                    </div>
-                                </div>
-                            </li>
-                            <li>
-                                <a href="#" class="flex items-center gap-3">
-                                    <div class="flex items-center justify-center w-14 h-14 border border-gray-600 bg-gray-300/40 rounded-full shrink-0">
-                                        <i class="fa-solid fa-chart-pie fa-2x hover:text-[#1DB954] hover:scale-110 hover:rotate-12 transition-transform duration-300"></i>
-                                    </div>
-                                    <div class="flex flex-col items-start">
-                                        <span class="font-bold text-base">{{ __('ui.blend') }}</span>
-                                        <p class="text-gray-400 text-xs">{{ __('ui.blend_description') }}</p>
-                                    </div>
-                                </a>
-                            </li>
-                            <hr class="border-t border-gray-600 my-2">
-                            <li>
-                                <a href="#" class="flex items-center">
-                                    <div class="flex items-center justify-center w-14 h-14 border border-gray-600 bg-gray-300/40 rounded-full shrink-0">
-                                        <i class="fa-regular fa-folder-closed fa-2x hover:text-[#1DB954] hover:scale-110 hover:rotate-12 transition-transform duration-300"></i>
-                                    </div>
-                                    <div class="flex flex-col items-start ">
-                                        <span class="font-bold text-base">{{ __('ui.folder') }}</span>
-                                        <p class="text-gray-400 text-xs">{{ __('ui.folder_description') }}</p>
-                                    </div>
-                                </a>
-                            </li>
-
-                        </ul>
-                    </div>
-                </div>
-
-
-                @auth
-                @foreach(auth()->user()->favoriteArtists as $favoriteArtist)
-                <a href="{{ route('artists.show', $favoriteArtist) }}" class="flex gap-3 ps-3">
-                    <img src="/media/{{ $favoriteArtist->image }}" alt="{{ $favoriteArtist->name }}" class="cover w-20 h-20 rounded-full {{ in_array($favoriteArtist->name, ['Skai IsYourGod', 'Blackpink', 'Twenty One Pilots']) ? 'object-cover' : '' }}">
-                    <div class="flex flex-col justify-center">
-                        <p class="text-white font-bold">{{ $favoriteArtist->name }}</p>
-                        <p class="text-sm text-gray-400">{{ __('ui.artist') }}</p>
-                    </div>
-                </a>
-                @endforeach
-
-                <!-- Playlist utente -->
-                @foreach(auth()->user()->playlists as $userPlaylist)
-                <div class="flex justify-between items-center">
-                    <a href="{{ route('playlists.show', $userPlaylist)}}" class="flex gap-3 ps-3">
-                        <img src="{{$userPlaylist->image_path ? Storage::url($userPlaylist->image_path) : 'https://placehold.co/80x80/282828/ffffff?text=♪'}}" alt="{{$userPlaylist->name}}" class="w-20 h-20 rounded-md object-cover shrink-0">
-                        <div class="flex flex-col justify-center">
-                            <p class="text-white font-bold">{{$userPlaylist->name}}</p>
-                            <p class="text-sm text-gray-400">{{ __('ui.playlist') }}</p>
-                        </div>
-                    </a>
-                    <form action="{{route('playlists.destroy', $userPlaylist)}}" method="POST">
-                        @csrf
-                        @method('DELETE')
-                        <button class="p-5">
-                            <i class="fa-solid fa-trash hover:text-red-600"></i>
-                        </button>
-                    </form>
-                </div>
-                @endforeach
-                @endauth
+                <x-library :compact="true" />
             </aside>
 
             <div class="flex rounded-xl border border-base-100 w-full flex-col gap-6 bg-base-100">
@@ -109,7 +17,7 @@
 
                         <!-- Details new playlist -->
                         <div class="flex flex-col md:flex-row items-center md:items-end pt-5 gap-5">
-                            <img src="{{ $playlist->image_path ? Storage::url($playlist->image_path) : 'https://placehold.co/300x300/282828/ffffff?text=♪' }}" alt="{{ $playlist->name }}" class="w-48 h-48 md:w-72 md:h-72 rounded-xl shadow-lg object-cover hover:scale-105 transition duration-300">
+                            <x-playlist-cover :playlist="$playlist" icon="fa-5x" class="w-48 h-48 md:w-72 md:h-72 rounded-xl shadow-lg hover:scale-105 transition duration-300" />
                             <label for="playlist-image" class=" text-white rounded-full w-fit -translate-y-25.5 -translate-x-50.5">
                                 <input type="file" id="playlist-image" class="hidden" />
                                 <div class="flex flex-col items-center gap-3">

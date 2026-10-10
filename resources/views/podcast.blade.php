@@ -31,191 +31,19 @@
                 </form>
             </div>
             <div class="border rounded-xl border-base-100 bg-base-100 w-full md:w-90 space-y-5 shrink-0">
-                <div class="flex justify-between">
-                    <p class="text-xl font-bold mb-4 p-5">La tua libreria</p>
-                    <div class="dropdown dropdown-end md:dropdown-start p-4">
-                        <label tabindex="0" class="btn flex items-center rounded-2xl gap-2 px-4 bg-slate-700/55">
-                            <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                width="22"
-                                height="22"
-                                viewBox="0 0 24 24"
-                                fill="none"
-                                stroke="currentColor"
-                                stroke-width="2.5"
-                                stroke-linecap="round"
-                                stroke-linejoin="round">
-                                <line x1="12" y1="5" x2="12" y2="19"></line>
-                                <line x1="5" y1="12" x2="19" y2="12"></line>
-                            </svg>
-                            <span>Crea</span>
-                        </label>
-                        @auth
-                        <ul tabindex="0" class="dropdown-content menu bg-base-100 rounded-box z-1 w-64 sm:w-84 p-2 shadow border border-slate-700/80 mt-2">
-                            <li>
-                                <div class="dropdown dropdown-right flex">
-                                    <div class="flex items-center justify-center w-14 h-14 border border-gray-600 bg-gray-300/40 rounded-full shrink-0">
-                                        <button @click.prevent="tab = 'createPlaylist'" tabindex="0"><i class="fa-brands fa-itunes-note fa-2x hover:text-[#1DB954] hover:scale-110 hover:rotate-12 transition-transform duration-300"></i></button>
-                                    </div>
-                                    <div class="flex flex-col items-start ">
-                                        <span class="font-bold text-base">{{ __('ui.playlist') }}</span>
-                                        <p class="text-gray-400 text-xs">{{ __('ui.playlist_description') }}</p>
-                                    </div>
-                                </div>
-
-                            </li>
-                            <li>
-                                <a href="{{ route('login') }}" class="flex items-center gap-3">
-                                    <div class="flex items-center justify-center w-14 h-14 border border-gray-600 bg-gray-300/40 rounded-full shrink-0">
-                                        <i class="fa-solid fa-chart-pie fa-2x hover:text-[#1DB954] hover:scale-110 hover:rotate-12 transition-transform duration-300"></i>
-                                    </div>
-                                    <div class="flex flex-col items-start">
-                                        <span class="font-bold text-base">Blend</span>
-                                        <p class="text-gray-400 text-xs">Fondi i gusti dei tuoi amici in una playlist</p>
-                                    </div>
-                                </a>
-                            </li>
-                            <hr class="border-t border-gray-600 my-2">
-                            <li>
-                                <a href="" class="flex items-center">
-                                    <div class="flex items-center justify-center w-14 h-14 border border-gray-600 bg-gray-300/40 rounded-full shrink-0">
-                                        <i class="fa-regular fa-folder-closed fa-2x hover:text-[#1DB954] hover:scale-110 hover:rotate-12 transition-transform duration-300"></i>
-                                    </div>
-                                    <div class="flex flex-col items-start ">
-                                        <span class="font-bold text-base">Cartella</span>
-                                        <p class="text-gray-400 text-xs">Organizza le tue playlist</p>
-                                    </div>
-                                </a>
-                            </li>
-
-                        </ul>
-                        @else
-                        <ul tabindex="0" class="dropdown-content menu bg-base-100 rounded-box z-1 w-64 sm:w-84 p-2 shadow border border-slate-700/80 mt-2">
-                            <li>
-                                <div class="dropdown dropdown-right flex">
-                                    <div class="hidden md:flex items-center justify-center w-14 h-14 border border-gray-600 bg-gray-300/40 rounded-full shrink-0">
-                                        <button tabindex="0"><i class="fa-brands fa-itunes-note fa-2x hover:text-[#1DB954] hover:scale-110 hover:rotate-12 transition-transform duration-300"></i></button>
-                                        <div tabindex="0" class=" dropdown-content bg-blue-600 text-white rounded-xl p-4 w-64 md:w-84 shadow-xl translate-x-[5%] translate-y-[-30%]">
-                                            <i class="absolute fa-solid fa-caret-left fa-2x text-blue-600 left-0 top-1/2 -translate-x-[50%] -translate-y-1/2"></i>
-                                            <h3 class="font-bold text-lg ">{{ __('ui.create_playlist') }}</h3>
-                                            <p class="py-4 text-sm">{{ __('ui.login_create_playlist') }}</p>
-                                            <div class="flex gap-4 justify-end">
-                                                <button onclick="this.closest('.dropdown-content').classList.add('hidden')" class=" text-white font-bold">{{ __('ui.not_now') }}</button>
-                                                <a href="{{ route('login') }}" class="btn bg-white border-none text-black rounded-3xl font-bold">{{ __('ui.login') }}</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    {{-- Mobile --}}
-                                    <a href="{{ route('login') }}" class="flex md:hidden items-center justify-center w-14 h-14 border border-gray-600 bg-gray-300/40 rounded-full shrink-0">
-                                        <i class="fa-brands fa-itunes-note fa-2x hover:text-[#1DB954] hover:scale-110 hover:rotate-12 transition-transform duration-300"></i>
-                                    </a>
-                                    <div class="flex flex-col items-start ">
-                                        <span class="font-bold text-base">Playlist</span>
-                                        <p class="text-gray-400 text-xs">Riunisci i tuoi brani preferiti</p>
-                                    </div>
-                                </div>
-
-                            </li>
-                            <li>
-                                <a href="{{ route('login') }}" class="flex items-center gap-3">
-                                    <div class="flex items-center justify-center w-14 h-14 border border-gray-600 bg-gray-300/40 rounded-full shrink-0">
-                                        <i class="fa-solid fa-chart-pie fa-2x hover:text-[#1DB954] hover:scale-110 hover:rotate-12 transition-transform duration-300"></i>
-                                    </div>
-                                    <div class="flex flex-col items-start">
-                                        <span class="font-bold text-base">Blend</span>
-                                        <p class="text-gray-400 text-xs">Fondi i gusti dei tuoi amici in una playlist</p>
-                                    </div>
-                                </a>
-                            </li>
-                            <hr class="border-t border-gray-600 my-2">
-                            <li>
-                                <a href="" class="flex items-center">
-                                    <div class="flex items-center justify-center w-14 h-14 border border-gray-600 bg-gray-300/40 rounded-full shrink-0">
-                                        <i class="fa-regular fa-folder-closed fa-2x hover:text-[#1DB954] hover:scale-110 hover:rotate-12 transition-transform duration-300"></i>
-                                    </div>
-                                    <div class="flex flex-col items-start ">
-                                        <span class="font-bold text-base">Cartella</span>
-                                        <p class="text-gray-400 text-xs">Organizza le tue playlist</p>
-                                    </div>
-                                </a>
-                            </li>
-
-                        </ul>
-                        @endauth
-                    </div>
-                </div>
-
-                @auth
-                @foreach(auth()->user()->favoriteArtists as $favoriteArtist)
-                <a href="{{ route('artists.show', $favoriteArtist) }}" class="flex gap-3 ps-3">
-                    <img src="/media/{{ $favoriteArtist->image }}" alt="{{ $favoriteArtist->name }}" class="cover w-20 h-20 rounded-full {{ in_array($favoriteArtist->name, ['Skai IsYourGod', 'Blackpink', 'Twenty One Pilots']) ? 'object-cover' : '' }}">
-                    <div class="flex flex-col justify-center">
-                        <p class="text-white font-bold">{{ $favoriteArtist->name }}</p>
-                        <p class="text-sm text-gray-400">Artista</p>
-                    </div>
-                </a>
-                @endforeach
-
-                <!-- Playlist utente -->
-                @foreach(auth()->user()->playlists as $userPlaylist)
-                <div class="flex justify-between items-center">
-                    <a href="{{ route('playlists.show', $userPlaylist)}}" class="flex gap-3 ps-3">
-                        <img src="{{$userPlaylist->image_path ? Storage::url($userPlaylist->image_path) : 'https://placehold.co/80x80/282828/ffffff?text=♪'}}" alt="{{$userPlaylist->name}}" class="w-20 h-20 rounded-md object-cover shrink-0">
-                        <div class="flex flex-col justify-center">
-                            <p class="text-white font-bold">{{$userPlaylist->name}}</p>
-                            <p class="text-sm text-gray-400">Playlist</p>
-                        </div>
-                    </a>
-                    <form action="{{route('playlists.destroy', $userPlaylist)}}" method="POST">
-                        @csrf
-                        @method('DELETE')
-                        <button class="p-5">
-                            <i class="fa-solid fa-trash hover:text-red-600"></i>
-                        </button>
-                    </form>
-                </div>
-                @endforeach
-                @else
-                <div class="border border-slate-700 rounded-xl p-5 space-y-4 bg-slate-700/55 me-2 ms-2">
-                    <h3 class="text-white font-bold">Crea la tua prima playlist</h3>
-                    <p class="text-white text-sm">E' facile, ti aiuteremo</p>
-
-                    {{-- Mobile: link diretto al login --}}
-                    <a href="{{ route('login') }}" class="md:hidden btn bg-white text-black rounded-3xl">Crea una playlist</a>
-
-                    {{-- Desktop: dropdown con finestra blu --}}
-                    <div class="hidden md:block dropdown dropdown-right">
-                        <button tabindex="0" class="btn bg-white text-black rounded-3xl">Crea una playlist</button>
-                        <div tabindex="0" class="dropdown-content bg-blue-600 text-white rounded-xl p-4 w-84 shadow-xl translate-x-[65%] translate-y-[-60%]">
-                            <i class="absolute fa-solid fa-caret-left fa-2x text-blue-600 left-0 top-1/2 -translate-x-[50%] -translate-y-1/2"></i>
-                            <h3 class="font-bold text-lg">Crea una playlist</h3>
-                            <p class="py-4 text-sm">Accedi per creare e condividere playlist.</p>
-                            <div class="flex gap-4 justify-end">
-                                <button class="text-white font-bold">Non ora</button>
-                                <a href="{{ route('login') }}" class="btn bg-white border-none text-black rounded-3xl font-bold">Accedi</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="border border-slate-700 rounded-xl p-5 space-y-4 bg-slate-700/55 me-2 ms-2">
-                    <h3 class="text-white font-bold">Cerca qualche podcast da seguire</h3>
-                    <p class="text-white text-sm">Ti aggiorneremo sui nuovi episodi</p>
-                    <a href="{{ route('podcast') }}" class="btn bg-white text-black rounded-3xl">Sfoglia i podcast</a>
-                </div>
-                @endauth
+                <x-library />
             </div>
             <div class="flex rounded-xl border border-base-100 bg-base-100 flex-1 min-w-0 flex-col gap-2 p-5 content-bar bg-[linear-gradient(to_top,transparent_60%,#15803d_90%,#4ade80)]">
                 <a href="{{ route('homepage') }}" class="flex items-center gap-2 text-white px-4 py-2 m-5 bg-black/40 backdrop-blur-md rounded-full hover:bg-black/60 transition w-fit">
                     <i class="fa-solid fa-chevron-left"></i>
-                    <span>Torna indietro</span>
+                    <span>{{ __('ui.back') }}</span>
                 </a>
 
 
                 <h1 class="text-4xl sm:text-5xl md:text-6xl lg:text-8xl xl:text-9xl font-bold px-5 py-8">Podcast</h1>
 
                 <div class="flex border-base-100  flex-col gap-2 p-5 ">
-                    <a href="" class="text-2xl font-bold">Radar Creators Italia</a>
+                    <h2 class="text-2xl font-bold">Italy Creator Radar</h2>
 
                     <div class=" w-full">
 
@@ -225,7 +53,7 @@
                             </button>
                             <div id="radarCarousel" class="flex gap-2 md:gap-4 overflow-x-auto scroll-smooth pt-2 pb-4" style="scrollbar-width: none;">
 
-                                <x-podcast-cards.radars-card image="https://imgs.search.brave.com/TiFnlXYcbZLp9DAoxIDiw38YP6Y6d8wY27_dBuj54P4/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9pbWcu/bWFnbmlmaWMuY29t/L3ByZW1pdW0tcHNk/L3BvZGNhc3QtdGFs/ay1zaG93LXByb21v/dGlvbmFsLXNvY2lh/bC1tZWRpYS1wb3N0/XzU4NDE5Ny0yNzI3/LmpwZz9zZW10PWFp/c19oeWJyaWQmdz03/NDAmcT04MA" title="Radars Creators Italia" description="Podcast dedicato ai creatori di contenuti in Italia" />
+                                <x-podcast-cards.radars-card image="https://imgs.search.brave.com/TiFnlXYcbZLp9DAoxIDiw38YP6Y6d8wY27_dBuj54P4/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9pbWcu/bWFnbmlmaWMuY29t/L3ByZW1pdW0tcHNk/L3BvZGNhc3QtdGFs/ay1zaG93LXByb21v/dGlvbmFsLXNvY2lh/bC1tZWRpYS1wb3N0/XzU4NDE5Ny0yNzI3/LmpwZz9zZW10PWFp/c19oeWJyaWQmdz03/NDAmcT04MA" title="Italy Creator Radar" description="A podcast for content creators in Italy" />
                                 <x-podcast-cards.radars-card image="https://imgs.search.brave.com/HsB44VL-50dgYA0mp11rAQS7ENFa3R9vUPTdSQI39vU/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9jZG4u/cGl4YWJheS5jb20v/cGhvdG8vMjAyMy8w/MS8xNS8xMy8wNS9w/b2RjYXN0LTc3MjAx/MDZfMTI4MC5qcGc" title="Capiamo" description="Gioelle Arreghini e Thomas Asueni" />
                                 <x-podcast-cards.radars-card image="https://imgs.search.brave.com/p2Aaie31gvY2ADSukVw_KpbQHHMsnIGo8ri7segyVSI/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9tZWRp/YS5nZXR0eWltYWdl/cy5jb20vaWQvMTYz/NTc5ODIzNS9pdC9m/b3RvL3ByaW1vLXBp/YW5vLWRpLXVuLWdp/b3ZhbmUtdW9tby1z/b3JyaWRlbnRlLWNo/ZS1yZWdpc3RyYS1w/b2RjYXN0LWUtZmEt/c3RyZWFtaW5nLWxp/dmUtdXNhbmRvLmpw/Zz9zPTYxMng2MTIm/dz0wJms9MjAmYz1L/OUh0Nm5NTHlUdzR4/R1d5c2k5a3dpUkhW/WHRFTVI0bnNQalps/RENNOVJBPQ" title="Hypersimposio" description="Hypersimposio" />
                                 <x-podcast-cards.radars-card image="https://imgs.search.brave.com/xbQIpuo0WA6PaNS48qcEeYCaV2LH-N_cBqi9UJKxEq4/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9wb2Rz/dGFyLml0L3dwLWNv/bnRlbnQvdXBsb2Fk/cy8yMDIyLzA4L3Bv/ZGNhc3QtbWFya2V0/aW5nLmpwZw" title="Made IT-Storie Italiane di successo" description="Ines Makula e Camilla Scassellati" />
@@ -240,7 +68,7 @@
                         </div>
                     </div>
 
-                    <a href="" class="text-2xl font-bold pt-15">Gli episodi del giorno</a>
+                    <h2 class="text-2xl font-bold pt-15">{{ __('ui.todays_episodes') }}</h2>
 
                     <div class="relative w-full group/carousel">
                         <button type="button" onclick="scrollCarousel('radarCarousel', -350)" class="btn btn-circle absolute left-0 top-17 md:top-23 z-20 bg-black/20 border-none text-white opacity-100 lg:opacity-0 lg:group-hover/carousel:opacity-100">
@@ -262,26 +90,26 @@
 
                     </div>
 
-                    <a href="" class="text-2xl font-bold pt-15">Categorie</a>
+                    <h2 class="text-2xl font-bold pt-15">{{ __('ui.categories') }}</h2>
 
                     <div class="flex w-full flex-wrap gap-3 pt-2">
-                        <x-podcast-cards.categories-card color="bg-green-700" title="Classifiche podcast" />
-                        <x-podcast-cards.categories-card color="bg-purple-700" title="Nuove uscite nei podcast" />
-                        <x-podcast-cards.categories-card color="bg-yellow-700" title="Video podcast" />
-                        <x-podcast-cards.categories-card color="bg-cyan-700" title="Salute mentale e Benessere" />
-                        <x-podcast-cards.categories-card color="bg-orange-700" title="Istruzione" />
-                        <x-podcast-cards.categories-card color="bg-indigo-700" title="Notizia politica" />
-                        <x-podcast-cards.categories-card color="bg-teal-700" title="Storie" />
+                        <x-podcast-cards.categories-card color="bg-green-700" title="Podcast charts" />
+                        <x-podcast-cards.categories-card color="bg-purple-700" title="New podcast releases" />
+                        <x-podcast-cards.categories-card color="bg-yellow-700" title="Video podcasts" />
+                        <x-podcast-cards.categories-card color="bg-cyan-700" title="Mental health & wellness" />
+                        <x-podcast-cards.categories-card color="bg-orange-700" title="Education" />
+                        <x-podcast-cards.categories-card color="bg-indigo-700" title="Political news" />
+                        <x-podcast-cards.categories-card color="bg-teal-700" title="Stories" />
                         <x-podcast-cards.categories-card color="bg-violet-700" title="True crime" />
-                        <x-podcast-cards.categories-card color="bg-pink-700" title="Commedia" />
+                        <x-podcast-cards.categories-card color="bg-pink-700" title="Comedy" />
                         <x-podcast-cards.categories-card color="bg-lime-700" title="Influencers" />
-                        <x-podcast-cards.categories-card color="bg-sky-700" title="Qui si fa la storia" />
-                        <x-podcast-cards.categories-card color="bg-fuchsia-700" title="Libri" />
-                        <x-podcast-cards.categories-card color="bg-amber-700" title="Relazioni personali" />
-                        <x-podcast-cards.categories-card color="bg-rose-700" title="Scienza" />
+                        <x-podcast-cards.categories-card color="bg-sky-700" title="History" />
+                        <x-podcast-cards.categories-card color="bg-fuchsia-700" title="Books" />
+                        <x-podcast-cards.categories-card color="bg-amber-700" title="Personal relationships" />
+                        <x-podcast-cards.categories-card color="bg-rose-700" title="Science" />
                     </div>
 
-                    <button class="btn bg-green-700 text-white rounded-3xl mt-5 w-50">Sfoglia tutte le categorie</button>
+                    <button class="btn bg-green-700 text-white rounded-3xl mt-5 w-50">{{ __('ui.browse_all_categories') }}</button>
                 </div>
 
             </div>

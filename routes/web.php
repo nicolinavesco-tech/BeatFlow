@@ -16,19 +16,24 @@ Route::get('/premium', [HomeController::class, 'premium'])->name('premium');
 Route::get('/podcast', [HomeController::class, 'podcast'])->name('podcast');
 
 // Route protette
-Route::middleware('auth')->group(function(){
-Route::get('/accountOverview', [HomeController::class, 'accountOverview'])->name('accountOverview');
-Route::post('/songs', [SongController::class, 'store'])->name('songs.store');
-Route::post('/artists/favorite/{artist}', [ArtistController::class, 'favorite'])->name('artists.favorite');
-Route::post('/songs/add/{song}', [SongController::class, 'add'])->name('songs.add');
-Route::delete("/songs/destroy/{song}", [SongController::class, "destroy"])->name("songs.destroy");
-Route::post('/songs/{song}/favorite', [SongController::class, 'addFavorites'])->name('favorites.add');
-Route::delete('/songs/{song}/favorite',[SongController::class, 'removeFromFavorites'])->name('favorites.destroy');
-Route::get('/songs/{song}/is-favorite', [SongController::class, 'isFavorite'])->name('favorites.check');
+Route::middleware('auth')->group(function () {
+    Route::get('/accountOverview', [HomeController::class, 'accountOverview'])->name('accountOverview');
+    Route::post('/tracks', [SongController::class, 'store'])->name('songs.store');
+    Route::post('/artists/favorite/{artist}', [ArtistController::class, 'favorite'])->name('artists.favorite');
+    Route::post('/songs/add/{song}', [SongController::class, 'add'])->name('songs.add');
+    Route::delete('/songs/destroy/{song}', [SongController::class, 'destroy'])->name('songs.destroy');
+    Route::post('/songs/{song}/favorite', [SongController::class, 'addFavorites'])->name('favorites.add');
+    Route::delete('/songs/{song}/favorite', [SongController::class, 'removeFromFavorites'])->name('favorites.destroy');
+    Route::get('/songs/{song}/is-favorite', [SongController::class, 'isFavorite'])->name('favorites.check');
+
+    Route::post('/playlists', [PlaylistController::class, 'store'])->name('playlists.store');
+    Route::get('/playlists/{playlist}', [PlaylistController::class, 'show'])->name('playlists.show');
+    Route::post('/playlists/{playlist}/songs', [PlaylistController::class, 'addSong'])->name('playlists.addSong');
+    Route::delete('/playlists/{playlist}', [PlaylistController::class, 'destroy'])->name('playlists.destroy');
 });
 
-
-Route::get('/songs', [SongController::class, 'index'])->name('songs.index');
+// "/songs" è anche una cartella in public/ (i file mp3): il web server la servirebbe al posto della rotta
+Route::get('/tracks', [SongController::class, 'index'])->name('songs.index');
 Route::get('/songs/detail/{song}', [SongController::class, 'show'])->name('songs.show');
 Route::get('/search', [SearchController::class, 'search'])->name('global.search');
 
@@ -40,12 +45,6 @@ Route::get('/jamendo/search', [JamendoController::class, 'search']);
 
 // Albums
 Route::get('/albums/{album}', [AlbumController::class, 'show'])->name('albums.show');
-
-// Playlist
-Route::post('/playlists', [PlaylistController::class, 'store'])->name('playlists.store');
-Route::get('/playlists/{playlist}', [PlaylistController::class, 'show'])->name('playlists.show');
-Route::post('/playlists/{playlist}/songs', [PlaylistController::class, 'addSong'])->name('playlists.addSong');
-Route::delete('/playlists/{playlist}', [PlaylistController::class, 'destroy'])->name('playlists.destroy');
 
 // Change language
 Route::post('/lingua/{lang}', [HomeController::class, 'setLanguage'])->name('setLocale');

@@ -4,268 +4,103 @@
 
         {{-- Sidebar nascosta su mobile--}}
         <aside class="hidden lg:flex w-90 bg-base-100 rounded-xl flex-col min-h-screen sticky top-20 space-y-6 shrink-0 z-40">
-            <div class="flex justify-between">
-                <p class="text-xl font-bold mb-4 p-5">La tua libreria</p>
-                <div class="dropdown dropdown-start p-4">
-                    <label tabindex="0" class="btn flex items-center rounded-2xl gap-2 px-4 bg-slate-700/55">
-                        <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            width="22"
-                            height="22"
-                            viewBox="0 0 24 24"
-                            fill="none"
-                            stroke="currentColor"
-                            stroke-width="2.5"
-                            stroke-linecap="round"
-                            stroke-linejoin="round">
-                            <line x1="12" y1="5" x2="12" y2="19"></line>
-                            <line x1="5" y1="12" x2="19" y2="12"></line>
-                        </svg>
-                        <span>Crea</span>
-                    </label>
-                    @auth
-                    <ul tabindex="0" class="dropdown-content menu bg-base-100 rounded-box z-1 w-84 p-2 shadow border border-slate-700/80 mt-2">
-                        <li>
-                            <div class="dropdown dropdown-right flex">
-                                <div class="flex items-center justify-center w-14 h-14 border border-gray-600 bg-gray-300/40 rounded-full shrink-0">
-                                    <a href="{{ route('homepage') }}?tab=createPlaylist">
-                                        <i class="fa-brands fa-itunes-note fa-2x hover:text-[#1DB954] hover:scale-110 hover:rotate-12 transition-transform duration-300"></i>
-                                    </a>
-                                </div>
-                                <div class="flex flex-col items-start ">
-                                    <span class="font-bold text-base">Playlist</span>
-                                    <p class="text-gray-400 text-xs">Riunisci i tuoi brani preferiti</p>
-                                </div>
-                            </div>
-
-                        </li>
-                        <li>
-                            <a href="{{ route('login') }}" class="flex items-center gap-3">
-                                <div class="flex items-center justify-center w-14 h-14 border border-gray-600 bg-gray-300/40 rounded-full shrink-0">
-                                    <i class="fa-solid fa-chart-pie fa-2x hover:text-[#1DB954] hover:scale-110 hover:rotate-12 transition-transform duration-300"></i>
-                                </div>
-                                <div class="flex flex-col items-start">
-                                    <span class="font-bold text-base">Blend</span>
-                                    <p class="text-gray-400 text-xs">Fondi i gusti dei tuoi amici in una playlist</p>
-                                </div>
-                            </a>
-                        </li>
-                        <hr class="border-t border-gray-600 my-2">
-                        <li>
-                            <a href="" class="flex items-center">
-                                <div class="flex items-center justify-center w-14 h-14 border border-gray-600 bg-gray-300/40 rounded-full shrink-0">
-                                    <i class="fa-regular fa-folder-closed fa-2x hover:text-[#1DB954] hover:scale-110 hover:rotate-12 transition-transform duration-300"></i>
-                                </div>
-                                <div class="flex flex-col items-start ">
-                                    <span class="font-bold text-base">Cartella</span>
-                                    <p class="text-gray-400 text-xs">Organizza le tue playlist</p>
-                                </div>
-                            </a>
-                        </li>
-
-                    </ul>
-                    @else
-                    <ul tabindex="0" class="dropdown-content menu bg-base-100 rounded-box z-1 w-84 p-2 shadow border border-slate-700/80 mt-2">
-                        <li>
-                            <div class="dropdown dropdown-right flex">
-                                <div class="flex items-center justify-center w-14 h-14 border border-gray-600 bg-gray-300/40 rounded-full shrink-0">
-                                    <button tabindex="0"><i class="fa-brands fa-itunes-note fa-2x hover:text-[#1DB954] hover:scale-110 hover:rotate-12 transition-transform duration-300"></i></button>
-                                    <div tabindex="0" class="dropdown-content bg-blue-600 text-white rounded-xl p-4 w-84 shadow-xl translate-x-[5%] translate-y-[-30%]">
-                                        <i class="absolute fa-solid fa-caret-left fa-2x text-blue-600 left-0 top-1/2 -translate-x-[50%] -translate-y-1/2"></i>
-                                        <h3 class="font-bold text-lg ">Crea una playlist</h3>
-                                        <p class="py-4 text-sm">Accedi per creare e condividere playlist.</p>
-                                        <div class="flex gap-4 justify-end">
-                                            <button onclick="this.closest('.dropdown-content').classList.add('hidden')" class=" text-white font-bold">Non ora</button>
-                                            <a href="{{ route('login') }}" class="btn bg-white border-none text-black rounded-3xl font-bold">Accedi</a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="flex flex-col items-start ">
-                                    <span class="font-bold text-base">Playlist</span>
-                                    <p class="text-gray-400 text-xs">Riunisci i tuoi brani preferiti</p>
-                                </div>
-                            </div>
-
-                        </li>
-                        <li>
-                            <a href="{{ route('login') }}" class="flex items-center gap-3">
-                                <div class="flex items-center justify-center w-14 h-14 border border-gray-600 bg-gray-300/40 rounded-full shrink-0">
-                                    <i class="fa-solid fa-chart-pie fa-2x hover:text-[#1DB954] hover:scale-110 hover:rotate-12 transition-transform duration-300"></i>
-                                </div>
-                                <div class="flex flex-col items-start">
-                                    <span class="font-bold text-base">Blend</span>
-                                    <p class="text-gray-400 text-xs">Fondi i gusti dei tuoi amici in una playlist</p>
-                                </div>
-                            </a>
-                        </li>
-                        <hr class="border-t border-gray-600 my-2">
-                        <li>
-                            <a href="" class="flex items-center">
-                                <div class="flex items-center justify-center w-14 h-14 border border-gray-600 bg-gray-300/40 rounded-full shrink-0">
-                                    <i class="fa-regular fa-folder-closed fa-2x hover:text-[#1DB954] hover:scale-110 hover:rotate-12 transition-transform duration-300"></i>
-                                </div>
-                                <div class="flex flex-col items-start ">
-                                    <span class="font-bold text-base">Cartella</span>
-                                    <p class="text-gray-400 text-xs">Organizza le tue playlist</p>
-                                </div>
-                            </a>
-                        </li>
-
-                    </ul>
-                    @endauth
-                </div>
-            </div>
-
-            @auth
-            @foreach(auth()->user()->favoriteArtists as $favoriteArtist)
-            <a href="{{ route('artists.show', $favoriteArtist) }}" class="flex gap-3 ps-3">
-                <img src="/media/{{ $favoriteArtist->image }}" alt="{{ $favoriteArtist->name }}" class="cover w-20 h-20 rounded-full {{ in_array($favoriteArtist->name, ['Skai IsYourGod', 'Blackpink', 'Twenty One Pilots']) ? 'object-cover' : '' }}">
-                <div class="flex flex-col justify-center">
-                    <p class="text-white font-bold">{{ $favoriteArtist->name }}</p>
-                    <p class="text-sm text-gray-400">Artista</p>
-                </div>
-            </a>
-            @endforeach
-
-            <!-- Playlist utente -->
-            @foreach(auth()->user()->playlists as $userPlaylist)
-            <div class="flex justify-between items-center">
-                <a href="{{ route('playlists.show', $userPlaylist)}}" class="flex gap-3 ps-3">
-                    <img src="{{$userPlaylist->image_path ? Storage::url($userPlaylist->image_path) : 'https://placehold.co/80x80/282828/ffffff?text=♪'}}" alt="{{$userPlaylist->name}}" class="w-20 h-20 rounded-md object-cover shrink-0">
-                    <div class="flex flex-col justify-center">
-                        <p class="text-white font-bold">{{$userPlaylist->name}}</p>
-                        <p class="text-sm text-gray-400">Playlist</p>
-                    </div>
-                </a>
-                <form action="{{route('playlists.destroy', $userPlaylist)}}" method="POST">
-                    @csrf
-                    @method('DELETE')
-                    <button class="p-5">
-                        <i class="fa-solid fa-trash hover:text-red-600"></i>
-                    </button>
-                </form>
-            </div>
-            @endforeach
-            @else
-            <div class="border border-slate-700 rounded-xl p-5 space-y-4 bg-slate-700/55 me-2 ms-2">
-                <h3 class="text-white font-bold">Crea la tua prima playlist</h3>
-                <p class="text-white text-sm">E' facile, ti aiuteremo</p>
-                <div class="dropdown dropdown-right">
-                    <button tabindex="0" class="btn bg-white text-black rounded-3xl">Crea playlist</button>
-                    <div tabindex="0" class="dropdown-content bg-blue-600 text-white rounded-xl p-4 w-84 shadow-xl translate-x-[65%] translate-y-[-60%]">
-                        <i class="absolute fa-solid fa-caret-left fa-2x text-blue-600 left-0 top-1/2 -translate-x-[50%] -translate-y-1/2"></i>
-                        <h3 class="font-bold text-lg ">Crea una playlist</h3>
-                        <p class="py-4 text-sm">Accedi per creare e condividere playlist.</p>
-                        <div class="flex gap-4 justify-end">
-                            <button class=" text-white font-bold">Non ora</button>
-                            <a href="{{ route('login') }}" class="btn bg-white border-none text-black rounded-3xl font-bold">Accedi</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="border border-slate-700 rounded-xl p-5 space-y-4 bg-slate-700/55 me-2 ms-2">
-                <h3 class="text-white font-bold">Cerca qualche podcast da seguire</h3>
-                <p class="text-white text-sm">Ti aggiorneremo sui nuovi episodi</p>
-                <a href="{{ route('podcast') }}" class="btn bg-white text-black rounded-3xl">Sfoglia i podcast</a>
-            </div>
-            @endauth
+            <x-library />
         </aside>
         <!-- Main Content -->
         <div class="min-h-screen flex rounded-xl border border-base-100 w-full items-center min-w-0 bg-base-100 flex-col gap-4 pt-5">
 
             <div class="w-full max-w-4xl mx-auto px-8 py-10 space-y-6 mb-6">
-                <h2 class="text-white text-3xl font-bold flex items-center gap-2">Impostazioni</h2>
+                <h2 class="text-white text-3xl font-bold flex items-center gap-2">{{ __('ui.settings') }}</h2>
 
-                <p class="text-white text-xl font-bold">Account</p>
+                <p class="text-white text-xl font-bold">{{ __('ui.account') }}</p>
                 <div class="flex gap-5 items-center justify-between">
-                    <p class="text-sm text-gray-400">Modifica metodi di accesso</p>
-                    <button class="btn bg-transparent text-white border border-white rounded-3xl">Modifica</button>
+                    <p class="text-sm text-gray-400">{{ __('ui.edit_login_methods') }}</p>
+                    <button class="btn bg-transparent text-white border border-white rounded-3xl">{{ __('ui.edit') }}</button>
                 </div>
 
-                <p class="text-white text-xl font-bold">Lingua</p>
+                <p class="text-white text-xl font-bold">{{ __('ui.language') }}</p>
                 <div class="flex gap-5 items-center justify-between">
-                    <p class="text-sm text-gray-400">Scegli lingua - Le modifiche saranno applicate dopo il riavvio dell'app</p>
-                    <select class="select">
-                        <option disabled selected>Italiano(Italian)</option>
-                        <option>English</option>
-                        <option>Chinese</option>
-                        <option>Russian</option>
+                    <p class="text-sm text-gray-400">{{ __('ui.choose_language') }}</p>
+                    {{-- Cambia davvero la lingua: invia il form della rotta setLocale --}}
+                    <form method="POST" action="{{ route('setLocale', app()->getLocale()) }}">
+                        @csrf
+                        <select class="select" onchange="this.form.action = @js(url('lingua')) + '/' + this.value; this.form.submit()" aria-label="{{ __('ui.language') }}">
+                            <option value="it" @selected(app()->getLocale() === 'it')>Italiano</option>
+                            <option value="en" @selected(app()->getLocale() === 'en')>English</option>
+                        </select>
+                    </form>
+                </div>
+                <p class="text-white text-xl font-bold">{{ __('ui.audio_quality') }}</p>
+                <div class="flex gap-5 items-center justify-between">
+                    <p class="text-sm text-gray-400">{{ __('ui.listening_quality') }}</p>
+                    <select class="select" aria-label="{{ __('ui.listening_quality') }}">
+                        <option selected>{{ __('ui.quality_auto') }}</option>
+                        <option>{{ __('ui.quality_low') }}</option>
+                        <option>{{ __('ui.quality_normal') }}</option>
+                        <option>{{ __('ui.quality_high') }}</option>
+                        <option>{{ __('ui.quality_very_high') }}</option>
                     </select>
                 </div>
-                <p class="text-white text-xl font-bold">Qualità audio</p>
                 <div class="flex gap-5 items-center justify-between">
-                    <p class="text-sm text-gray-400">Qualità dell'ascolto</p>
-                    <select class="select">
-                        <option disabled selected>Automatico</option>
-                        <option>English</option>
-                        <option>Chinese</option>
-                        <option>Russian</option>
-                    </select>
+                    <p class="text-sm text-gray-400">{{ __('ui.normalize_volume') }}</p>
+                    <input type="checkbox" class="toggle" aria-label="{{ __('ui.normalize_volume') }}" />
+                </div>
+                <p class="text-white text-xl font-bold">{{ __('ui.your_library') }}</p>
+                <div class="flex gap-5 items-center justify-between">
+                    <p class="text-sm text-gray-400">{{ __('ui.compact_library') }}</p>
+                    <input type="checkbox" class="toggle" aria-label="{{ __('ui.compact_library') }}" />
                 </div>
                 <div class="flex gap-5 items-center justify-between">
-                    <p class="text-sm text-gray-400">Normalizza volume - Imposta lo stesso livello di volume per tutti i brani e i podcast</p>
-                    <input type="checkbox" class="toggle validator" required title="Required" />
+                    <p class="text-sm text-gray-400">{{ __('ui.import_your_library') }}</p>
+                    <button class="btn bg-transparent text-white border border-white rounded-3xl">{{ __('ui.import_library') }}</button>
                 </div>
-                <p class="text-white text-xl font-bold">La tua libreria</p>
+                <p class="text-white text-xl font-bold">{{ __('ui.display') }}</p>
                 <div class="flex gap-5 items-center justify-between">
-                    <p class="text-sm text-gray-400">Usa il layout compatto della libreria</p>
-                    <input type="checkbox" class="toggle validator" required title="Required" />
+                    <p class="text-sm text-gray-400">{{ __('ui.now_playing_panel') }}</p>
+                    <input type="checkbox" class="toggle toggle-success" checked aria-label="{{ __('ui.now_playing_panel') }}" />
                 </div>
+                <p class="text-white text-xl font-bold">{{ __('ui.video_canvas') }}</p>
+                <p class="text-white text-base font-bold">{{ __('ui.music_videos') }}</p>
                 <div class="flex gap-5 items-center justify-between">
-                    <p class="text-sm text-gray-400">Importa la tua libreria</p>
-                    <button class="btn bg-transparent text-white border border-white rounded-3xl">Importa libreria</button>
-                </div>
-                <p class="text-white text-xl font-bold">Mostra</p>
-                <div class="flex gap-5 items-center justify-between">
-                    <p class="text-sm text-gray-400">Mostra il pannello Stai ascoltando quando clicchi su Play</p>
-                    <input type="checkbox" class="toggle toggle-success" checked />
-                </div>
-                <p class="text-white text-xl font-bold">Video canvas</p>
-                <p class="text-white text-base font-bold">Video musicali</p>
-                <div class="flex gap-5 items-center justify-between">
-                    <p class="text-xs text-gray-400">Quando l'opzione è disattivata, i video musicali e le esibizioni dal vivo vengono riprodotti solo come audio.</p>
-                    <input type="checkbox" class="toggle toggle-success" checked />
+                    <p class="text-xs text-gray-400">{{ __('ui.music_videos_description') }}</p>
+                    <input type="checkbox" class="toggle toggle-success" checked aria-label="{{ __('ui.music_videos') }}" />
                 </div>
                 <p class="text-white text-base font-bold">Canvas</p>
                 <div class="flex gap-5 items-center justify-between">
-                    <p class="text-xs text-gray-400">Brevi immagini a ciclo continuo durante la riproduzione di un brano.</p>
-                    <input type="checkbox" class="toggle toggle-success" checked />
+                    <p class="text-xs text-gray-400">{{ __('ui.canvas_description') }}</p>
+                    <input type="checkbox" class="toggle toggle-success" checked aria-label="Canvas" />
                 </div>
-                <p class="text-white text-base font-bold">Altri video</p>
+                <p class="text-white text-base font-bold">{{ __('ui.other_videos') }}</p>
                 <div class="flex gap-5 items-center justify-between">
-                    <p class="text-xs text-gray-400">Video a scorrimento verticale, video podcast, video di creator e autori. Gli annunci video non possono essere disattivati.</p>
-                    <input type="checkbox" class="toggle toggle-success" checked />
+                    <p class="text-xs text-gray-400">{{ __('ui.other_videos_description') }}</p>
+                    <input type="checkbox" class="toggle toggle-success" checked aria-label="{{ __('ui.other_videos') }}" />
                 </div>
                 <div class="flex flex-col items-start border border-slate-700/80 bg-slate-800/50 rounded-xl p-4 gap-4">
-                    <h2 class="text-white text-2xl font-bold">Ottimizza l'audio con l'app Windows</h2>
-                    <div class="flex items-center justify-between w-full">
-                        <p class="text-base  text-gray-400">Migliora la qualità dell'ascolto, regola l'equalizzatore per adattarlo al meglio ai tuoi altoparlanti e approfitta di un volume coerente per tutte le tracce.</p>
-                        <button class="btn bg-[#1DB954] text-black rounded-3xl font-bold">Scarica l'app gratuita</button>
+                    <h2 class="text-white text-2xl font-bold">{{ __('ui.optimize_audio_title') }}</h2>
+                    <div class="flex flex-col md:flex-row md:items-center justify-between w-full gap-4">
+                        <p class="text-base text-gray-400">{{ __('ui.optimize_audio_description') }}</p>
+                        <a href="{{ route('download') }}" class="btn bg-[#1DB954] text-black rounded-3xl font-bold shrink-0">{{ __('ui.download_free_app') }}</a>
                     </div>
                 </div>
 
                 <p class="text-white text-xl font-bold">Social</p>
 
                 <div class="flex gap-5 items-center justify-between">
-                    <p class="text-xs text-gray-400">Le persone possono vedere le playlist che hai aggiunto al tuo profilo.</p>
-                    <input type="checkbox" class="toggle toggle-success" checked />
+                    <p class="text-xs text-gray-400">{{ __('ui.social_playlists') }}</p>
+                    <input type="checkbox" class="toggle toggle-success" checked aria-label="{{ __('ui.social_playlists') }}" />
                 </div>
                 <div class="flex gap-5 items-center justify-between">
-                    <p class="text-xs text-gray-400">Sul tuo profilo, le persone possono vedere chi ti segue e chi stai seguendo.</p>
-                    <input type="checkbox" class="toggle toggle-success" checked />
+                    <p class="text-xs text-gray-400">{{ __('ui.social_followers') }}</p>
+                    <input type="checkbox" class="toggle toggle-success" checked aria-label="{{ __('ui.social_followers') }}" />
                 </div>
                 <div class="flex gap-5 items-center justify-between">
-                    <p class="text-xs text-gray-400">Condividi la mia attività di ascolto con i follower sul computer</p>
-                    <input type="checkbox" class="toggle validator" required title="Required" />
+                    <p class="text-xs text-gray-400">{{ __('ui.social_activity') }}</p>
+                    <input type="checkbox" class="toggle" aria-label="{{ __('ui.social_activity') }}" />
                 </div>
 
             </div>
 
-
-
         </div>
-
 
     </section>
 </main>

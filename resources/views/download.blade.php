@@ -3,8 +3,8 @@
     <header class="w-full h-150 mx-auto mt-10 p-5 hero-download">
         <div class="flex flex-col justify-center items-center h-150 gap-10">
 
-            <h1 class="text-5xl font-bold text-center">Scarica BeatFlow</h1>
-            <p class="text-center font-bold text-2xl text-white">Porta la tua musica ovunque con l'app di BeatFlow.</p>
+            <h1 class="text-5xl font-bold text-center">{{ __('ui.download_title') }}</h1>
+            <p class="text-center font-bold text-2xl text-white">{{ __('ui.download_subtitle') }}</p>
             <button class="brutalist-button bg-white">
                 <div class="ms-logo">
                     <div class="ms-logo-square"></div>
@@ -13,7 +13,7 @@
                     <div class="ms-logo-square"></div>
                 </div>
                 <div class="button-text">
-                    <span>SCARICA DA</span>
+                    <span>{{ __('ui.get_it_from') }}</span>
                     <span>Microsoft Store</span>
                 </div>
             </button>
@@ -22,9 +22,8 @@
     </header>
     <section class="h-75 bg-white">
         <div class="flex flex-col justify-center items-center h-75 gap-5">
-            <h2 class="text-xl lg:text-3xl text-black font-bold text-center">Ascolta anche su dispositivo mobile e tablet</h2>
-            <p class="text-center text-black font-bold text-base lg:text-xl">L'ascolto sul telefono o tablet è gratuito, facile e divertente.</p>
-            <!-- From Uiverse.io by MeetJF -->
+            <h2 class="text-xl lg:text-3xl text-black font-bold text-center">{{ __('ui.download_mobile_title') }}</h2>
+            <p class="text-center text-black font-bold text-base lg:text-xl">{{ __('ui.download_mobile_description') }}</p>
             <div class="flex flex-wrap justify-center gap-3 px-4">
                 <button class="cursor-pointer bg-black rounded-2xl w-full max-w-55 sm:w-auto">
                     <div
@@ -44,7 +43,7 @@
                                 fill="#3BCCFF"></path>
                         </svg>
                         <div class="bg-black text-white">
-                            <div class="text-[.5rem] sm:text-xs text-left">Scarica da</div>
+                            <div class="text-[.5rem] sm:text-xs text-left">{{ __('ui.download_from') }}</div>
                             <div class="text-sm font-semibold font-sans -mt-1 sm:text-xl">
                                 Google Play
                             </div>
@@ -61,7 +60,7 @@
                                 fill="currentColor"></path>
                         </svg>
                         <div class="bg-black text-white">
-                            <div class="text-[.5rem] sm:text-xs text-left">Scarica da</div>
+                            <div class="text-[.5rem] sm:text-xs text-left">{{ __('ui.download_from') }}</div>
                             <div class="text-sm md:text-lg font-semibold font-sans -mt-1 sm:text-2xl">
                                 App Store
                             </div>
@@ -73,17 +72,13 @@
                     <div
                         class="flex w-48 h-12 px-3 gap-2 rounded-xl items-center justify-center bg-black sm:w-auto sm:h-14">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 680" width="200" height="200">
-                            <!-- Top-left: rosso -->
                             <rect x="190" y="190" width="140" height="140" rx="6" fill="#F25022" />
-                            <!-- Top-right: verde -->
                             <rect x="350" y="190" width="140" height="140" rx="6" fill="#7FBA00" />
-                            <!-- Bottom-left: blu -->
                             <rect x="190" y="350" width="140" height="140" rx="6" fill="#00A4EF" />
-                            <!-- Bottom-right: giallo -->
                             <rect x="350" y="350" width="140" height="140" rx="6" fill="#FFB900" />
                         </svg>
                         <div class="bg-black text-white">
-                            <div class="text-[.5rem] sm:text-xs text-left">Scarica da</div>
+                            <div class="text-[.5rem] sm:text-xs text-left">{{ __('ui.download_from') }}</div>
                             <div class="text-sm font-semibold font-sans -mt-1 sm:text-xl">
                                 Microsoft
                             </div>
@@ -96,21 +91,19 @@
     </section>
     <section class="h-100 bg-slate-700/55 second-section">
         <div class="flex flex-col justify-end items-center h-100 gap-5 p-5">
-            <h2 class="text-3xl text-white font-bold text-center">Ascolta ovunque, con un unico account</h2>
+            <h2 class="text-3xl text-white font-bold text-center">{{ __('ui.listen_everywhere') }}</h2>
             <div class="flex flex-wrap justify-center gap-6">
-                <span class="text-center font-bold text-lg">Dispositivo mobile</span>
-                <span class="text-center font-bold text-lg">Computer</span>
-                <span class="text-center font-bold text-lg">Tablet</span>
-                <span class="text-center  font-bold text-lg">Auto</span>
-                <span class="text-center  font-bold text-lg">PlayStation</span>
-                <span class="text-center  font-bold text-lg">Xbox</span>
-                <span class="text-center  font-bold text-lg">TV</span>
-                <span class="text-center  font-bold text-lg">Altoparlante</span>
-                <span class="text-center  font-bold text-lg">Lettore Web</span>
+                <span class="text-center font-bold text-lg">{{ __('ui.device_mobile') }}</span>
+                <span class="text-center font-bold text-lg">{{ __('ui.device_computer') }}</span>
+                <span class="text-center font-bold text-lg">{{ __('ui.device_tablet') }}</span>
+                <span class="text-center font-bold text-lg">{{ __('ui.device_car') }}</span>
+                <span class="text-center font-bold text-lg">PlayStation</span>
+                <span class="text-center font-bold text-lg">Xbox</span>
+                <span class="text-center font-bold text-lg">TV</span>
+                <span class="text-center font-bold text-lg">{{ __('ui.device_speaker') }}</span>
+                <span class="text-center font-bold text-lg">Web Player</span>
             </div>
         </div>
     </section>
-
-
 
 </x-layout>

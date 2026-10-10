@@ -30,7 +30,7 @@
                         <path d="m21 21-4.3-4.3"></path>
                     </g>
                 </svg>
-                <input type="search" required placeholder="Cerca nell'account o negli articoli dell'assistenza" />
+                <input type="search" required placeholder="Search your account or support articles" />
             </label>
         </section>
         <section class="flex justify-center pt-5">

@@ -1,206 +1,17 @@
 <x-layout>
     <main>
-        <div class="flex gap-2 pt-20 justify-center lg:hidden bg-black">
-            <a href="{{ route('homepage') }}" class="btn rounded-full"><i class="fa-regular fa-house text-white"></i></a>
-            <form action="{{ route('global.search') }}" method="GET">
-                <label class="input w-65 md:w-100 flex items-center gap-2">
-
-                    <svg class="h-[1em] opacity-50" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                        <g
-                            stroke-linejoin="round"
-                            stroke-linecap="round"
-                            stroke-width="2.5"
-                            fill="none"
-                            stroke="currentColor">
-                            <circle cx="11" cy="11" r="8"></circle>
-                            <path d="m21 21-4.3-4.3"></path>
-                        </g>
-                    </svg>
-
-                    <input type="search" name="q" value="{{ request('q') }}" required placeholder="{{ __('ui.search_placeholder') }}" class="flex-1" />
-                    <select name="source" class="bg-slate-800/70 text-white text-sm outline-none ">
-                        <option value="local" @selected(request('source')==='local' )>
-                            {{ __('ui.library') }}
-                        </option>
-                        <option value="jamendo" @selected(request('source')==='jamendo' )>
-                            {{ __('ui.explore') }}
-                        </option>
-                    </select>
-                </label>
-            </form>
-        </div>
+        <x-mobile-search />
         <section class="min-h-screen flex flex-col lg:flex-row bg-black items-start pt-10 lg:pt-20 gap-2 search-page">
 
             {{-- Sidebar desktop --}}
             <aside class="hidden lg:flex w-90 bg-base-100 rounded-xl min-h-screen flex-col sticky top-20 space-y-6 shrink-0 z-40">
-                <div class="flex justify-between">
-                    <p class="text-xl font-bold mb-4 p-5">La tua libreria</p>
-                    <div class="dropdown dropdown-start p-4">
-                        <label tabindex="0" class="btn flex items-center rounded-2xl gap-2 px-4 bg-slate-700/55">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                                <line x1="12" y1="5" x2="12" y2="19"></line>
-                                <line x1="5" y1="12" x2="19" y2="12"></line>
-                            </svg>
-                            <span>Crea</span>
-                        </label>
-                        @auth
-                        <ul tabindex="0" class="dropdown-content menu bg-base-100 rounded-box z-1 w-84 p-2 shadow border border-slate-700/80 mt-2">
-                            <li>
-                                <div class="dropdown dropdown-right flex">
-                                    <div class="flex items-center justify-center w-14 h-14 border border-gray-600 bg-gray-300/40 rounded-full shrink-0">
-                                        <a href="{{ route('homepage') }}?tab=createPlaylist">
-                                            <i class="fa-brands fa-itunes-note fa-2x hover:text-[#1DB954] hover:scale-110 hover:rotate-12 transition-transform duration-300"></i>
-                                        </a>
-                                    </div>
-                                    <div class="flex flex-col items-start ">
-                                        <span class="font-bold text-base">Playlist</span>
-                                        <p class="text-gray-400 text-xs">Riunisci i tuoi brani preferiti</p>
-                                    </div>
-                                </div>
-
-                            </li>
-                            <li>
-                                <a href="{{ route('login') }}" class="flex items-center gap-3">
-                                    <div class="flex items-center justify-center w-14 h-14 border border-gray-600 bg-gray-300/40 rounded-full shrink-0">
-                                        <i class="fa-solid fa-chart-pie fa-2x hover:text-[#1DB954] hover:scale-110 hover:rotate-12 transition-transform duration-300"></i>
-                                    </div>
-                                    <div class="flex flex-col items-start">
-                                        <span class="font-bold text-base">Blend</span>
-                                        <p class="text-gray-400 text-xs">Fondi i gusti dei tuoi amici in una playlist</p>
-                                    </div>
-                                </a>
-                            </li>
-                            <hr class="border-t border-gray-600 my-2">
-                            <li>
-                                <a href="" class="flex items-center">
-                                    <div class="flex items-center justify-center w-14 h-14 border border-gray-600 bg-gray-300/40 rounded-full shrink-0">
-                                        <i class="fa-regular fa-folder-closed fa-2x hover:text-[#1DB954] hover:scale-110 hover:rotate-12 transition-transform duration-300"></i>
-                                    </div>
-                                    <div class="flex flex-col items-start ">
-                                        <span class="font-bold text-base">Cartella</span>
-                                        <p class="text-gray-400 text-xs">Organizza le tue playlist</p>
-                                    </div>
-                                </a>
-                            </li>
-
-                        </ul>
-                        @else
-                        <ul tabindex="0" class="dropdown-content menu bg-base-100 rounded-box z-1 w-84 p-2 shadow border border-slate-700/80 mt-2">
-                            <li>
-                                <div class="dropdown dropdown-right flex">
-                                    <div class="flex items-center justify-center w-14 h-14 border border-gray-600 bg-gray-300/40 rounded-full shrink-0">
-                                        <button tabindex="0"><i class="fa-brands fa-itunes-note fa-2x hover:text-[#1DB954] hover:scale-110 hover:rotate-12 transition-transform duration-300"></i></button>
-                                        <div tabindex="0" class="dropdown-content bg-blue-600 text-white rounded-xl p-4 w-84 shadow-xl translate-x-[5%] translate-y-[-30%]">
-                                            <i class="absolute fa-solid fa-caret-left fa-2x text-blue-600 left-0 top-1/2 -translate-x-[50%] -translate-y-1/2"></i>
-                                            <h3 class="font-bold text-lg ">Crea una playlist</h3>
-                                            <p class="py-4 text-sm">Accedi per creare e condividere playlist.</p>
-                                            <div class="flex gap-4 justify-end">
-                                                <button onclick="this.closest('.dropdown-content').classList.add('hidden')" class=" text-white font-bold">Non ora</button>
-                                                <a href="{{ route('login') }}" class="btn bg-white border-none text-black rounded-3xl font-bold">Accedi</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="flex flex-col items-start ">
-                                        <span class="font-bold text-base">Playlist</span>
-                                        <p class="text-gray-400 text-xs">Riunisci i tuoi brani preferiti</p>
-                                    </div>
-                                </div>
-
-                            </li>
-                            <li>
-                                <a href="{{ route('login') }}" class="flex items-center gap-3">
-                                    <div class="flex items-center justify-center w-14 h-14 border border-gray-600 bg-gray-300/40 rounded-full shrink-0">
-                                        <i class="fa-solid fa-chart-pie fa-2x hover:text-[#1DB954] hover:scale-110 hover:rotate-12 transition-transform duration-300"></i>
-                                    </div>
-                                    <div class="flex flex-col items-start">
-                                        <span class="font-bold text-base">Blend</span>
-                                        <p class="text-gray-400 text-xs">Fondi i gusti dei tuoi amici in una playlist</p>
-                                    </div>
-                                </a>
-                            </li>
-                            <hr class="border-t border-gray-600 my-2">
-                            <li>
-                                <a href="" class="flex items-center">
-                                    <div class="flex items-center justify-center w-14 h-14 border border-gray-600 bg-gray-300/40 rounded-full shrink-0">
-                                        <i class="fa-regular fa-folder-closed fa-2x hover:text-[#1DB954] hover:scale-110 hover:rotate-12 transition-transform duration-300"></i>
-                                    </div>
-                                    <div class="flex flex-col items-start ">
-                                        <span class="font-bold text-base">Cartella</span>
-                                        <p class="text-gray-400 text-xs">Organizza le tue playlist</p>
-                                    </div>
-                                </a>
-                            </li>
-                        </ul>
-                        @endauth
-                    </div>
-                </div>
-
-
-                @auth
-                @foreach(auth()->user()->favoriteArtists as $favoriteArtist)
-                <a href="{{ route('artists.show', $favoriteArtist) }}" class="flex gap-3 ps-3">
-                    <img src="/media/{{ $favoriteArtist->image }}" alt="{{ $favoriteArtist->name }}" class="cover w-20 h-20 rounded-full {{ in_array($favoriteArtist->name, ['Skai IsYourGod', 'Blackpink', 'Twenty One Pilots']) ? 'object-cover' : '' }}">
-                    <div class="flex flex-col justify-center">
-                        <p class="text-white font-bold">{{ $favoriteArtist->name }}</p>
-                        <p class="text-sm text-gray-400">Artista</p>
-                    </div>
-                </a>
-                @endforeach
-
-                <!-- Playlist utente -->
-                @foreach(auth()->user()->playlists as $userPlaylist)
-                <div class="flex justify-between items-center">
-                    <a href="{{ route('playlists.show', $userPlaylist)}}" class="flex gap-3 ps-3">
-                        <img src="{{$userPlaylist->image_path ? Storage::url($userPlaylist->image_path) : 'https://placehold.co/80x80/282828/ffffff?text=♪'}}" alt="{{$userPlaylist->name}}" class="w-20 h-20 rounded-md object-cover shrink-0">
-                        <div class="flex flex-col justify-center">
-                            <p class="text-white font-bold">{{$userPlaylist->name}}</p>
-                            <p class="text-sm text-gray-400">Playlist</p>
-                        </div>
-                    </a>
-                    <form action="{{route('playlists.destroy', $userPlaylist)}}" method="POST">
-                        @csrf
-                        @method('DELETE')
-                        <button class="p-5">
-                            <i class="fa-solid fa-trash hover:text-red-600"></i>
-                        </button>
-                    </form>
-                </div>
-                @endforeach
-                <div class="border border-slate-700 rounded-xl p-5 space-y-4 bg-slate-700/55 me-2 ms-2">
-                    <h3 class="text-white font-bold">Cerca qualche podcast da seguire</h3>
-                    <p class="text-white text-sm">Ti aggiorneremo sui nuovi episodi</p>
-                    <a href="{{ route('podcast') }}" class="btn bg-white text-black rounded-3xl">Sfoglia i podcast</a>
-                </div>
-                @else
-                <div class="border border-slate-700 rounded-xl p-5 space-y-4 bg-slate-700/55 me-2 ms-2">
-                    <h3 class="text-white font-bold">Crea la tua prima playlist</h3>
-                    <p class="text-white text-sm">E' facile, ti aiuteremo</p>
-                    <div class="dropdown dropdown-right">
-                        <button tabindex="0" class="btn bg-white text-black rounded-3xl">Crea playlist</button>
-                        <div tabindex="0" class="dropdown-content bg-blue-600 text-white rounded-xl p-4 w-84 shadow-xl translate-x-[65%] translate-y-[-60%]">
-                            <i class="absolute fa-solid fa-caret-left fa-2x text-blue-600 left-0 top-1/2 -translate-x-[50%] -translate-y-1/2"></i>
-                            <h3 class="font-bold text-lg ">Crea una playlist</h3>
-                            <p class="py-4 text-sm">Accedi per creare e condividere playlist.</p>
-                            <div class="flex gap-4 justify-end">
-                                <button class=" text-white font-bold">Non ora</button>
-                                <a href="{{ route('login') }}" class="btn bg-white border-none text-black rounded-3xl font-bold">Accedi</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="border border-slate-700 rounded-xl p-5 space-y-4 bg-slate-700/55 me-2 ms-2">
-                    <h3 class="text-white font-bold">Cerca qualche podcast da seguire</h3>
-                    <p class="text-white text-sm">Ti aggiorneremo sui nuovi episodi</p>
-                    <a href="{{ route('podcast') }}" class="btn bg-white text-black rounded-3xl">Sfoglia i podcast</a>
-                </div>
-                @endauth
+                <x-library />
             </aside>
 
             {{-- Main Content --}}
             <div class="flex rounded-xl border border-base-100 w-full min-w-0 bg-base-100 flex-col gap-6 p-5 min-h-screen md:p-8">
                 <h1 class="text-xl md:text-2xl font-bold mb-2 text-white truncate">
-                    Risultati per: "{{ $search }}"
+                    {{ __('ui.results_for', ['query' => $search]) }}
                 </h1>
                 @if(session('success'))
                 <div class="bg-[#1DB954] text-black font-bold px-4 py-3 rounded-lg mb-4 flex items-center gap-2">
@@ -220,7 +31,7 @@
                     <div class="flex-1 min-w-0 text-center sm:text-left">
                         <h2 class="text-lg font-semibold truncate">{{ $song->title }}</h2>
                         <p class="text-gray-300 truncate">{{ $song->artist }}</p>
-                        <p class="text-sm text-gray-400 truncate">Genere: {{ $song->genre->name ?? 'Nessun genere' }}</p>
+                        <p class="text-sm text-gray-400 truncate">{{ __('ui.genre') }}: {{ $song->genre->name ?? __('ui.no_genre') }}</p>
 
                     </div>
                     @if ($song->file_path)
@@ -240,15 +51,25 @@
                             </button>
                             <ul tabindex="0" class="dropdown-content menu bg-base-100 rounded-box z-10 w-52 p-2 shadow border border-slate-700">
                                 <li>
+                                    @if(auth()->user()->addSongs->contains($song->id))
+                                    <form action="{{ route('songs.destroy', $song) }}" method="POST">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="flex items-center gap-2 w-full text-left">
+                                            <i class="fa-solid fa-circle-minus text-gray-400"></i> {{ __('ui.remove_from_library') }}
+                                        </button>
+                                    </form>
+                                    @else
                                     <form action="{{ route('songs.add', $song) }}" method="POST">
                                         @csrf
                                         <button type="submit" class="flex items-center gap-2 w-full text-left">
-                                            <i class="fa-solid fa-music text-gray-400"></i> Libreria
+                                            <i class="fa-solid fa-music text-gray-400"></i> {{ __('ui.add_to_library') }}
                                         </button>
                                     </form>
+                                    @endif
                                 </li>
                                 <li class="border-t border-slate-700 pt-1">
-                                    <p class="text-xs text-gray-500 px-2 py-1">Aggiungi a playlist</p>
+                                    <p class="text-xs text-gray-500 px-2 py-1">{{ __('ui.add_to_playlist') }}</p>
                                 </li>
 
                                 @foreach(auth()->user()->playlists as $userPlaylist)
@@ -257,8 +78,7 @@
                                         @csrf
                                         <input type="hidden" name="song_id" value="{{ $song->id }}">
                                         <button type="submit" class="flex items-center gap-2 w-full text-left">
-                                            <img src="{{ $userPlaylist->image_path ? Storage::url($userPlaylist->image_path) : 'https://placehold.co/20x20/282828/ffffff?text=♪' }}"
-                                                class="w-5 h-5 rounded object-cover shrink-0">
+                                            <x-playlist-cover :playlist="$userPlaylist" icon="text-xs" class="w-5 h-5 rounded" />
                                             {{ $userPlaylist->name }}
                                         </button>
                                     </form>
@@ -266,21 +86,27 @@
                                 @endforeach
                             </ul>
                         </div>
-                        <form action="{{ route('favorites.add', $song) }}" method="POST">
+                        @if(auth()->user()->favoriteSongs->contains($song->id))
+                        <form action="{{ route('favorites.destroy', $song) }}" method="POST">
                             @csrf
-                            <button type="submit">
-                                @if(auth()->user()->favoriteSongs->contains($song->id))
+                            @method('DELETE')
+                            <button type="submit" aria-label="{{ __('ui.remove_from_favorites') }}">
                                 <i class="fa-solid fa-heart text-[#1DB954]"></i>
-                                @else
-                                <i class="fa-regular fa-heart text-gray-400 hover:text-[#1DB954]"></i>
-                                @endif
                             </button>
                         </form>
+                        @else
+                        <form action="{{ route('favorites.add', $song) }}" method="POST">
+                            @csrf
+                            <button type="submit" aria-label="{{ __('ui.add_to_favorites') }}">
+                                <i class="fa-regular fa-heart text-gray-400 hover:text-[#1DB954]"></i>
+                            </button>
+                        </form>
+                        @endif
                     </div>
                     @endauth
                 </div>
                 @empty
-                <p class="text-white">Nessun risultato trovato.</p>
+                <p class="text-white">{{ __('ui.no_results') }}</p>
                 @endforelse
             </div>
         </section>

@@ -7,34 +7,6 @@ use Illuminate\Http\Request;
 
 class PlaylistController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
-    {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function addSong(Request $request, Playlist $playlist){
-
-        $request->validate([
-            'song_id'=>'required|exists:songs,id'
-        ]);
-        
-        $playlist->songs()->syncWithoutDetaching($request->song_id);
-        if($request->wantsJson()){
-            return response()->json(['success'=> true]);
-        }
-        return back()->with('success', 'Canzone aggiunta alla playlist!');
-    }
-   
-
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
         $request->validate([
@@ -54,25 +26,36 @@ class PlaylistController extends Controller
         return redirect()->route('playlists.show', $playlist);
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Playlist $playlist) {
+    public function show(Playlist $playlist)
+    {
+        $this->authorizeOwner($playlist);
+
+        $playlist->load('songs.artistModel');
 
         return view('playlists.show', compact('playlist'));
     }
 
-    
-    public function edit(Playlist $playlist)
+    public function addSong(Request $request, Playlist $playlist)
     {
-        //
+        $this->authorizeOwner($playlist);
+
+        $request->validate([
+            'song_id' => 'required|exists:songs,id',
+        ]);
+
+        $playlist->songs()->syncWithoutDetaching([(int) $request->song_id]);
+
+        if ($request->wantsJson()) {
+            return response()->json(['success' => true]);
+        }
+
+        return back()->with('success', __('ui.song_added_to_playlist'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
     public function update(Request $request, Playlist $playlist)
     {
+        $this->authorizeOwner($playlist);
+
         $request->validate([
             'name' => 'required|string|max:255',
             'image' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:4096',
@@ -88,12 +71,22 @@ class PlaylistController extends Controller
         return back();
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy(Playlist $playlist)
     {
+        $this->authorizeOwner($playlist);
+
+        $playlistUrl = route('playlists.show', $playlist);
         $playlist->delete();
-        return back();
+
+        // Se l'utente era sulla pagina della playlist eliminata, tornare indietro porterebbe a un 404
+        return url()->previous() === $playlistUrl
+            ? redirect()->route('homepage')
+            : back();
+    }
+
+    // Solo il proprietario può vedere o modificare una playlist
+    private function authorizeOwner(Playlist $playlist): void
+    {
+        abort_unless((int) $playlist->user_id === (int) auth()->id(), 403);
     }
 }

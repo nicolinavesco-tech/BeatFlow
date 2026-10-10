@@ -6,33 +6,8 @@
   </div>
 
   <div class="navbar-center gap-2 hidden lg:flex justify-center flex-1 ">
-    <a href="{{ route('homepage') }}" class="btn rounded-full"><i class="fa-regular fa-house text-white"></i></a>
-    <form action="{{ route('global.search') }}" method="GET">
-      <label class="input w-60 md:w-70 lg:w-75 xl:w-100 flex items-center gap-2">
-
-        <svg class="h-[1em] opacity-50" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-          <g
-            stroke-linejoin="round"
-            stroke-linecap="round"
-            stroke-width="2.5"
-            fill="none"
-            stroke="currentColor">
-            <circle cx="11" cy="11" r="8"></circle>
-            <path d="m21 21-4.3-4.3"></path>
-          </g>
-        </svg>
-
-        <input type="search" name="q" value="{{ request('q') }}" required placeholder="{{ __('ui.search_placeholder') }}" class="flex-1" />
-        <select name="source" class="bg-slate-800/70 text-white text-sm outline-none ">
-          <option value="local" @selected(request('source')==='local' )>
-            {{ __('ui.library') }}
-          </option>
-          <option value="jamendo" @selected(request('source')==='jamendo' )>
-            {{ __('ui.explore') }}
-          </option>
-        </select>
-      </label>
-    </form>
+    <a href="{{ route('homepage') }}" class="btn rounded-full" aria-label="Home"><i class="fa-regular fa-house text-white"></i></a>
+    <x-search-form class="w-60 md:w-70 lg:w-75 xl:w-100" />
   </div>
 
   <div class="flex items-center gap-1 md:gap-4">
@@ -72,7 +47,7 @@
             <x-_locale lang="it">Italiano </x-_locale>
           </li>
           <li class="flex">
-            <x-_locale lang="uk">English</x-_locale>
+            <x-_locale lang="en">English</x-_locale>
           </li>
 
         </ul>
@@ -84,7 +59,7 @@
       <div tabindex="0" role="button" class="btn btn-ghost avatar h-15 rounded-full gap-3">
         <span class="text-white">{{ auth()->user()->name }}</span>
         <div class="w-15 rounded-full">
-          <img alt="Tailwind CSS Navbar component" src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp" />
+          <img alt="{{ auth()->user()->name }}" src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp" />
         </div>
       </div>
       <ul tabindex="-1" class="menu menu-sm dropdown-content bg-slate-700/80 rounded-box z-1 mt-3 w-64 sm:w-90 p-2 space-y-3 shadow ">
@@ -182,7 +157,7 @@
               <x-_locale lang="it">Italiano </x-_locale>
             </li>
             <li class="flex">
-              <x-_locale lang="uk">English</x-_locale>
+              <x-_locale lang="en">English</x-_locale>
             </li>
 
           </ul>

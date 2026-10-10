@@ -32,14 +32,12 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
-    public function songs(): BelongsToMany
-    {
-        return $this->belongsToMany(Song::class);
-    }
     public function favoriteArtists(){
         return $this->belongsToMany(Artist::class);
     }
-    public function addSongs(){
+    // Canzoni salvate nella libreria dell'utente (tabella song_user)
+    public function addSongs(): BelongsToMany
+    {
         return $this->belongsToMany(Song::class)->withTimestamps();
     }
     public function playlists(){
