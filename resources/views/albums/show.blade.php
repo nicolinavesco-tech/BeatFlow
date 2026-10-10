@@ -17,10 +17,10 @@
                         </a>
 
                         <div class="pt-10 flex flex-col md:flex-row items-center md:items-end gap-4 md:gap-6">
-                            <img src="{{ asset($album->cover_image) }}" alt="{{ $album->title }}" class="w-36 h-36 md:w-60 md:h-60 object-cover rounded-xl shadow-2xl">
-                            <div class="text-center md:text-left">
+                            <img src="{{ asset($album->cover_image) }}" alt="{{ $album->title }}" class="w-36 h-36 md:w-60 md:h-60 object-cover rounded-xl shadow-2xl shrink-0">
+                            <div class="text-center md:text-left min-w-0">
                                 <p class="uppercase text-sm text-white font-semibold">{{ __('ui.album') }}</p>
-                                <h1 class="text-4xl sm:text-5xl md:text-7xl font-bold text-white">{{ $album->title }}</h1>
+                                <h1 class="{{ mb_strlen($album->title) > 20 ? 'text-3xl sm:text-4xl md:text-5xl' : 'text-4xl sm:text-5xl md:text-7xl' }} font-bold text-white break-words leading-tight">{{ $album->title }}</h1>
                                 <p class="text-lg md:text-xl text-white pt-2">{{ $album->artist->name }}</p>
                                 <p class="text-gray-300 pt-1">{{ $album->release_year }}</p>
                             </div>
@@ -103,7 +103,7 @@
                                 <article class="group shrink-0 w-36 sm:w-40 md:w-44 lg:w-48 xl:w-52 flex flex-col relative hover:bg-slate-700/55 rounded-lg p-2 transition">
                                     <a href="{{ route('albums.show', $otherAlbum) }}" class="block">
                                         <img src="{{ asset($otherAlbum->cover_image) }}" alt="{{ $otherAlbum->title }}" class="w-full aspect-square rounded-lg object-cover">
-                                        <h3 class="font-bold pt-2 text-white truncate">{{ $otherAlbum->title }}</h3>
+                                        <h3 class="font-bold pt-2 text-white line-clamp-2 leading-snug" title="{{ $otherAlbum->title }}">{{ $otherAlbum->title }}</h3>
                                         <p class="text-sm text-gray-400">Album • {{ $otherAlbum->release_year }}</p>
                                     </a>
                                 </article>

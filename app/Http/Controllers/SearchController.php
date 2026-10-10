@@ -22,12 +22,15 @@ class SearchController extends Controller
         // Con una ricerca vuota non restituiamo tutto il catalogo
         $songs = $query === ''
             ? collect()
-            : Song::with(['genre', 'artistModel'])
+            : Song::with(['genre', 'artistModel', 'album'])
                 ->where(function ($q) use ($query) {
                     $q->where('title', 'like', "%{$query}%")
                         ->orWhere('artist', 'like', "%{$query}%")
                         ->orWhereHas('genre', function ($q2) use ($query) {
                             $q2->where('name', 'like', "%{$query}%");
+                        })
+                        ->orWhereHas('album', function ($q2) use ($query) {
+                            $q2->where('title', 'like', "%{$query}%");
                         });
                 })
                 ->get();

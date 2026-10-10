@@ -17,14 +17,27 @@
                     </a>
 
                     {{-- Hero: immagine + titolo --}}
+                    @php
+                        // Titoli lunghi con un font più piccolo, così non escono dallo schermo
+                        $titleLength = mb_strlen($song->title);
+                        $titleSize = $titleLength > 22 ? 'md:text-6xl' : ($titleLength > 12 ? 'md:text-7xl' : 'md:text-8xl');
+                        $heroImage = $song->album?->cover_image ?: ($song->image_path ?: 'media/' . $song->artistModel?->image);
+                    @endphp
                     <div class="flex flex-col md:flex-row gap-5 md:gap-8 items-center md:items-end">
-                        <img src="/media/{{ $song->artistModel->image }}" alt="{{ $song->artist }}"
-                            class="w-48 h-48 md:w-72 md:h-72 rounded-xl shadow-lg object-cover hover:scale-105 transition duration-300">
+                        <img src="{{ asset($heroImage) }}" alt="{{ $song->album->title ?? $song->artist }}"
+                            class="w-48 h-48 md:w-72 md:h-72 rounded-xl shadow-lg object-cover hover:scale-105 transition duration-300 shrink-0">
 
-                        <div class="flex flex-col gap-3 text-center md:text-left">
-                            <p class="text-sm uppercase tracking-wide text-white">{{ __('ui.single') }}</p>
-                            <h1 class="text-4xl sm:text-6xl md:text-9xl font-bold">{{ $song->title }}</h1>
-                            <p class="text-xl text-white">{{ $song->genre->name }}</p>
+                        <div class="flex flex-col gap-3 text-center md:text-left min-w-0">
+                            <p class="text-sm uppercase tracking-wide text-white">{{ __('ui.song') }}</p>
+                            <h1 class="text-4xl sm:text-5xl {{ $titleSize }} font-bold break-words leading-tight">{{ $song->title }}</h1>
+                            <p class="text-xl text-white">
+                                <a href="{{ route('artists.show', $song->artist_id) }}" class="font-bold hover:underline">{{ $song->artist }}</a>
+                                @if ($song->album)
+                                <span class="text-gray-300">•</span>
+                                <a href="{{ route('albums.show', $song->album) }}" class="text-gray-300 hover:text-white hover:underline">{{ $song->album->title }}</a>
+                                <span class="text-gray-300">• {{ $song->album->release_year }}</span>
+                                @endif
+                            </p>
                         </div>
                     </div>
 
@@ -77,6 +90,13 @@
                         <h2 class="text-2xl font-bold mb-4">{{ __('ui.track_details') }}</h2>
                         <p class="text-lg"><span class="font-bold">{{ __('ui.title') }}:</span> {{ $song->title }}</p>
                         <p class="text-lg"><span class="font-bold">{{ __('ui.artist') }}:</span> {{ $song->artist }}</p>
+                        <p class="text-lg"><span class="font-bold">{{ __('ui.album') }}:</span>
+                            @if ($song->album)
+                            <a href="{{ route('albums.show', $song->album) }}" class="hover:underline">{{ $song->album->title }}</a> ({{ $song->album->release_year }})
+                            @else
+                            {{ __('ui.no_album') }}
+                            @endif
+                        </p>
                         <p class="text-lg"><span class="font-bold">{{ __('ui.genre') }}:</span> {{ $song->genre->name }}</p>
                     </div>
 

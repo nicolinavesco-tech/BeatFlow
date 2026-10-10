@@ -77,9 +77,13 @@
                                     <div>
                                         <img class="size-10 rounded-box object-cover" src="{{ asset($song->image_path ?? 'media/' . $artist->image) }}" alt="Cover {{ $song->title }}">
                                     </div>
-                                    <div class="list-col-grow">
-                                        <div class="text-white">{{ $song->title }}</div>
-                                        <div class="text-xs uppercase font-semibold opacity-60">{{ $song->artist }}</div>
+                                    <div class="list-col-grow min-w-0">
+                                        <div class="text-white truncate" title="{{ $song->title }}">{{ $song->title }}</div>
+                                        @if ($song->album)
+                                        <a href="{{ route('albums.show', $song->album) }}" class="block text-xs font-semibold opacity-60 hover:opacity-100 hover:underline truncate">{{ $song->album->title }}</a>
+                                        @else
+                                        <div class="text-xs uppercase font-semibold opacity-60 truncate">{{ $song->artist }}</div>
+                                        @endif
                                     </div>
                                     <button class="btn btn-square btn-ghost" onclick="playSong('{{ $songAudioId }}')">
                                         <svg class="size-[1.2em]" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
@@ -123,8 +127,8 @@
                                     data-song-id="">
                                     <a href="{{ route('albums.show', $album->id) }}" class="block">
                                         <img src="{{ asset($album->cover_image) }}" alt="Copertina {{ $album->title }}" class="w-40 h-40 rounded-lg object-cover" loading="lazy">
-                                        <h3 class="font-bold pt-2 text-white truncate">{{ $album->title }}</h3>
-                                        <p class="text-sm text-gray-400">Album • {{ $album->release_year }}</p>
+                                        <h3 class="font-bold pt-2 text-white line-clamp-2 leading-snug" title="{{ $album->title }}">{{ $album->title }}</h3>
+                                        <p class="text-sm text-gray-400">{{ str_ends_with($album->title, ' - Single') ? __('ui.single') : __('ui.album') }} • {{ $album->release_year }}</p>
                                     </a>
 
                                     <button type="button" onclick="event.stopPropagation(); playSong('{{ $discAudioId }}')" class="absolute bottom-16 right-4 z-10 opacity-100 xl:opacity-0 translate-y-0 xl:translate-y-4 xl:group-hover/card:opacity-100 xl:group-hover/card:translate-y-0 transition duration-300">

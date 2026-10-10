@@ -44,7 +44,7 @@ class SongController extends Controller
 
     public function show(Song $song)
     {
-        $song->load(['genre', 'artistModel']);
+        $song->load(['genre', 'artistModel', 'album']);
 
         $otherSongs = Song::with(['genre', 'artistModel'])
             ->where('artist_id', $song->artist_id)

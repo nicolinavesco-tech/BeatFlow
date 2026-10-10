@@ -21,26 +21,35 @@
                 @endif
 
                 @forelse ($songs as $song)
-                <div class="block md:flex gap-4 sm:items-center p-4 mb-3 rounded bg-gray-800 text-white">
+                {{-- Info a sinistra con spazio garantito, player a larghezza fissa: il titolo non viene più schiacciato --}}
+                <div class="flex flex-col md:flex-row gap-4 md:items-center p-4 rounded-xl bg-gray-800/80 hover:bg-gray-800 transition-colors text-white">
 
-                    @if ($song->image_path)
-                    <img src="{{ asset($song->image_path) }}" alt="{{ $song->title }}"
-                        class="w-20 h-20 rounded object-cover shrink-0 mx-auto sm:mx-0">
-                    @endif
+                    <div class="flex items-center gap-4 flex-1 min-w-0">
+                        @if ($song->image_path)
+                        <img src="{{ asset($song->image_path) }}" alt="{{ $song->title }}"
+                            class="w-16 h-16 sm:w-20 sm:h-20 rounded-lg object-cover shrink-0 shadow-lg">
+                        @endif
 
-                    <div class="flex-1 min-w-0 text-center sm:text-left">
-                        <h2 class="text-lg font-semibold truncate">{{ $song->title }}</h2>
-                        <p class="text-gray-300 truncate">{{ $song->artist }}</p>
-                        <p class="text-sm text-gray-400 truncate">{{ __('ui.genre') }}: {{ $song->genre->name ?? __('ui.no_genre') }}</p>
-
+                        <div class="min-w-0">
+                            <h2 class="text-base sm:text-lg font-semibold leading-tight line-clamp-2 break-words" title="{{ $song->title }}">{{ $song->title }}</h2>
+                            <a href="{{ $song->artist_id ? route('artists.show', $song->artist_id) : '#' }}" class="block text-gray-300 hover:underline truncate">{{ $song->artist }}</a>
+                            <p class="text-sm text-gray-400 truncate">
+                                @if ($song->album)
+                                <a href="{{ route('albums.show', $song->album) }}" class="hover:text-white hover:underline"><i class="fa-solid fa-record-vinyl me-1"></i>{{ $song->album->title }}</a>
+                                <span class="mx-1">•</span>
+                                @endif
+                                {{ $song->genre->name ?? __('ui.no_genre') }}
+                            </p>
+                        </div>
                     </div>
+
                     @if ($song->file_path)
-                    <audio id="audio-{{ $song->id }}" controls class="mt-2 w-full ms-8 md:ms-0" style="width:80%;">
+                    <audio id="audio-{{ $song->id }}" controls preload="none" class="w-full md:w-72 lg:w-80 shrink-0">
                         <source src="{{ asset($song->file_path) }}" type="audio/mpeg">
                     </audio>
                     @endif
                     @auth
-                    <div class="flex justify-center mt-4 md:mt-0 md:justify-end gap-5">
+                    <div class="flex justify-center md:justify-end gap-5 shrink-0">
                         <div class="dropdown dropdown-end">
                             <button tabindex="0" type="button">
                                 @if(auth()->user()->addSongs->contains($song->id))

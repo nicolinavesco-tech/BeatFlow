@@ -124,7 +124,7 @@
                                 @endif>
                                 <a href="{{ route('albums.show', $album) }}" class="block">
                                     <img src="{{ asset($album->cover_image) }}" alt="{{ $album->title }}" class="w-40 h-40 rounded-lg object-cover">
-                                    <h3 class="font-bold pt-2 truncate">{{ $album->title }}</h3>
+                                    <h3 class="font-bold pt-2 line-clamp-2 leading-snug" title="{{ $album->title }}">{{ $album->title }}</h3>
                                     <p class="text-sm text-gray-400 truncate">{{ $album->artist->name }}</p>
                                 </a>
                                 @if($albumSong)

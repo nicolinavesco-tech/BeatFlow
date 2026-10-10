@@ -10,7 +10,12 @@ class ArtistController extends Controller
 {
     public function show(Artist $artist)
     {
-        $artist->load('songs.genre');
+        // Discografia dalla più recente
+        $artist->load([
+            'songs.genre',
+            'songs.album',
+            'albums' => fn ($query) => $query->orderByDesc('release_year'),
+        ]);
 
         return view('artists.artistDetail', compact('artist'));
     }
